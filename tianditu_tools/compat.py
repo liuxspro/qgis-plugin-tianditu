@@ -26,7 +26,7 @@ if IS_QT5:
 if IS_QT6:
     # QT6 版本
 
-    from .ui.sd_6 import Ui_SdDockWidget
+    from .ui.sd_6 import Ui_SdDockWidget  # noqa  # pylint: disable=unused-import
     from .ui.search_6 import Ui_SearchDockWidget
     from .ui.setting_6 import Ui_SettingDialog
 
@@ -42,4 +42,8 @@ if IS_QT6:
     NoError = QNetworkReply.NetworkError.NoError
 
 
-_UI = [Ui_SdDockWidget, Ui_SearchDockWidget, Ui_SettingDialog]
+_UI = [
+    Ui_SdDockWidget,
+    Ui_SearchDockWidget,
+    Ui_SettingDialog,
+]  # pylint: possibly-used-before-assignment
