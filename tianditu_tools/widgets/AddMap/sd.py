@@ -2,15 +2,19 @@ import json
 import math
 
 from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtCore import Qt
-from qgis.PyQt.QtNetwork import QNetworkReply
 from qgis.PyQt.QtWidgets import QAction, QTreeWidgetItem, QListWidgetItem
 from qgis.core import QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsProject
 from qgis.core import QgsNetworkAccessManager
 
 from .utils import add_raster_layer
 from ..icons import icons
-from ...ui.sd import Ui_SdDockWidget
+from ...compat import (
+    Ui_SdDockWidget,
+    RightDockWidgetArea,
+    NoError,
+    AlignCenter,
+    DescendingOrder,
+)
 from ...utils import PluginConfig, make_request
 
 
@@ -121,7 +125,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         url += f"wktpoint=POINT({point[0]} {point[1]})&level={level}&tk={self.tk}"
         request = make_request(url)
         reply = network_manager.blockingGet(request)
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             try:
                 raw_data = json.loads(reply.content().data())
             except json.decoder.JSONDecodeError:
@@ -143,7 +147,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             sorted_data = sorted(his_data, key=lambda x: x["st"])
             self.add_item(sorted_data)
         # 默认按照时间降序排序
-        self.treeWidget.sortByColumn(1, 1)
+        self.treeWidget.sortByColumn(1, DescendingOrder)
 
     def add_item(self, map_data):
         self.treeWidget.clear()  # 先清空 item
@@ -154,9 +158,9 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             item.setText(2, str(m["reso"]))
             item.setText(3, m["url"])
             item.setText(4, str(m["el"]))
-            item.setTextAlignment(0, Qt.AlignCenter)
-            item.setTextAlignment(1, Qt.AlignCenter)
-            item.setTextAlignment(2, Qt.AlignCenter)
+            item.setTextAlignment(0, AlignCenter)
+            item.setTextAlignment(1, AlignCenter)
+            item.setTextAlignment(2, AlignCenter)
 
     @staticmethod
     def on_item_double_clicked(item):
@@ -195,5 +199,5 @@ class SdAction(QAction):
     def open_dock(self):
         # https://qgis.org/pyqgis/master/gui/QgisInterface.html#qgis.gui.QgisInterface.addTabifiedDockWidget
         self.iface.addTabifiedDockWidget(
-            Qt.RightDockWidgetArea, self.dock, ["sd"], raiseTab=True
+            RightDockWidgetArea, self.dock, ["sd"], raiseTab=True
         )

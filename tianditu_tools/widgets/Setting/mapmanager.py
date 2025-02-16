@@ -2,12 +2,13 @@ from functools import partial
 from pathlib import Path
 
 import yaml
-from PyQt5.QtCore import QSize, Qt, QTimer
-from PyQt5.QtGui import QFont
-from PyQt5.QtNetwork import QNetworkReply
-from PyQt5.QtWidgets import QPushButton, QTreeWidget, QTreeWidgetItem
+from qgis.PyQt.QtCore import QSize, QTimer
+from qgis.PyQt.QtGui import QFont
+from qgis.PyQt.QtNetwork import QNetworkReply
+from qgis.PyQt.QtWidgets import QPushButton, QTreeWidget, QTreeWidgetItem
 from qgis.core import QgsNetworkAccessManager
 
+from ...compat import AlignCenter, Checked, Unchecked, NoError, MatchExactly
 from ...utils import load_yaml, PluginConfig, make_request, HEADER
 
 ui_font = QFont()
@@ -41,7 +42,7 @@ class MapManager(QTreeWidget):
         self.clear()
         self.setColumnCount(3)  # 设置列
         self.setHeaderLabels(["名称", "Local", "LastUpdated", "操作"])
-        self.header().setDefaultAlignment(Qt.AlignCenter)
+        self.header().setDefaultAlignment(AlignCenter)
         self.setUniformRowHeights(True)
         # 设置宽度
         self.setColumnWidth(0, 190)
@@ -79,8 +80,8 @@ class MapManager(QTreeWidget):
             update_btn.setEnabled(False)
             item = QTreeWidgetItem(self, [value["name"], value["lastUpdated"], "/"])
             item.setSizeHint(0, QSize(160, 28))
-            item.setTextAlignment(1, Qt.AlignCenter)
-            item.setTextAlignment(2, Qt.AlignCenter)
+            item.setTextAlignment(1, AlignCenter)
+            item.setTextAlignment(2, AlignCenter)
             self.setItemWidget(item, 3, update_btn)
             extra_maps_status = self.conf.get_extra_maps_status()
             map_detail = self.load_map_detail(value["id"])["maps"]
@@ -91,9 +92,9 @@ class MapManager(QTreeWidget):
                 child_item.setText(0, map_name)
                 # 是否启用
                 if map_name in section_maps_status:
-                    child_item.setCheckState(0, Qt.Checked)
+                    child_item.setCheckState(0, Checked)
                 else:
-                    child_item.setCheckState(0, Qt.Unchecked)
+                    child_item.setCheckState(0, Unchecked)
 
             self.addTopLevelItem(item)
 
@@ -122,24 +123,24 @@ class MapManager(QTreeWidget):
         network_manager = QgsNetworkAccessManager.instance()
         request = make_request(self.update_url)
         reply = network_manager.blockingGet(request)
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             with open(self.map_folder.joinpath("summary.yml"), "wb") as f:
                 f.write(reply.content())
         request = make_request(download_url)
         reply = network_manager.blockingGet(request)
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             with open(mapfile_path, "wb") as f:
                 f.write(reply.content())
 
     def handle_check_update_response(self, reply: QNetworkReply):
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             response_data = str(reply.readAll(), "utf-8", "ignore")
             self.set_status_label("检查更新成功")
             self.update_btn.setEnabled(True)
             update_summary = yaml.safe_load(response_data)
             for _, map_sum in update_summary.items():
                 name = map_sum["name"]
-                item = self.findItems(name, Qt.MatchExactly)[0]
+                item = self.findItems(name, MatchExactly)[0]
                 item.setText(2, map_sum["lastUpdated"])
                 if item.text(1) != item.text(2):
                     # 将按钮设置为启用状态
