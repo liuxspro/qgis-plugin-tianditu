@@ -3,7 +3,11 @@ name = "qgis-plugin-tianditu"
 version = "0.5.0"
 description = "QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实现了部分天地图 Web 服务 API（地名搜索、地理编码查询、逆地理编码查询） "
 readme = "README.md"
-requires-python = ">=3.13"
-dependencies = [
-    "pyqt6>=6.8.1",
-]
+requires-python = ">=3.12"
+dependencies = ["pyqt5>=5.15.11", "pyqt6>=6.8.1"]
+
+
+[tool.uv]
+# 为项目的依赖项添加额外的约束条件
+constraint-dependencies = ["pyqt5-qt5 <=5.15.2; sys_platform == 'win32'"]
+# PyQt5-Qt5 这个包只有 5.15.2 还支持 Windows

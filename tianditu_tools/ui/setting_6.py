@@ -1,4 +1,4 @@
-# Form implementation generated from reading ui file '.\tianditu_tools\ui\setting.ui'
+# Form implementation generated from reading ui file './tianditu_tools/ui/setting.ui'
 #
 # Created by: PyQt6 UI code generator 6.8.1
 #
