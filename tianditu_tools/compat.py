@@ -43,7 +43,7 @@ if IS_QT6:
 
 
 _UI = [
-    Ui_SdDockWidget,
-    Ui_SearchDockWidget,
-    Ui_SettingDialog,
+    Ui_SdDockWidget,  # pylint: possibly-used-before-assignment
+    Ui_SearchDockWidget,  # pylint: possibly-used-before-assignment
+    Ui_SettingDialog,  # pylint: possibly-used-before-assignment
 ]  # pylint: possibly-used-before-assignment
