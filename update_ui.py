@@ -18,7 +18,7 @@ def update_file():
         print(f"正在处理文件: {file_path}")
         try:
             update_ui_genate_py(file_path)
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-exception-caught
             print(f"处理文件 {file_path} 时出错: {e}")
 
 
