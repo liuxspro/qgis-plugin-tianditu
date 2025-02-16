@@ -28,6 +28,9 @@ if IS_QT6:
 
     from .ui.sd_6 import Ui_SdDockWidget  # noqa  # pylint: disable=unused-import
     from .ui.setting_6 import Ui_SettingDialog  # noqa  # pylint: disable=unused-import
+    from .ui.search_6 import (  # noqa # pylint: disable=unused-import
+        Ui_SearchDockWidget,  # noqa # pylint: disable=unused-import
+    )  # noqa  # pylint: disable=unused-import
 
     # 枚举值改变
     LeftDockWidgetArea = Qt.DockWidgetArea.LeftDockWidgetArea
