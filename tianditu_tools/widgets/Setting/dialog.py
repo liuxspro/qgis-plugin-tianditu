@@ -8,7 +8,6 @@ from qgis.PyQt.QtWidgets import QApplication
 from qgis.core import QgsNetworkAccessManager
 
 from .mapmanager import MapManager
-# from ...ui.setting import Ui_SettingDialog
 from ...compat import Ui_SettingDialog
 from ...utils import (
     tianditu_map_url,
