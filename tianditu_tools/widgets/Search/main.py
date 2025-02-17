@@ -1,8 +1,8 @@
-from qgis.PyQt.QtCore import Qt
 from qgis.PyQt.QtWidgets import QAction, QMessageBox
 
 from .searchDock import SearchDockWidget
 from ..icons import icons
+from ...compat import LeftDockWidgetArea
 from ...utils import PluginConfig
 
 conf = PluginConfig()
@@ -21,7 +21,7 @@ class SearchAction(QAction):
         self.setText("搜索")
         self.searchdockwidget = SearchDockWidget(self.iface)
         self.searchdockwidget.visibilityChanged.connect(self.onDockVisibilityChanged)
-        self.iface.addDockWidget(Qt.LeftDockWidgetArea, self.searchdockwidget)
+        self.iface.addDockWidget(LeftDockWidgetArea, self.searchdockwidget)
         self.searchdockwidget.hide()
         self.setCheckable(True)
         self.triggered.connect(self.openSearch)

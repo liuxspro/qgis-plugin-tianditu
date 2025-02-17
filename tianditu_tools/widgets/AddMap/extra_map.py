@@ -48,7 +48,7 @@ def add_extra_map_menu(parent_menu: QMenu):
     extra = load_yaml(PluginDir.joinpath("maps/extra.yml"))
     extra_maps = extra["maps"]
     extra_root = parent_menu.addAction(icons["other"], "其他地图")
-    extra_root_menu = QMenu()
+    extra_root_menu = QMenu(parent_menu)
     maps = extra_maps.keys()
     extra_maps_status = conf.get_extra_maps_status()
     for map_name in maps:
@@ -58,7 +58,7 @@ def add_extra_map_menu(parent_menu: QMenu):
         ):
             map_data = extra_maps[map_name]
             sub_menu = extra_root_menu.addAction(icons["other"], map_name)
-            sub_sub_menu = QMenu()
+            sub_sub_menu = QMenu(parent_menu)
             for sub_map in map_data:
                 sub_sub_menu.addAction(
                     get_extra_map_icon(sub_map.get("icon", "default.svg")),

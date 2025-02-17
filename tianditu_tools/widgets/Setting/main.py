@@ -2,6 +2,7 @@ from qgis.PyQt.QtWidgets import QAction
 
 from .dialog import SettingDialog
 from ..icons import icons
+from ...compat import IS_QT5, IS_QT6
 
 
 class SettingAction(QAction):
@@ -18,4 +19,7 @@ class SettingAction(QAction):
 
     def show_setting_dialog(self):
         dlg = SettingDialog(toolbar=self.toolbar)
-        dlg.exec_()
+        if IS_QT5:
+            dlg.exec_()
+        if IS_QT6:
+            dlg.exec()
