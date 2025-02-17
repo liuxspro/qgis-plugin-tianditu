@@ -21,8 +21,10 @@ jobs:
         run: uv python install
 
       - name: 'Pack plugin'
-        run: ./build.sh
-        
+        run: |
+          chmod +x ./build.sh
+          ./build.sh
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
