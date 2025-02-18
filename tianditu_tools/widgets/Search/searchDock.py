@@ -17,7 +17,7 @@ from qgis.core import (
     QgsNetworkAccessManager,
 )
 
-from ...ui.search import Ui_SearchDockWidget
+from ...compat import Ui_SearchDockWidget, NoError
 from ...utils import PluginDir, make_request, HEADER
 
 
@@ -99,7 +99,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
     @staticmethod
     def onAdminSearchFinished(reply: QNetworkReply, item):
         item.removeChild(item.child(0))  # 移除搜索中
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             response_data = json.loads(str(reply.readAll(), "utf-8", "ignore"))
             pois = response_data.get("pois", None)
             if pois is None:
@@ -166,7 +166,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
 
     def onSearchRequestFinished(self, reply: QNetworkReply):
         self.treeWidget.takeTopLevelItem(0)  # 移除"搜索中..."
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             response_data = json.loads(str(reply.readAll(), "utf-8", "ignore"))
         else:
             root = QTreeWidgetItem(self.treeWidget)
@@ -274,7 +274,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         {'msg': 'ok', 'location': {...}, 'searchVersion': '6.4.9V', 'status': '0'}
         """
         t = "请求失败"
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             response_data = json.loads(str(reply.readAll(), "utf-8", "ignore"))
             if response_data["msg"] == "ok":
                 location = response_data["location"]
@@ -329,7 +329,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         API说明: http://lbs.tianditu.gov.cn/server/geocoding.html
         """
         text = "请求失败"
-        if reply.error() == QNetworkReply.NoError:
+        if reply.error() == NoError:
             response_data = json.loads(str(reply.readAll(), "utf-8", "ignore"))
             if response_data["status"] == "0":
                 result = response_data["result"]

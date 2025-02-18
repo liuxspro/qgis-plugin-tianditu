@@ -6,6 +6,7 @@ from .extra_map import add_tianditu_province_menu, add_extra_map_menu
 from .utils import add_raster_layer
 from .utils import get_xyz_uri
 from ..icons import icons
+from ...compat import MenuButtonPopup
 from ...utils import TIANDITU_HOME_URL, PluginConfig, tianditu_map_url
 
 tianditu_map_info = {
@@ -44,7 +45,7 @@ class AddMapBtn(QToolButton):
         # 其他图源
         add_extra_map_menu(menu)
         self.setMenu(menu)
-        self.setPopupMode(QToolButton.MenuButtonPopup)
+        self.setPopupMode(MenuButtonPopup)
         self.setIcon(self.icons["add"])
 
     def add_tianditu_basemap(self, maptype):

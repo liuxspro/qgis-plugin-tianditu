@@ -8,11 +8,12 @@ tags=basemap, xyz, tianditu, geocoder, 天地图
 icon=images/icon.png
 experimental=False
 deprecated=False
+supportsQt6=yes
 author=liuxspro
 email=liuxspro@gmail.com
 homepage=https://qgis-plugin-tianditu.liuxs.pro/
-tracker=https://github.com/liuxsdev/qgis-plugin-tianditu/issues
-repository=https://github.com/liuxsdev/qgis-plugin-tianditu
+tracker=https://github.com/liuxspro/qgis-plugin-tianditu/issues
+repository=https://github.com/liuxspro/qgis-plugin-tianditu
 changelog=
   Version 0.5.0 2024/12/18:
   * ✨ 新增功能: 支持山东天地图历史影像
