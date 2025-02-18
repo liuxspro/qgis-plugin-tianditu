@@ -2,13 +2,11 @@ import json
 
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QTimer
-from qgis.PyQt.QtGui import QClipboard
-from qgis.PyQt.QtNetwork import QNetworkReply, QNetworkRequest
 from qgis.PyQt.QtWidgets import QApplication
 from qgis.core import QgsNetworkAccessManager
 
 from .mapmanager import MapManager
-from ...compat import Ui_SettingDialog
+from ...compat import Ui_SettingDialog, NoError, HttpStatusCodeAttribute, ModeClipboard
 from ...utils import (
     tianditu_map_url,
     PluginConfig,
@@ -145,14 +143,14 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
         current_key = self.keyComboBox.currentText()
         full_key = self.get_key_by_masked(current_key)
         clipboard = QApplication.clipboard()
-        clipboard.setText(full_key, QClipboard.Clipboard)
+        clipboard.setText(full_key, ModeClipboard)
         self.set_status_label(f"已复制{current_key}到剪贴板")
 
     def handle_key_check(self, reply, key):
         key_list = self.conf.get_key_list()
         # 获取状态码
-        status_code = reply.attribute(QNetworkRequest.HttpStatusCodeAttribute)
-        if reply.error() == QNetworkReply.NoError:
+        status_code = reply.attribute(HttpStatusCodeAttribute)
+        if reply.error() == NoError:
             response_data = reply.readAll()
             png_signature = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
             if response_data[:8] == png_signature:

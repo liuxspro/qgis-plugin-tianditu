@@ -1,6 +1,6 @@
-from qgis.PyQt.QtCore import QT_VERSION_STR
-from qgis.PyQt.QtCore import Qt
-from qgis.PyQt.QtNetwork import QNetworkReply
+from qgis.PyQt.QtCore import Qt, QT_VERSION_STR
+from qgis.PyQt.QtGui import QClipboard
+from qgis.PyQt.QtNetwork import QNetworkReply, QNetworkRequest
 from qgis.PyQt.QtWidgets import QToolButton
 
 QT_MAJOR_VERSION = int(QT_VERSION_STR.split(".")[0])
@@ -23,6 +23,9 @@ if IS_QT5:
     MatchExactly = Qt.MatchExactly
     MenuButtonPopup = QToolButton.MenuButtonPopup
     NoError = QNetworkReply.NoError
+    HttpStatusCodeAttribute = QNetworkRequest.HttpStatusCodeAttribute
+    ModeClipboard = QClipboard.Clipboard
+
 if IS_QT6:
     # QT6 版本
 
@@ -42,3 +45,5 @@ if IS_QT6:
     MatchExactly = Qt.MatchFlag.MatchExactly
     MenuButtonPopup = QToolButton.ToolButtonPopupMode.MenuButtonPopup
     NoError = QNetworkReply.NetworkError.NoError
+    HttpStatusCodeAttribute = QNetworkRequest.Attribute.HttpStatusCodeAttribute
+    ModeClipboard = QClipboard.Mode.Clipboard
