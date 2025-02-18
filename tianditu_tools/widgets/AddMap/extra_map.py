@@ -31,7 +31,7 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
         if map_name in extra_maps_status["tianditu_province"]:
             add_map_action = parent_menu.addAction(icons["map"], map_name)
             map_data = tianditu_province[map_name]
-            sub_menu = QMenu()
+            sub_menu = QMenu(parent_menu)
             for m in map_data:
                 sub_menu.addAction(
                     icons["map"],
