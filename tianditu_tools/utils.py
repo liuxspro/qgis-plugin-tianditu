@@ -17,6 +17,8 @@ HEADER = {
     "Referer": "https://www.tianditu.gov.cn/",
 }
 
+APP_FONT = QgsSettings().value("app/fontFamily")
+
 
 def get_extramap_status():
     summary = load_yaml(PluginDir.joinpath("maps/summary.yml"))

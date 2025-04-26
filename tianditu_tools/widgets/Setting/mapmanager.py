@@ -9,10 +9,10 @@ from qgis.PyQt.QtWidgets import QPushButton, QTreeWidget, QTreeWidgetItem
 from qgis.core import QgsNetworkAccessManager
 
 from ...compat import AlignCenter, Checked, Unchecked, NoError, MatchExactly
-from ...utils import load_yaml, PluginConfig, make_request, HEADER
+from ...utils import load_yaml, PluginConfig, make_request, HEADER, APP_FONT
 
 ui_font = QFont()
-ui_font.setFamily("微软雅黑")
+ui_font.setFamily(APP_FONT)
 ui_font.setPointSize(8)
 
 
