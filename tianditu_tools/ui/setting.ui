@@ -10,11 +10,6 @@
     <height>312</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>微软雅黑</family>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>设置</string>
   </property>
@@ -31,11 +26,6 @@
       <layout class="QVBoxLayout" name="verticalLayout_4">
        <item>
         <widget class="QGroupBox" name="groupBox">
-         <property name="font">
-          <font>
-           <family>微软雅黑</family>
-          </font>
-         </property>
          <property name="title">
           <string>Key 设置</string>
          </property>
@@ -217,12 +207,6 @@
           </item>
           <item>
            <widget class="QLabel" name="info_status">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-              <pointsize>8</pointsize>
-             </font>
-            </property>
             <property name="styleSheet">
              <string notr="true">color: rgb(128, 128, 128);</string>
             </property>
@@ -275,7 +259,6 @@
            </property>
            <property name="font">
             <font>
-             <family>微软雅黑</family>
              <pointsize>8</pointsize>
             </font>
            </property>
