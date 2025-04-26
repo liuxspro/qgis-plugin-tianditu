@@ -10,11 +10,6 @@
     <height>303</height>
    </rect>
   </property>
-  <property name="font">
-   <font>
-    <family>微软雅黑</family>
-   </font>
-  </property>
   <property name="windowTitle">
    <string>天地图API-搜索</string>
   </property>
@@ -23,7 +18,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab">
        <attribute name="title">
@@ -55,7 +50,7 @@
       </widget>
       <widget class="QWidget" name="tab_2">
        <attribute name="title">
-        <string>地理编码查询</string>
+        <string>地理编码</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
@@ -86,7 +81,6 @@
          <widget class="QLabel" name="label">
           <property name="font">
            <font>
-            <family>微软雅黑</family>
             <weight>50</weight>
             <bold>false</bold>
            </font>
@@ -132,7 +126,7 @@
       </widget>
       <widget class="QWidget" name="tab_3">
        <attribute name="title">
-        <string>逆地理编码查询</string>
+        <string>逆地理编码</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
@@ -156,7 +150,7 @@
         <item>
          <widget class="QLabel" name="label_3">
           <property name="text">
-           <string>搜索结果</string>
+           <string>搜索结果：</string>
           </property>
          </widget>
         </item>
