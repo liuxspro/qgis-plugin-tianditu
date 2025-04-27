@@ -162,8 +162,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             item.setTextAlignment(1, AlignCenter)
             item.setTextAlignment(2, AlignCenter)
 
-    @staticmethod
-    def on_item_double_clicked(item):
+    def on_item_double_clicked(self, item):
         """
         处理双击事件
         :param item: 被双击的 QTreeWidgetItem
@@ -174,14 +173,11 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
 
         mapid = url.split("/")[-1]
         # 为山东天地图历史影像写了一个简单的 WMTS Capabilities 生成服务
-        # 源代码见 https://github.com/liuxspro/maps/tree/sd/wmts
-        # 部署在 Deno Deploy
-        his_wmts_server = "https://wmts.deno.dev/"
-        cap_url = (
-            f"{his_wmts_server}sdhis/{mapid}/{el}?tk%3Dee5c67bbafffd91385530796fb58d0f6"
-        )
-        uri = f"crs=EPSG:4490&format=image/png&layers={mapid}"
-        uri += f"&styles=default&tileMatrixSet=default028mm&url={cap_url}"
+        # 源代码见 https://github.com/liuxspro/wmts/blob/main/src/server.ts
+        his_wmts_server = "https://wmts.liuxs.pro/"
+        cap_url = f"{his_wmts_server}tianditu/sdhis/{mapid}/{el}?tk%3D{self.tk}"
+        uri = f"crs=EPSG:4490&format=image/jpeg&layers={mapid}"
+        uri += f"&styles=default&tileMatrixSet=CGCS2000Quad&url={cap_url}"
 
         add_raster_layer(uri, name)
 
