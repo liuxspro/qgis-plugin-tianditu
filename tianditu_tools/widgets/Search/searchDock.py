@@ -16,6 +16,7 @@ from qgis.core import (
     QgsCoordinateTransform,
     QgsNetworkAccessManager,
 )
+from qgis.gui import QgsMapToolEmitPoint
 
 from ...compat import Ui_SearchDockWidget, NoError
 from ...utils import PluginDir, make_request, HEADER
@@ -58,6 +59,9 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         self.label_2.linkActivated.connect(self.geocoder_result_link_clicked)
         # 逆地理编码查询
         self.pushButton_3.clicked.connect(self.regeocoder)
+        self.btn_cap.clicked.connect(self.capture_point)
+        self.tool = QgsMapToolEmitPoint(self.iface.mapCanvas())
+        self.tool.canvasClicked.connect(self.handle_capture)
 
     def get_token(self):
         if self.token == "":
@@ -359,3 +363,20 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
             self.iface.messageBar().pushWarning(
                 title="天地图API - Error: 经纬度输入有误", message=str(e)
             )
+
+    def capture_point(self):
+        canvas = self.iface.mapCanvas()
+        canvas.setMapTool(self.tool)
+
+    def handle_capture(self, point):
+        canvas = self.iface.mapCanvas()
+        canvas_crs = canvas.mapSettings().destinationCrs()
+        target_crs = QgsCoordinateReferenceSystem("EPSG:4326")
+        transform = QgsCoordinateTransform(
+            canvas_crs, target_crs, QgsProject.instance()
+        )
+        point_wgs84 = transform.transform(point.x(), point.y())
+        self.lineEdit_3.setText(
+            f"{round(point_wgs84.x(),4)},{round(point_wgs84.y(),4)}"
+        )
+        self.regeocoder()

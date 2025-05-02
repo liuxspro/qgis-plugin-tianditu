@@ -48,6 +48,8 @@ class Ui_SearchDockWidget(object):
         self.pushButton_2 = QtWidgets.QPushButton(parent=self.tab_2)
         self.pushButton_2.setObjectName("pushButton_2")
         self.horizontalLayout.addWidget(self.pushButton_2)
+        self.horizontalLayout.setStretch(0, 4)
+        self.horizontalLayout.setStretch(1, 1)
         self.verticalLayout_3.addLayout(self.horizontalLayout)
         self.label = QtWidgets.QLabel(parent=self.tab_2)
         font = QtGui.QFont()
@@ -76,7 +78,12 @@ class Ui_SearchDockWidget(object):
         self.lineEdit_3 = QtWidgets.QLineEdit(parent=self.tab_3)
         self.lineEdit_3.setObjectName("lineEdit_3")
         self.horizontalLayout_2.addWidget(self.lineEdit_3)
+        self.btn_cap = QtWidgets.QPushButton(parent=self.tab_3)
+        self.btn_cap.setMaximumSize(QtCore.QSize(60, 16777215))
+        self.btn_cap.setObjectName("btn_cap")
+        self.horizontalLayout_2.addWidget(self.btn_cap)
         self.pushButton_3 = QtWidgets.QPushButton(parent=self.tab_3)
+        self.pushButton_3.setMaximumSize(QtCore.QSize(60, 16777215))
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout_2.addWidget(self.pushButton_3)
         self.verticalLayout_4.addLayout(self.horizontalLayout_2)
@@ -96,7 +103,7 @@ class Ui_SearchDockWidget(object):
         SearchDockWidget.setWidget(self.dockWidgetContents)
 
         self.retranslateUi(SearchDockWidget)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(SearchDockWidget)
 
     def retranslateUi(self, SearchDockWidget):
@@ -110,6 +117,7 @@ class Ui_SearchDockWidget(object):
         self.label.setText(_translate("SearchDockWidget", "搜索结果："))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("SearchDockWidget", "地理编码"))
         self.lineEdit_3.setPlaceholderText(_translate("SearchDockWidget", "请输入经纬度：经度,纬度"))
+        self.btn_cap.setText(_translate("SearchDockWidget", "拾取坐标"))
         self.pushButton_3.setText(_translate("SearchDockWidget", "查询"))
         self.label_3.setText(_translate("SearchDockWidget", "搜索结果："))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), _translate("SearchDockWidget", "逆地理编码"))
