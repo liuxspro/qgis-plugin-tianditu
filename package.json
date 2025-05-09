@@ -1,6 +1,6 @@
 {
   "name": "qgis-plugin-tianditu-docs",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "documents of tianditu-tools plugin",
   "main": "index.js",
   "scripts": {
