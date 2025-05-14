@@ -5,7 +5,6 @@ class TianDiTu:
     def __init__(self, iface):
         self.iface = iface
         self.toolbar = TiandituToolbar(self.iface)
-        self.initGui()
 
     def initGui(self):
         self.iface.addToolBar(self.toolbar)
