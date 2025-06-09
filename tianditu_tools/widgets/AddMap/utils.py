@@ -1,4 +1,4 @@
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 from qgis.core import Qgis
 from qgis.core import QgsProject, QgsRasterLayer
@@ -51,3 +51,17 @@ def get_xyz_uri(url: str, zmin: int = 0, zmax: int = 18, referer: str = "") -> s
 def get_wmts_uri(uri, referer=""):
     parsed_referer = parse_referer(referer)
     return uri + parsed_referer
+
+
+def _gen_wmts_uri(crs, img_format, layers, matrix, url):
+    params = {
+        "crs": crs,
+        "format": img_format,
+        "layers": layers,
+        "styles": "default",
+        "tileMatrixSet": matrix,
+        "tilePixelRatio": 0,
+        "url": url,
+    }
+    query_string = urlencode(params, safe=":/")
+    return query_string

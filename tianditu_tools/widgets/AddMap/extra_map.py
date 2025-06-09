@@ -8,12 +8,19 @@ from ...utils import PluginDir, load_yaml, PluginConfig
 conf = PluginConfig()
 
 
-def add_extra_map(mapdata):
-    name = mapdata["name"]
-    uri = get_xyz_uri(
-        mapdata["url"], mapdata["zmin"], mapdata["zmax"], mapdata.get("referer", "")
-    )
-    add_raster_layer(uri, name)
+def add_map(data):
+    name = data["name"]
+    map_type = data.get("type")
+    add_map_type = "wms"
+    uri = data.get("uri", "")
+    referer = data.get("referer", "")
+    if uri == "":
+        uri = get_xyz_uri(data["url"], data["zmin"], data["zmax"], referer)
+
+    if map_type == "arcgismapserver":
+        add_map_type = "arcgismapserver"
+
+    add_raster_layer(uri, name, add_map_type)
 
 
 def add_tianditu_province_menu(parent_menu: QMenu, iface):
@@ -36,9 +43,7 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
                 sub_menu.addAction(
                     icons["map"],
                     m["name"],
-                    lambda m_=m: add_raster_layer(
-                        m_["uri"], m_["name"], m_.get("type", "wms")
-                    ),
+                    lambda m_=m: add_map(m_),
                 )
             add_map_action.setMenu(sub_menu)
     parent_menu.addSeparator()
@@ -63,7 +68,7 @@ def add_extra_map_menu(parent_menu: QMenu):
                 sub_sub_menu.addAction(
                     get_extra_map_icon(sub_map.get("icon", "default.svg")),
                     sub_map["name"],
-                    lambda m_=sub_map: add_extra_map(m_),
+                    lambda m_=sub_map: add_map(m_),
                 )
             sub_menu.setMenu(sub_sub_menu)
     extra_root.setMenu(extra_root_menu)
