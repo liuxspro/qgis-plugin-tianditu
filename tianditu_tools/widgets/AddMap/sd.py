@@ -177,7 +177,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         his_wmts_server = "https://wmts.liuxs.pro/"
         cap_url = f"{his_wmts_server}tianditu/sdhis/{mapid}/{el}?tk%3D{self.tk}"
         uri = f"crs=EPSG:4490&format=image/jpeg&layers={mapid}"
-        uri += f"&styles=default&tileMatrixSet=CGCS2000Quad&url={cap_url}"
+        uri += f"&styles=default&tileMatrixSet=CGCS2000QuadF3T{el}&url={cap_url}"
 
         add_raster_layer(uri, name)
 
