@@ -1,7 +1,7 @@
 info:
   id: extra
   name: 其他地图
-  lastUpdated: '2024-07-01 09:45:32'
+  lastUpdated: '2025-06-07 10:14:11'
 maps:
   谷歌地图:
     - name: Google Map - Satellite
@@ -22,31 +22,30 @@ maps:
       zmin: 0
       zmax: 21
       referer: ''
+  谷谷GIS:
+    - name: Google Map - Satellite
+      icon: googlemap_satellite.png
+      url: https://mt3v.gggis.com/maps/vt?lyrs=s&x={x}&y={y}&z={z}
+      zmin: 0
+      zmax: 21
+      referer: ''
+    - name: Google Map - Roadmap (GCJ02)
+      icon: googlemap_default.png
+      url: https://mt3v.gggis.com/maps/vt?lyrs=r&x={x}&y={y}&z={z}
+      zmin: 0
+      zmax: 21
+      referer: ''
+    - name: Google Map - Terrain Background
+      icon: googlemap_terrain.png
+      url: https://mt3v.gggis.com/maps/vt?lyrs=p&x={x}&y={y}&z={z}&apistyle=s.e:l|p.v:off,s.t:1|s.e.g|p.v:off,s.t:3|s.e.g|p.v:off,s.t:2|s.e.g|p.v:off,s.t:4|s.e.g|p.v:off
+      zmin: 0
+      zmax: 21
+      referer: ''
+    - name: Google Earth (无水印高清）
+      uri: crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/jpeg&layers=gggis_google_new&styles=default&tileMatrixSet=WorldCRS84QuadLess&tilePixelRatio=0&url=https://wmts.liuxs.pro/collection
+    - name: Google Earth (最新影像)
+      uri: crs=EPSG:4326&dpiMode=7&featureCount=10&format=image/jpeg&layers=gggis_google_time&styles=default&tileMatrixSet=WorldCRS84QuadLess&tilePixelRatio=0&url=https://wmts.liuxs.pro/collection
   ESRI:
-    - name: ESRI - 中国地图彩色版
-      icon: ESRI.webp
-      url: https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineCommunity/MapServer/tile/{z}/{y}/{x}
-      zmin: 0
-      zmax: 18
-      referer: ''
-    - name: ESRI - 中国地图暖色版
-      icon: ESRI.webp
-      url: https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetWarm/MapServer/tile/{z}/{y}/{x}
-      zmin: 0
-      zmax: 18
-      referer: ''
-    - name: ESRI - 中国地图灰色版
-      icon: ESRI.webp
-      url: https://map.geoq.cn/arcgis/rest/services/ChinaOnlineStreetGray/MapServer/tile/{z}/{y}/{x}
-      zmin: 0
-      zmax: 18
-      referer: ''
-    - name: ESRI - 中国地图蓝黑版
-      icon: ESRI.webp
-      url: https://map.geoq.cn/ArcGIS/rest/services/ChinaOnlineStreetPurplishBlue/MapServer/tile/{z}/{y}/{x}
-      zmin: 0
-      zmax: 18
-      referer: ''
     - name: ESRI - World Imagery
       icon: ESRI.webp
       url: https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}
