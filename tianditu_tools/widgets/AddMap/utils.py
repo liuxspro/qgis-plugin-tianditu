@@ -53,12 +53,12 @@ def get_wmts_uri(uri, referer=""):
     return uri + parsed_referer
 
 
-def _gen_wmts_uri(crs, img_format, layers, styles, matrix, url):
+def _gen_wmts_uri(crs, img_format, layers, matrix, url):
     params = {
         "crs": crs,
         "format": img_format,
         "layers": layers,
-        "styles": styles,
+        "styles": "default",
         "tileMatrixSet": matrix,
         "tilePixelRatio": 0,
         "url": url,
