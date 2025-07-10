@@ -1,7 +1,6 @@
 from urllib.parse import quote, urlencode
 
 from qgis.core import Qgis
-from qgis.core import QgsProject, QgsRasterLayer
 
 
 def parse_referer(referer):
@@ -10,25 +9,6 @@ def parse_referer(referer):
     # Determine the correct parameter name based on the QGIS version
     param_name = "http-header:referer" if Qgis.QGIS_VERSION_INT >= 32600 else "referer"
     return f"&{param_name}={referer}"
-
-
-def add_raster_layer(
-    uri: str, name: str, provider_type: str = "wms"
-) -> QgsRasterLayer | None:
-    """QGIS 添加栅格图层
-
-    Args:
-        uri (str): 栅格图层uri
-        name (str): 栅格图层名称
-        provider_type(str): 栅格图层类型(wms,arcgismapserver)
-    Reference: https://qgis.org/pyqgis/3.32/core/QgsRasterLayer.html
-    """
-    raster_layer = QgsRasterLayer(uri, name, provider_type)
-    if raster_layer.isValid():
-        QgsProject.instance().addMapLayer(raster_layer)
-        return raster_layer
-    print(f"无效的图层 Invalid Layer: \n{uri}")
-    return None
 
 
 def get_xyz_uri(url: str, zmin: int = 0, zmax: int = 18, referer: str = "") -> str:
