@@ -27,8 +27,8 @@ def add_raster_layer(
     if raster_layer.isValid():
         QgsProject.instance().addMapLayer(raster_layer)
         return raster_layer
-    else:
-        print(f"无效的图层 invalid Layer\n{uri}")
+    print(f"无效的图层 Invalid Layer: \n{uri}")
+    return None
 
 
 def get_xyz_uri(url: str, zmin: int = 0, zmax: int = 18, referer: str = "") -> str:
