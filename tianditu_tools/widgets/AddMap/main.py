@@ -3,11 +3,10 @@ import random
 from qgis.PyQt.QtWidgets import QToolButton, QMenu, QMessageBox
 
 from .extra_map import add_tianditu_province_menu, add_extra_map_menu
-from .utils import add_raster_layer
-from .utils import get_xyz_uri
+from .utils import add_raster_layer, get_xyz_uri
 from ..icons import icons
 from ...compat import MenuButtonPopup
-from ...utils import TIANDITU_HOME_URL, PluginConfig, tianditu_map_url
+from ...utils import TIANDITU_HOME_URL, PluginConfig, tianditu_map_url, PluginDir
 
 tianditu_map_info = {
     "vec": "天地图-矢量地图",
@@ -39,6 +38,8 @@ class AddMapBtn(QToolButton):
                 map_name,
                 lambda maptype_=map_type: self.add_tianditu_basemap(maptype_),
             )
+        # 山体阴影
+        menu.addAction(self.icons["map"], "天地图-山体阴影", self.add_terrain_rgb)
         menu.addSeparator()
         # 天地图省级节点
         add_tianditu_province_menu(menu, self.iface)
@@ -47,6 +48,23 @@ class AddMapBtn(QToolButton):
         self.setMenu(menu)
         self.setPopupMode(MenuButtonPopup)
         self.setIcon(self.icons["add"])
+
+    def add_terrain_rgb(self):
+        key = conf.get_key()
+        if key == "":
+            QMessageBox.warning(
+                self,
+                "错误",
+                "天地图Key未设置或Key无效",
+                QMessageBox.Yes,
+                QMessageBox.Yes,
+            )
+            return
+        map_url = tianditu_map_url("terrain-rgb", key, "")
+        uri = get_xyz_uri(map_url, 1, 12, TIANDITU_HOME_URL)
+        terrain_uri = "interpretation=maptilerterrain&" + uri
+        terrain_layer = add_raster_layer(terrain_uri, "天地图-山体阴影")
+        terrain_layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/terrain.qml")))
 
     def add_tianditu_basemap(self, maptype):
         key = conf.get_key()
