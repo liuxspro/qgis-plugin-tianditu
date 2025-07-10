@@ -12,7 +12,9 @@ def parse_referer(referer):
     return f"&{param_name}={referer}"
 
 
-def add_raster_layer(uri: str, name: str, provider_type: str = "wms") -> None:
+def add_raster_layer(
+    uri: str, name: str, provider_type: str = "wms"
+) -> QgsRasterLayer | None:
     """QGIS 添加栅格图层
 
     Args:
@@ -24,8 +26,9 @@ def add_raster_layer(uri: str, name: str, provider_type: str = "wms") -> None:
     raster_layer = QgsRasterLayer(uri, name, provider_type)
     if raster_layer.isValid():
         QgsProject.instance().addMapLayer(raster_layer)
-    else:
-        print(f"无效的图层 invalid Layer\n{uri}")
+        return raster_layer
+    print(f"无效的图层 Invalid Layer: \n{uri}")
+    return None
 
 
 def get_xyz_uri(url: str, zmin: int = 0, zmax: int = 18, referer: str = "") -> str:
