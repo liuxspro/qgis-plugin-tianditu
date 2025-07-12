@@ -6,7 +6,6 @@ from qgis.PyQt.QtWidgets import QAction, QTreeWidgetItem, QListWidgetItem
 from qgis.core import QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsProject
 from qgis.core import QgsNetworkAccessManager
 
-from .utils import add_raster_layer
 from ..icons import icons
 from ...compat import (
     Ui_SdDockWidget,
@@ -15,6 +14,7 @@ from ...compat import (
     AlignCenter,
     DescendingOrder,
 )
+from ...qgis_utils import add_raster_layer, push_message
 from ...utils import PluginConfig, make_request
 
 
@@ -84,8 +84,14 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         cap_url += "%26Service%3DWMTS%26Request%3DGetCapabilities"
 
         uri = f"crs=EPSG:4490&dpiMode=7&format=image/jpeg&layers={self.sd_tile_LayerId[t_id]}"
-        uri += f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
-
+        if item_name == "山东省影像注记":
+            uri += (
+                f"&styles=default&tileMatrixSet=rasterdj&tilePixelRatio=0&url={cap_url}"
+            )
+        else:
+            uri += (
+                f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
+            )
         add_raster_layer(uri, item_name)
 
     def get_center_point(self):
@@ -130,15 +136,14 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
                 raw_data = json.loads(reply.content().data())
             except json.decoder.JSONDecodeError:
                 raw_data = []
+                message_title = "天地图·山东 - 查询出错"
                 if level > 18:
-                    self.iface.messageBar().pushInfo(
-                        title="天地图·山东 - 查询出错",
-                        message="缩放层级不能超过18级",
-                    )
+                    push_message(self.iface, message_title, "缩放层级不能超过18级")
                 else:
-                    self.iface.messageBar().pushInfo(
-                        title="天地图·山东 - 查询出错",
-                        message="请检查画布中心是否在山东省境内！",
+                    push_message(
+                        self.iface,
+                        message_title,
+                        "请检查画布中心是否在山东省境内！",
                     )
 
             # 筛选出历史影像

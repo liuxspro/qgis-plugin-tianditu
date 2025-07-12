@@ -1,8 +1,9 @@
 from qgis.PyQt.QtWidgets import QMenu
 
 from .sd import SdAction
-from .utils import add_raster_layer, get_xyz_uri
+from .utils import get_xyz_uri
 from ..icons import icons, get_extra_map_icon
+from ...qgis_utils import add_raster_layer
 from ...utils import PluginDir, load_yaml, PluginConfig
 
 conf = PluginConfig()

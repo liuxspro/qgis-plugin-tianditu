@@ -3,9 +3,10 @@ import random
 from qgis.PyQt.QtWidgets import QToolButton, QMenu, QMessageBox
 
 from .extra_map import add_tianditu_province_menu, add_extra_map_menu
-from .utils import add_raster_layer, get_xyz_uri
+from .utils import get_xyz_uri
 from ..icons import icons
 from ...compat import MenuButtonPopup
+from ...qgis_utils import add_raster_layer
 from ...utils import TIANDITU_HOME_URL, PluginConfig, tianditu_map_url, PluginDir
 
 tianditu_map_info = {
