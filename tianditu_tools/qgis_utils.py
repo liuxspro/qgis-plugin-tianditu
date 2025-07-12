@@ -1,4 +1,4 @@
-from qgis.core import QgsProject, QgsRasterLayer
+from qgis.core import QgsProject, QgsRasterLayer, QgsMessageLog, Qgis
 
 
 def push_message(iface, title: str, message: str):
@@ -31,5 +31,9 @@ def add_raster_layer(
     if raster_layer.isValid():
         QgsProject.instance().addMapLayer(raster_layer)
         return raster_layer
-    print(f"无效的图层 Invalid Layer: \n{uri}")
+    log_message(f"无效的图层 Invalid Layer: \n{uri}")
     return None
+
+
+def log_message(message: str):
+    QgsMessageLog.logMessage(message, "Tianditu-Tools", Qgis.Info)
