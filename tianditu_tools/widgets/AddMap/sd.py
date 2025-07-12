@@ -84,8 +84,14 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         cap_url += "%26Service%3DWMTS%26Request%3DGetCapabilities"
 
         uri = f"crs=EPSG:4490&dpiMode=7&format=image/jpeg&layers={self.sd_tile_LayerId[t_id]}"
-        uri += f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
-
+        if item_name == "山东省影像注记":
+            uri += (
+                f"&styles=default&tileMatrixSet=rasterdj&tilePixelRatio=0&url={cap_url}"
+            )
+        else:
+            uri += (
+                f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
+            )
         add_raster_layer(uri, item_name)
 
     def get_center_point(self):
