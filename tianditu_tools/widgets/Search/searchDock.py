@@ -19,6 +19,7 @@ from qgis.core import (
 from qgis.gui import QgsMapToolEmitPoint
 
 from ...compat import Ui_SearchDockWidget, NoError
+from ...qgis_utils import push_warning
 from ...utils import PluginDir, make_request, HEADER
 
 
@@ -323,9 +324,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
             latitude = float(match.group(2))
             self.addPoint(name, longitude, latitude)
         else:
-            self.iface.messageBar().pushWarning(
-                title="天地图API - Error: ", message="添加地图点失败"
-            )
+            push_warning(self.iface, "天地图API - Error: ", "添加地图点失败")
 
     def onRegeocoderRequestFinished(self, reply: QNetworkReply):
         """
@@ -360,9 +359,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
             reply = self.nwm.get(request)
             reply.finished.connect(lambda: self.onRegeocoderRequestFinished(reply))
         except ValueError as e:
-            self.iface.messageBar().pushWarning(
-                title="天地图API - Error: 经纬度输入有误", message=str(e)
-            )
+            push_warning(self.iface, "天地图API - Error: 经纬度输入有误", str(e))
 
     def capture_point(self):
         canvas = self.iface.mapCanvas()
