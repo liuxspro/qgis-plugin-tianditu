@@ -23,9 +23,7 @@ def push_warning(iface, title: str, message: str):
     )
 
 
-def add_raster_layer(
-    uri: str, name: str, provider_type: str = "wms"
-) -> QgsRasterLayer | None:
+def add_raster_layer(uri: str, name: str, provider_type: str = "wms"):
     """QGIS 添加栅格图层
 
     Args:
