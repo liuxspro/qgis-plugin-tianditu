@@ -4,7 +4,7 @@ qgisMinimumVersion=3.4
 qgisMaximumVersion=4.99
 description=天地图底图加载
 about=QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实现了部分天地图 Web 服务 API（地名搜索、地理编码查询、逆地理编码查询） 
-version=0.5.4
+version=0.5.5
 tags=basemap, xyz, tianditu, geocoder, 天地图
 icon=images/icon.png
 experimental=False
@@ -16,6 +16,8 @@ homepage=https://qgis-plugin-tianditu.liuxs.pro/
 tracker=https://github.com/liuxspro/qgis-plugin-tianditu/issues
 repository=https://github.com/liuxspro/qgis-plugin-tianditu
 changelog=
+  Version 0.5.5 2025/8/28:
+  * Fix: macOS上初始化插件的错误
   Version 0.5.4 2025/8/16:
   * QGIS 4 Ready
   * ✨ 新增天地图山体阴影
