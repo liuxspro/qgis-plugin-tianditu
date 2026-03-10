@@ -1,7 +1,6 @@
 from qgis.PyQt.QtWidgets import QToolBar
 
 from .AddMap import AddMapBtn
-# from .FitZoom import FitZoomAction
 from .Search import SearchAction
 from .Setting import SettingAction
 from .icons import icons
