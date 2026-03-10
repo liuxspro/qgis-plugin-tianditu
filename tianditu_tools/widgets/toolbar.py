@@ -1,7 +1,7 @@
 from qgis.PyQt.QtWidgets import QToolBar
 
 from .AddMap import AddMapBtn
-from .FitZoom import FitZoomAction
+# from .FitZoom import FitZoomAction
 from .Search import SearchAction
 from .Setting import SettingAction
 from .icons import icons
@@ -27,9 +27,9 @@ class TiandituToolbar(QToolBar):
         # 添加 Action
         action_setting = SettingAction(self)
         action_search = SearchAction(iface=self.iface, parent=self)
-        action_fitzoom = FitZoomAction(iface=self.iface, parent=self)
+        # action_fitzoom = FitZoomAction(iface=self.iface, parent=self)
 
-        self.actions.extend([action_setting, action_search, action_fitzoom])
+        self.actions.extend([action_setting, action_search])
         self.addActions(self.actions)
 
     def init_config(self):
