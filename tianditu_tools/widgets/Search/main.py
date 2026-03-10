@@ -1,8 +1,9 @@
-from qgis.PyQt.QtWidgets import QAction, QMessageBox
+from qgis.PyQt.QtWidgets import QAction
 
 from .searchDock import SearchDockWidget
 from ..icons import icons
 from ...compat import LeftDockWidgetArea
+from ...qgis_utils import push_error
 from ...utils import PluginConfig
 
 conf = PluginConfig()
@@ -29,19 +30,14 @@ class SearchAction(QAction):
     def openSearch(self):
         key = conf.get_key()
         if key == "":
-            QMessageBox.warning(
-                self.parent,
-                "错误",
-                "天地图Key未设置或Key无效",
-                QMessageBox.Yes,
-                QMessageBox.Yes,
-            )
             self.setChecked(False)
+            push_error(self.iface, "错误", "天地图 Key 未设置或 Key 无效")
+            return
+
+        if self.searchdockwidget.isHidden():
+            self.searchdockwidget.show()
         else:
-            if self.searchdockwidget.isHidden():
-                self.searchdockwidget.show()
-            else:
-                self.searchdockwidget.hide()
+            self.searchdockwidget.hide()
 
     def onDockVisibilityChanged(self, is_visible):
         if not is_visible:

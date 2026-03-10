@@ -23,6 +23,13 @@ def push_warning(iface, title: str, message: str):
     )
 
 
+def push_error(iface, title: str, message: str):
+    iface.messageBar().pushCritical(
+        title,
+        message,
+    )
+
+
 def add_raster_layer(uri: str, name: str, provider_type: str = "wms"):
     """QGIS 添加栅格图层
 
