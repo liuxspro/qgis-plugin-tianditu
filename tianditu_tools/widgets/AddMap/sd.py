@@ -2,8 +2,11 @@ import json
 import math
 
 from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtCore import QDateTime
 from qgis.PyQt.QtWidgets import QAction, QTreeWidgetItem, QListWidgetItem
+from qgis.core import Qgis
 from qgis.core import QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsProject
+from qgis.core import QgsDateTimeRange
 from qgis.core import QgsNetworkAccessManager
 
 from ..icons import icons
@@ -92,7 +95,6 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             uri += (
                 f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
             )
-        add_raster_layer(uri, item_name)
 
     def get_center_point(self):
         canvas = self.iface.mapCanvas()
@@ -184,7 +186,26 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         uri = f"crs=EPSG:4490&format=image/jpeg&layers={mapid}"
         uri += f"&styles=default&tileMatrixSet=CGCS2000QuadF3T{el}&url={cap_url}"
 
-        add_raster_layer(uri, name)
+        layer = add_raster_layer(uri, name)
+
+        # 设置图层时态 (3.22 版本以上)
+        current_qgis_version = Qgis.QGIS_VERSION_INT
+        if current_qgis_version <= 32200:
+            return
+
+        date_str = item.text(1)
+        year = int(date_str[:4])
+        month = int(date_str[4:6])
+        day = int(date_str[6:])
+        temporal_props = layer.temporalProperties()
+        temporal_props.setMode(
+            Qgis.RasterTemporalMode.FixedTemporalRange
+        )  # 3.22 版本以上
+        start_date = QDateTime(year, month, day, 0, 0, 0)
+        end_date = QDateTime(year, month, day, 23, 59, 59)
+        date_range = QgsDateTimeRange(start_date, end_date)
+        temporal_props.setFixedTemporalRange(date_range)
+        temporal_props.setIsActive(True)
 
 
 class SdAction(QAction):

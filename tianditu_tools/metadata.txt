@@ -3,7 +3,7 @@ name=TianDiTu Tools
 qgisMinimumVersion=3.4
 qgisMaximumVersion=4.99
 description=天地图底图加载
-about=QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实现了部分天地图 Web 服务 API（地名搜索、地理编码查询、逆地理编码查询） 
+about=QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实现了部分天地图 Web 服务 API（地名搜索、地理编码查询、逆地理编码查询）
 version=0.5.5
 tags=basemap, xyz, tianditu, geocoder, 天地图
 icon=images/icon.png
@@ -12,7 +12,7 @@ deprecated=False
 supportsQt6=yes
 author=liuxspro
 email=liuxspro@gmail.com
-homepage=https://qgis-plugin-tianditu.liuxs.pro/
+homepage=https://space.liuxs.pro/docs/projects/tianditu-tools
 tracker=https://github.com/liuxspro/qgis-plugin-tianditu/issues
 repository=https://github.com/liuxspro/qgis-plugin-tianditu
 changelog=
@@ -24,32 +24,3 @@ changelog=
   * 🐛 Fix:山东天地图影像注记
   Version 0.5.3 2025/6/9:
   * 🐛 修复地图加载问题
-  Version 0.5.2 2025/5/9:
-  * ✨ 逆地理编码增加坐标拾取
-  * 🐛 修复山东历史影像
-  Version 0.5.1 2025/2/18:
-  * ✨ QT6 Support
-  Version 0.5.0 2024/12/18:
-  * ✨ 新增功能: 支持山东天地图历史影像
-  Version 0.4.2 2024/08/17:
-  * 🐛 BUG修复及搜索功能优化
-  Version 0.4.1 2024/04/15:
-  * 🐛 修复3.18及以下版本上无法加载插件
-  Version 0.4.0 2024/01/16:
-  * ✨ 新增功能: 支持多个天地图key
-  * ✨ 新增功能: 地图管理和更新
-  Version 0.3.1 2023/11/17:
-  * 🐛 修复3.34版本上无法加载地图
-  Version 0.3.0 2023/7/1:
-  * ✨ 新增功能:调整缩放比例至正确的 Zoom Level
-  * 💄 更换图标
-  Version 0.2.1 2023/5/25:
-  * 🐛 修复地名搜索不正常/添加地名点时图标丢失
-  Version 0.2.0 2023/5/5:
-  * 💥 更改配置文件到 QGIS Setting中
-  * ✨ 新增天地图·江苏
-  * ✨ 新增底图(stamen/esri)
-  * 🐛 修复一些问题
-  Version 0.1.1 2023/4/29:
-  * ✨ 增加子域选择
-  * 🐛 修复一些问题

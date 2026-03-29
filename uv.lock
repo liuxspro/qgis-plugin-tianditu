@@ -1,5 +1,5 @@
 version = 1
-revision = 1
+revision = 3
 requires-python = ">=3.12"
 resolution-markers = [
     "sys_platform == 'win32'",
@@ -103,7 +103,7 @@ wheels = [
 
 [[package]]
 name = "qgis-plugin-tianditu"
-version = "0.5.2"
+version = "0.5.4"
 source = { virtual = "." }
 dependencies = [
     { name = "pyqt5" },

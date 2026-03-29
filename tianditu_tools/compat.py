@@ -1,7 +1,7 @@
 from qgis.PyQt.QtCore import Qt, QT_VERSION_STR
 from qgis.PyQt.QtGui import QClipboard
 from qgis.PyQt.QtNetwork import QNetworkReply, QNetworkRequest
-from qgis.PyQt.QtWidgets import QToolButton
+from qgis.PyQt.QtWidgets import QToolButton, QMessageBox
 
 QT_MAJOR_VERSION = int(QT_VERSION_STR.split(".")[0])
 IS_QT5 = QT_MAJOR_VERSION == 5
@@ -25,6 +25,7 @@ if IS_QT5:
     NoError = QNetworkReply.NoError
     HttpStatusCodeAttribute = QNetworkRequest.HttpStatusCodeAttribute
     ModeClipboard = QClipboard.Clipboard
+    ButtonYes = QMessageBox.Yes
 
 if IS_QT6:
     # QT6 版本
@@ -47,3 +48,4 @@ if IS_QT6:
     NoError = QNetworkReply.NetworkError.NoError
     HttpStatusCodeAttribute = QNetworkRequest.Attribute.HttpStatusCodeAttribute
     ModeClipboard = QClipboard.Mode.Clipboard
+    ButtonYes = QMessageBox.StandardButton.Yes
