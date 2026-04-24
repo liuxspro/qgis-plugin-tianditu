@@ -196,7 +196,9 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         date_str = item.text(1)
         year = int(date_str[:4])
         month = int(date_str[4:6])
-        day = int(date_str[6:])
+        day = 1
+        if len(date_str) > 6:
+            day = int(date_str[6:])
         temporal_props = layer.temporalProperties()
         temporal_props.setMode(
             Qgis.RasterTemporalMode.FixedTemporalRange
