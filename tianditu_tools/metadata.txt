@@ -9,7 +9,6 @@ tags=basemap, xyz, tianditu, geocoder, 天地图
 icon=images/icon.png
 experimental=False
 deprecated=False
-supportsQt6=yes
 author=liuxspro
 email=liuxspro@gmail.com
 homepage=https://space.liuxs.pro/docs/projects/tianditu-tools
