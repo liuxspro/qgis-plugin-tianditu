@@ -1,26 +1,26 @@
 import json
 import re
 
-from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtNetwork import QNetworkReply
-from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
-from qgis.core import Qgis
 from qgis.core import (
+    Qgis,
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
     QgsFeature,
+    QgsGeometry,
+    QgsNetworkAccessManager,
+    QgsPointXY,
     QgsProject,
     QgsSettings,
     QgsVectorLayer,
-    QgsPointXY,
-    QgsGeometry,
-    QgsCoordinateReferenceSystem,
-    QgsCoordinateTransform,
-    QgsNetworkAccessManager,
 )
 from qgis.gui import QgsMapToolEmitPoint
+from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtNetwork import QNetworkReply
+from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 
-from ...compat import Ui_SearchDockWidget, NoError
+from ...compat import NoError, Ui_SearchDockWidget
 from ...qgis_utils import push_warning
-from ...utils import PluginDir, make_request, HEADER
+from ...utils import HEADER, PluginDir, make_request
 
 
 def create_point_layer(name: str, point: QgsPointXY, crs: str):
@@ -100,6 +100,45 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
                 lonlat = item.text(2)
                 lon, lat = map(float, lonlat.split(","))
                 self.addPoint(name, lon, lat)
+
+    def cleanup(self):
+        """卸载时清理资源"""
+        # 断开所有内部信号
+        try:
+            self.pushButton.clicked.disconnect(self.search)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.pushButton_2.clicked.disconnect(self.geocoder)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.pushButton_3.clicked.disconnect(self.regeocoder)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.btn_cap.clicked.disconnect(self.capture_point)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.label_2.linkActivated.disconnect(self.geocoder_result_link_clicked)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.treeWidget.itemDoubleClicked.disconnect()
+        except (TypeError, RuntimeError):
+            pass
+        # 清理地图工具
+        if hasattr(self, "tool") and self.tool is not None:
+            try:
+                self.tool.canvasClicked.disconnect(self.handle_capture)
+            except (TypeError, RuntimeError):
+                pass
+            self.iface.mapCanvas().unsetMapTool(self.tool)
+            self.tool.deleteLater()
+            self.tool = None
+        # 清理 treeWidget
+        self.treeWidget.clear()
 
     @staticmethod
     def onAdminSearchFinished(reply: QNetworkReply, item):
@@ -374,6 +413,6 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         )
         point_wgs84 = transform.transform(point.x(), point.y())
         self.lineEdit_3.setText(
-            f"{round(point_wgs84.x(),4)},{round(point_wgs84.y(),4)}"
+            f"{round(point_wgs84.x(), 4)},{round(point_wgs84.y(), 4)}"
         )
         self.regeocoder()
