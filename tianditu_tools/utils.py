@@ -126,8 +126,8 @@ def tianditu_map_url(maptype: str, token: str, subdomain: str) -> str:
         str: 返回天地图XYZ瓦片地址
     """
     domain = f"https://{subdomain}.tianditu.gov.cn"
-    if maptype == "terrain-rgb":
-        domain = "https://lcdata.tianditu.gov.cn"
+    # if maptype == "terrain-rgb":
+    #     domain = "https://lcdata.tianditu.gov.cn"
     url = f"{domain}/{maptype}_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER={maptype}"
     url += "&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}"
     url += f"&tk={token}"

@@ -17,6 +17,7 @@ tianditu_map_info = {
     "ter": "天地图-地形晕染",
     "cta": "天地图-地形注记",
     "ibo": "天地图-全球境界",
+    "terrain-rgb": "天地图-山体阴影"
 }
 
 conf = PluginConfig()
@@ -56,7 +57,7 @@ class AddMapBtn(QToolButton):
             push_error(self.iface, "错误", "天地图 Key 未设置或 Key 无效")
             return
 
-        map_url = tianditu_map_url("terrain-rgb", key, "")
+        map_url = tianditu_map_url("terrain-rgb", key, "t0")
         uri = get_xyz_uri(map_url, 1, 12, TIANDITU_HOME_URL)
         terrain_uri = "interpretation=maptilerterrain&" + uri
         terrain_layer = add_raster_layer(terrain_uri, "天地图-山体阴影")
