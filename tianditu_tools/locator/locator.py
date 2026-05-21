@@ -1,20 +1,19 @@
 import json
 
 import requests
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
+    QgsFeature,
+    QgsGeometry,
     QgsLocatorFilter,
     QgsLocatorResult,
     QgsPointXY,
-    QgsFeature,
-    QgsGeometry,
-    QgsVectorLayer,
     QgsProject,
+    QgsVectorLayer,
 )
+from qgis.PyQt.QtCore import QCoreApplication
 
-from ..qgis_utils import log_message, create_crs84_point_layer
+from ..qgis_utils import create_crs84_point_layer, log_message
 from ..utils import PluginConfig
-
 
 # from ..widgets.icons import icons
 
@@ -59,19 +58,10 @@ class TDTGeocoderFilter(QgsLocatorFilter):
     def hasFeatures(self):
         return True
 
-    def clearPreviousResults(self):
-        super().clearPreviousResults()
-
-    def fetchResults(self, string, context, feedback):
+    def fetchResults(self, string, _context, feedback):
         keyword = string.strip()
-        if not keyword:
-            return
-
         api_key = self._get_api_key()
-        if not api_key:
-            return
-
-        if feedback.isCanceled():
+        if not keyword or not api_key or feedback.isCanceled():
             return
 
         post_str = self._build_post_str(keyword)
@@ -89,10 +79,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         except requests.RequestException:
             return
 
-        if feedback.isCanceled():
-            return
-
-        if resp.status_code != 200:
+        if feedback.isCanceled() or resp.status_code != 200:
             return
 
         try:
@@ -173,5 +160,5 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         self.iface.mapCanvas().zoomScale(18056)  # 设置缩放等级, setExtent的缩放等级太大
         self.iface.mapCanvas().refresh()
 
-    def triggerResultFromAction(self, result, action):
+    def triggerResultFromAction(self, result, _action):
         self.triggerResult(result)
