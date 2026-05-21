@@ -92,7 +92,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         if not suggests:
             return
 
-        for item in suggests:
+        for index, item in enumerate(suggests):
             if feedback.isCanceled():
                 return
 
@@ -110,8 +110,8 @@ class TDTGeocoderFilter(QgsLocatorFilter):
             result.filter = self
             result.displayString = item.get("name", "")
             result.description = item.get("address", "")
-            result.userData = point
-            result.score = 0
+            result.userData = point  # >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
+            result.score = 100 - index
             # result.icon = icons["map"]
 
             self.resultFetched.emit(result)
