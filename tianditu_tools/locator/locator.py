@@ -16,9 +16,6 @@ from ..qgis_utils import create_crs84_point_layer, log_message
 from ..utils import PluginConfig, get_point_style
 
 
-# from ..widgets.icons import icons
-
-
 def create_point_layer(name: str, point: QgsPointXY, crs: str):
     layer = QgsVectorLayer(f"Point?crs={crs}&field=Name:string", name, "memory")
     pr = layer.dataProvider()
@@ -110,9 +107,8 @@ class TDTGeocoderFilter(QgsLocatorFilter):
             result.filter = self
             result.displayString = item.get("name", "")
             result.description = item.get("address", "")
-            result.userData = point  # >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
+            result.userData = point  # version >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
             result.score = 100 - index
-            # result.icon = icons["map"]
 
             self.resultFetched.emit(result)
 
@@ -153,7 +149,6 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         if not isinstance(point, QgsPointXY):
             return
         name = result.displayString
-        # raw_layer, feature = create_point_layer(name, point, "EPSG:4326")
         layer, feature = create_crs84_point_layer(name, point)
         layer.loadNamedStyle(get_point_style())
         QgsProject.instance().addMapLayer(layer)
