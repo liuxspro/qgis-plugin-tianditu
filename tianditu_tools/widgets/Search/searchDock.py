@@ -1,36 +1,23 @@
 import json
 import re
 
+from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtNetwork import QNetworkReply
+from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 from qgis.core import (
     Qgis,
     QgsCoordinateReferenceSystem,
     QgsCoordinateTransform,
-    QgsFeature,
-    QgsGeometry,
     QgsNetworkAccessManager,
     QgsPointXY,
     QgsProject,
     QgsSettings,
-    QgsVectorLayer,
 )
 from qgis.gui import QgsMapToolEmitPoint
-from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtNetwork import QNetworkReply
-from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 
 from ...compat import NoError, Ui_SearchDockWidget
-from ...qgis_utils import push_warning
+from ...qgis_utils import push_warning, create_crs84_point_layer
 from ...utils import HEADER, PluginDir, make_request
-
-
-def create_point_layer(name: str, point: QgsPointXY, crs: str):
-    layer = QgsVectorLayer(f"Point?crs={crs}&field=Name:string", name, "memory")
-    pr = layer.dataProvider()
-    point_feature = QgsFeature()
-    point_feature.setGeometry(QgsGeometry.fromPointXY(point))
-    point_feature.setAttributes([name])
-    pr.addFeature(point_feature)
-    return layer
 
 
 class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
@@ -177,34 +164,21 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
                 root.removeChildNode(group)
         group = root.findGroup(group_name)  # 重新拿到 group
         # 定义图层
-        raw_point = QgsPointXY(x, y)
-        # 当前工程坐标系
-        current_project_crs = QgsProject.instance().crs()
-        # 定义坐标转换
-        coord_trans = QgsCoordinateTransform(
-            QgsCoordinateReferenceSystem("EPSG:4326"),
-            current_project_crs,
-            QgsProject.instance(),
-        )
-        projected_point = coord_trans.transform(raw_point)
-        raw_layer = create_point_layer(name, raw_point, "EPSG:4326")
-        # 此图层用于缩放到点
-        layer = create_point_layer(name, projected_point, current_project_crs.authid())
-        group.addLayer(raw_layer)
+        point = QgsPointXY(x, y)
+        layer, feature = create_crs84_point_layer(name, point)
+        group.addLayer(layer)
         # 加载图层样式
         # 根据QGIS版本设置不同的样式
         current_qgis_version = Qgis.QGIS_VERSION_INT
         if current_qgis_version <= 31616:
-            raw_layer.loadNamedStyle(
-                str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
-            )
+            layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/PointStyle_316.qml")))
         else:
-            raw_layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/PointStyle.qml")))
-        raw_layer.updateExtents()
-        QgsProject.instance().addMapLayer(raw_layer, False)
+            layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/PointStyle.qml")))
+        layer.updateExtents()
+        QgsProject.instance().addMapLayer(layer, False)
         # 画布缩放到点
-        rect = layer.extent()
-        self.iface.mapCanvas().setExtent(rect)
+        # self.iface.mapCanvas().zoomToSelected()
+        self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
         self.iface.mapCanvas().zoomScale(18056)  # 设置缩放等级, setExtent的缩放等级太大
         self.iface.mapCanvas().refresh()
 
