@@ -5,7 +5,7 @@ from random import choice
 import yaml
 from qgis.PyQt.QtCore import QUrl, QUrlQuery
 from qgis.PyQt.QtNetwork import QNetworkRequest
-from qgis.core import QgsSettings
+from qgis.core import QgsSettings, Qgis
 
 TIANDITU_HOME_URL = "https://www.tianditu.gov.cn/"
 PLUGIN_NAME = "tianditu-tools"
@@ -18,6 +18,13 @@ HEADER = {
 }
 
 APP_FONT = QgsSettings().value("app/fontFamily")
+
+
+def get_point_style():
+    current_qgis_version = Qgis.QGIS_VERSION_INT
+    if current_qgis_version <= 31616:
+        return str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
+    return str(PluginDir.joinpath("./Styles/PointStyle.qml"))
 
 
 def get_extramap_status():

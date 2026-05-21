@@ -5,7 +5,6 @@ from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtNetwork import QNetworkReply
 from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 from qgis.core import (
-    Qgis,
     QgsCoordinateReferenceSystem,
     QgsCoordinateTransform,
     QgsNetworkAccessManager,
@@ -17,7 +16,7 @@ from qgis.gui import QgsMapToolEmitPoint
 
 from ...compat import NoError, Ui_SearchDockWidget
 from ...qgis_utils import push_warning, create_crs84_point_layer
-from ...utils import HEADER, PluginDir, make_request
+from ...utils import HEADER, make_request, get_point_style
 
 
 class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
@@ -168,12 +167,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         layer, feature = create_crs84_point_layer(name, point)
         group.addLayer(layer)
         # 加载图层样式
-        # 根据QGIS版本设置不同的样式
-        current_qgis_version = Qgis.QGIS_VERSION_INT
-        if current_qgis_version <= 31616:
-            layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/PointStyle_316.qml")))
-        else:
-            layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/PointStyle.qml")))
+        layer.loadNamedStyle(get_point_style())
         layer.updateExtents()
         QgsProject.instance().addMapLayer(layer, False)
         # 画布缩放到点

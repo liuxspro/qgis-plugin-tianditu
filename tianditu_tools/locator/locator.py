@@ -1,6 +1,7 @@
 import json
 
 import requests
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
     QgsFeature,
     QgsGeometry,
@@ -10,10 +11,10 @@ from qgis.core import (
     QgsProject,
     QgsVectorLayer,
 )
-from qgis.PyQt.QtCore import QCoreApplication
 
 from ..qgis_utils import create_crs84_point_layer, log_message
-from ..utils import PluginConfig
+from ..utils import PluginConfig, get_point_style
+
 
 # from ..widgets.icons import icons
 
@@ -123,7 +124,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
                 "sourceType": 0,
                 "keyWord": keyword,
                 "level": 3,
-                "mapBound": "22.551757812499574,8.681744001784637,179.99,44.850206918799245",
+                "mapBound": "-180,-90,180,90",
                 "queryType": "4",
                 "start": 0,
                 "count": 10,
@@ -154,6 +155,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         name = result.displayString
         # raw_layer, feature = create_point_layer(name, point, "EPSG:4326")
         layer, feature = create_crs84_point_layer(name, point)
+        layer.loadNamedStyle(get_point_style())
         QgsProject.instance().addMapLayer(layer)
         # zoom to feature
         self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
