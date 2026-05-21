@@ -1,29 +1,16 @@
 import json
 
 import requests
-from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
-    QgsFeature,
-    QgsGeometry,
     QgsLocatorFilter,
     QgsLocatorResult,
     QgsPointXY,
     QgsProject,
-    QgsVectorLayer,
 )
+from qgis.PyQt.QtCore import QCoreApplication
 
 from ..qgis_utils import create_crs84_point_layer, log_message
 from ..utils import PluginConfig, get_point_style
-
-
-def create_point_layer(name: str, point: QgsPointXY, crs: str):
-    layer = QgsVectorLayer(f"Point?crs={crs}&field=Name:string", name, "memory")
-    pr = layer.dataProvider()
-    point_feature = QgsFeature()
-    point_feature.setGeometry(QgsGeometry.fromPointXY(point))
-    point_feature.setAttributes([name])
-    pr.addFeature(point_feature)
-    return layer, point_feature
 
 
 class TDTGeocoderFilter(QgsLocatorFilter):
@@ -107,7 +94,8 @@ class TDTGeocoderFilter(QgsLocatorFilter):
             result.filter = self
             result.displayString = item.get("name", "")
             result.description = item.get("address", "")
-            result.userData = point  # version >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
+            # version >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
+            result.userData = point
             result.score = 100 - index
 
             self.resultFetched.emit(result)
