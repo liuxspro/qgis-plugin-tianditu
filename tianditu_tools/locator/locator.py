@@ -94,7 +94,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
             result.filter = self
             result.displayString = item.get("name", "")
             result.description = item.get("address", "")
-            # version >=3.18 https://qgis.org/pyqgis/master/core/QgsLocatorResult.html#qgis.core.QgsLocatorResult.userData
+            # version >=3.18
             result.userData = point
             result.score = 100 - index
 
