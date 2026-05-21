@@ -17,6 +17,7 @@ tianditu_map_info = {
     "ter": "天地图-地形晕染",
     "cta": "天地图-地形注记",
     "ibo": "天地图-全球境界",
+    "terrain-rgb": "天地图-山体阴影",
 }
 
 conf = PluginConfig()
@@ -40,7 +41,7 @@ class AddMapBtn(QToolButton):
                 lambda maptype_=map_type: self.add_tianditu_basemap(maptype_),
             )
         # 山体阴影
-        menu.addAction(self.icons["map"], "天地图-山体阴影", self.add_terrain_rgb)
+        # menu.addAction(self.icons["map"], "天地图-山体阴影", self.add_terrain_rgb)
         menu.addSeparator()
         # 天地图省级节点
         add_tianditu_province_menu(menu, self.iface)
@@ -49,18 +50,6 @@ class AddMapBtn(QToolButton):
         self.setMenu(menu)
         self.setPopupMode(MenuButtonPopup)
         self.setIcon(self.icons["add"])
-
-    def add_terrain_rgb(self):
-        key = conf.get_key()
-        if key == "":
-            push_error(self.iface, "错误", "天地图 Key 未设置或 Key 无效")
-            return
-
-        map_url = tianditu_map_url("terrain-rgb", key, "")
-        uri = get_xyz_uri(map_url, 1, 12, TIANDITU_HOME_URL)
-        terrain_uri = "interpretation=maptilerterrain&" + uri
-        terrain_layer = add_raster_layer(terrain_uri, "天地图-山体阴影")
-        terrain_layer.loadNamedStyle(str(PluginDir.joinpath("./Styles/terrain.qml")))
 
     def add_tianditu_basemap(self, maptype):
         key = conf.get_key()
@@ -77,5 +66,15 @@ class AddMapBtn(QToolButton):
         if key_random_enabled:
             key = conf.get_random_key()
         map_url = tianditu_map_url(maptype, key, subdomain)
+
+        if maptype == "terrain-rgb":
+            uri = get_xyz_uri(map_url, 1, 12, TIANDITU_HOME_URL)
+            terrain_uri = "interpretation=maptilerterrain&" + uri
+            terrain_layer = add_raster_layer(terrain_uri, "天地图-山体阴影")
+            terrain_layer.loadNamedStyle(
+                str(PluginDir.joinpath("./Styles/terrain.qml"))
+            )
+            return
+
         uri = get_xyz_uri(map_url, 1, 18, TIANDITU_HOME_URL)
         add_raster_layer(uri, tianditu_map_info[maptype])

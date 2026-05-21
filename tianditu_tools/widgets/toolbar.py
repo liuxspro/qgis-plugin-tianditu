@@ -1,10 +1,10 @@
 from qgis.PyQt.QtWidgets import QToolBar
 
+from ..utils import PluginConfig
 from .AddMap import AddMapBtn
+from .icons import icons
 from .Search import SearchAction
 from .Setting import SettingAction
-from .icons import icons
-from ..utils import PluginConfig
 
 
 class TiandituToolbar(QToolBar):
@@ -35,5 +35,6 @@ class TiandituToolbar(QToolBar):
         self.conf.init_config()
 
     def remove_dock(self):
-        dock = self.actions[1]
-        dock.unload()
+        for action in self.actions:
+            if hasattr(action, "unload"):
+                action.unload()

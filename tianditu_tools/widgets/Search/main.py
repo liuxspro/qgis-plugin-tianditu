@@ -1,10 +1,10 @@
 from qgis.PyQt.QtWidgets import QAction
 
-from .searchDock import SearchDockWidget
-from ..icons import icons
 from ...compat import LeftDockWidgetArea
 from ...qgis_utils import push_error
 from ...utils import PluginConfig
+from ..icons import icons
+from .searchDock import SearchDockWidget
 
 conf = PluginConfig()
 
@@ -46,4 +46,27 @@ class SearchAction(QAction):
             self.setChecked(True)
 
     def unload(self):
+        # 断开 Action 自身的信号
+        try:
+            self.triggered.disconnect(self.openSearch)
+        except (TypeError, RuntimeError):
+            pass
+        try:
+            self.searchdockwidget.visibilityChanged.disconnect(
+                self.onDockVisibilityChanged
+            )
+        except (TypeError, RuntimeError):
+            pass
+        # 清理 DockWidget 内部的资源
+        self.searchdockwidget.cleanup()
+        # 先关闭 DockWidget，使其从主窗口的 DockWidget 区域立即脱离
+        self.searchdockwidget.close()
+        # 立即解除父子关系，Plugin Reloader 在 unload 后即时扫描时就不会找到它
+        self.searchdockwidget.setParent(None)
+        # 从 QGIS 界面移除 DockWidget
         self.iface.removeDockWidget(self.searchdockwidget)
+        # 将 Python 引用置空，帮助垃圾回收
+        dockwidget = self.searchdockwidget
+        self.searchdockwidget = None
+        # 安全销毁
+        dockwidget.deleteLater()
