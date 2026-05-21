@@ -1,6 +1,7 @@
 import json
 
 import requests
+from qgis.PyQt.QtCore import QCoreApplication
 from qgis.core import (
     QgsLocatorFilter,
     QgsLocatorResult,
@@ -11,11 +12,9 @@ from qgis.core import (
     QgsProject,
 )
 
-from qgis.PyQt.QtCore import QCoreApplication
-
-
+from ..qgis_utils import log_message, create_crs84_point_layer
 from ..utils import PluginConfig
-from ..qgis_utils import log_message
+
 
 # from ..widgets.icons import icons
 
@@ -163,16 +162,16 @@ class TDTGeocoderFilter(QgsLocatorFilter):
     def triggerResult(self, result):
         # https://qgis.org/pyqgis/master/core/QgsLocatorResult.html
         point = result.userData
-
-        print(result)
         if not isinstance(point, QgsPointXY):
             return
         name = result.displayString
-        raw_layer, feature = create_point_layer(name, point, "EPSG:4326")
-        QgsProject.instance().addMapLayer(raw_layer)
-        raw_layer.selectByIds([feature.id()])
-        self.canvas.zoomToSelected()
-        raw_layer.removeSelection()
+        # raw_layer, feature = create_point_layer(name, point, "EPSG:4326")
+        layer, feature = create_crs84_point_layer(name, point)
+        QgsProject.instance().addMapLayer(layer)
+        # zoom to feature
+        self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
+        self.iface.mapCanvas().zoomScale(18056)  # 设置缩放等级, setExtent的缩放等级太大
+        self.iface.mapCanvas().refresh()
 
     def triggerResultFromAction(self, result, action):
         self.triggerResult(result)
