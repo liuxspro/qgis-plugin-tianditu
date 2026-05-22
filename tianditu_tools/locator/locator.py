@@ -40,9 +40,6 @@ class TDTGeocoderFilter(QgsLocatorFilter):
     def useWithoutPrefix(self):
         return True
 
-    def hasFeatures(self):
-        return True
-
     def fetchResults(self, string, _context, feedback):
         keyword = string.strip()
         api_key = self._get_api_key()
