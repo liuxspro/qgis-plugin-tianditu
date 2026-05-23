@@ -1,6 +1,5 @@
 import json
 
-import requests
 from qgis.core import (
     QgsLocatorFilter,
     QgsLocatorResult,
@@ -11,8 +10,8 @@ from qgis.PyQt.QtCore import QCoreApplication
 
 from ..qgis_utils import create_crs84_point_layer, log_message
 from ..utils import PluginConfig, get_point_style
-from ._utils import get_api_key
 from ..widgets.icons import icons
+from ._utils import get_api_key, tianditu_request
 
 
 class TDTGeocoderFilter(QgsLocatorFilter):
@@ -50,25 +49,11 @@ class TDTGeocoderFilter(QgsLocatorFilter):
 
         post_str = self._build_post_str(keyword)
         log_message(f"API Search: {keyword}")
-        try:
-            resp = requests.get(
-                self.BASE_URL,
-                params={"type": "query", "postStr": post_str, "tk": api_key},
-                headers={
-                    "User-Agent": "Mozilla/5.0 QGIS/32400/Windows 10 Version 2009",
-                    "Referer": "https://www.tianditu.gov.cn/",
-                },
-                timeout=10,
-            )
-        except requests.RequestException:
-            return
-
-        if feedback.isCanceled() or resp.status_code != 200:
-            return
-
-        try:
-            data = resp.json()
-        except json.JSONDecodeError:
+        data = tianditu_request(
+            self.BASE_URL,
+            {"type": "query", "postStr": post_str, "tk": api_key},
+        )
+        if not data or feedback.isCanceled():
             return
 
         suggests = data.get("suggests", [])

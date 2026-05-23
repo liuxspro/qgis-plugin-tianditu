@@ -1,6 +1,3 @@
-import json
-
-import requests
 from qgis.core import (
     QgsFeature,
     QgsGeometry,
@@ -14,7 +11,7 @@ from qgis.PyQt.QtCore import QCoreApplication
 from ..qgis_utils import log_message
 from ..utils import PluginConfig
 from ..widgets.icons import icons
-from ._utils import _LEVEL_NAMES, get_api_key
+from ._utils import _LEVEL_NAMES, get_api_key, tianditu_request
 
 
 class TDTAdministrativeFilter(QgsLocatorFilter):
@@ -50,33 +47,16 @@ class TDTAdministrativeFilter(QgsLocatorFilter):
             return
 
         log_message(f"Admin Search: {keyword}")
-        try:
-            resp = requests.get(
-                self.BASE_URL,
-                params={
-                    "keyword": keyword,
-                    "childLevel": "0",
-                    "extensions": "true",
-                    "tk": api_key,
-                },
-                headers={
-                    "User-Agent": "Mozilla/5.0 QGIS/32400/Windows 10 Version 2009",
-                    "Referer": "https://www.tianditu.gov.cn/",
-                },
-                timeout=10,
-            )
-        except requests.RequestException:
-            return
-
-        if feedback.isCanceled() or resp.status_code != 200:
-            return
-
-        try:
-            data = resp.json()
-        except json.JSONDecodeError:
-            return
-
-        if data.get("status") != 200:
+        data = tianditu_request(
+            self.BASE_URL,
+            {
+                "keyword": keyword,
+                "childLevel": "0",
+                "extensions": "true",
+                "tk": api_key,
+            },
+        )
+        if not data or feedback.isCanceled() or data.get("status") != 200:
             return
 
         districts = data.get("data", {}).get("district", [])
@@ -162,36 +142,18 @@ class TDTAdministrativeFilter(QgsLocatorFilter):
         """根据 GB 编码二次请求行政区划边界 WKT"""
         api_key = get_api_key(PluginConfig())
         if not api_key:
-            log_message(f"Cannot fetch boundary for {name}: no API key")
-            return ""
-        try:
-            resp = requests.get(
-                TDTAdministrativeFilter.BASE_URL,
-                params={
-                    "keyword": gb_code,
-                    "childLevel": "0",
-                    "extensions": "true",
-                    "tk": api_key,
-                },
-                headers={
-                    "User-Agent": "Mozilla/5.0 QGIS/32400/Windows 10 Version 2009",
-                    "Referer": "https://www.tianditu.gov.cn/",
-                },
-                timeout=10,
-            )
-        except requests.RequestException as e:
-            log_message(f"Request failed for {name}: {e}")
             return ""
 
-        if resp.status_code != 200:
-            return ""
-
-        try:
-            data = resp.json()
-        except json.JSONDecodeError:
-            return ""
-
-        if data.get("status") != 200:
+        data = tianditu_request(
+            TDTAdministrativeFilter.BASE_URL,
+            {
+                "keyword": gb_code,
+                "childLevel": "0",
+                "extensions": "true",
+                "tk": api_key,
+            },
+        )
+        if not data or data.get("status") != 200:
             return ""
 
         districts = data.get("data", {}).get("district", [])
