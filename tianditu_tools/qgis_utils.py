@@ -1,4 +1,13 @@
-from qgis.core import QgsProject, QgsRasterLayer, QgsMessageLog, Qgis
+from qgis.core import (
+    QgsProject,
+    QgsRasterLayer,
+    QgsMessageLog,
+    Qgis,
+    QgsPointXY,
+    QgsVectorLayer,
+    QgsFeature,
+    QgsGeometry,
+)
 
 
 def push_message(iface, title: str, message: str):
@@ -28,6 +37,16 @@ def push_error(iface, title: str, message: str):
         title,
         message,
     )
+
+
+def create_crs84_point_layer(name: str, point: QgsPointXY):
+    layer = QgsVectorLayer("Point?crs=EPSG:4326&field=Name:string", name, "memory")
+    pr = layer.dataProvider()
+    feature = QgsFeature()
+    feature.setGeometry(QgsGeometry.fromPointXY(point))
+    feature.setAttributes([name])
+    pr.addFeature(feature)
+    return layer, feature
 
 
 def add_raster_layer(uri: str, name: str, provider_type: str = "wms"):
