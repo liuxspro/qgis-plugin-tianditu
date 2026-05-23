@@ -11,6 +11,8 @@ from qgis.PyQt.QtCore import QCoreApplication
 
 from ..qgis_utils import create_crs84_point_layer, log_message
 from ..utils import PluginConfig, get_point_style
+from ._utils import get_api_key
+from ..widgets.icons import icons
 
 
 class TDTGeocoderFilter(QgsLocatorFilter):
@@ -93,6 +95,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
             result.description = item.get("address", "")
             # version >=3.18
             result.userData = point
+            result.icon = icons["point"]
             result.score = 100 - index
 
             self.resultFetched.emit(result)
@@ -117,16 +120,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         )
 
     def _get_api_key(self):
-        if self.conf.get_bool_value("Tianditu/random_key"):
-            return self.conf.get_random_key()
-        key = self.conf.get_key()
-        if not key:
-            key = self.conf.get_value("Tianditu/keyList")
-            if key:
-                keys = key.split(",")
-                if keys:
-                    key = keys[0].strip()
-        return key or ""
+        return get_api_key(self.conf)
 
     def triggerResult(self, result):
         # https://qgis.org/pyqgis/master/core/QgsLocatorResult.html
@@ -139,8 +133,11 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         QgsProject.instance().addMapLayer(layer)
         # zoom to feature
         self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
-        self.iface.mapCanvas().zoomScale(18056)  # 设置缩放等级, setExtent的缩放等级太大
+        self.iface.mapCanvas().zoomScale(18056)  # ���÷Ŵȼ�, setExtent�ķŴȼ�̫��
         self.iface.mapCanvas().refresh()
 
     def triggerResultFromAction(self, result, _action):
         self.triggerResult(result)
+
+
+__all__ = ["TDTGeocoderFilter"]

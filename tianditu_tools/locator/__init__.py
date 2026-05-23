@@ -1,3 +1,4 @@
-from .locator import TDTGeocoderFilter
+from .administrative import TDTAdministrativeFilter
+from .geocoder import TDTGeocoderFilter
 
-__all__ = ["TDTGeocoderFilter"]
+__all__ = ["TDTGeocoderFilter", "TDTAdministrativeFilter"]
