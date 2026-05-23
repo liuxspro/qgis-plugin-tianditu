@@ -10,4 +10,9 @@ dependencies = ["pyqt5>=5.15.11", "pyqt6>=6.8.1"]
 [tool.uv]
 # 为项目的依赖项添加额外的约束条件
 constraint-dependencies = ["pyqt5-qt5 <=5.15.2; sys_platform == 'win32'"]
+
+[dependency-groups]
+dev = [
+    "pylint>=4.0.5",
+]
 # PyQt5-Qt5 这个包只有 5.15.2 还支持 Windows
