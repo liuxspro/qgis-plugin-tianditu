@@ -33,7 +33,7 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         return "TianDiTu Geocoder"
 
     def displayName(self):
-        return QCoreApplication.translate("TDTGeocoder", "天地图地名搜索")
+        return QCoreApplication.translate("TDTGeocoder", "天地图-地名搜索")
 
     def prefix(self):
         return "tdt"

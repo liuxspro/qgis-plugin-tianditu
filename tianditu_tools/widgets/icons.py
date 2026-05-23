@@ -9,8 +9,8 @@ icon_dict = {
     "other": "./images/earth.svg",
     "search": "./images/search.svg",
     "fitzoom": "./images/fitzoom.svg",
-    "point": "./images/HugeiconsLocation04.svg",
-    "polygon": "./images/GisPolygonO.svg",
+    "point": "./images/mIconPointLayer.svg",
+    "polygon": "./images/mIconPolygonLayer.svg",
 }
 
 icons = {key: QIcon(str(PluginDir.joinpath(value))) for key, value in icon_dict.items()}
