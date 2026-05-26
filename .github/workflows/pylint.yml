@@ -5,20 +5,20 @@ on: [push]
 jobs:
   Pylint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v8
+
       - name: Install just
         uses: extractions/setup-just@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+
+      - name: Set up Python
+        run: uv python install 3.12
+
       - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pylint
+        run: uv sync --only-dev
+
       - name: Analysing the code with pylint
         run: just lint
