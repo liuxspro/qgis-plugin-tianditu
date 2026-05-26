@@ -1,9 +1,6 @@
 import json
 import re
 
-from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtNetwork import QNetworkReply
-from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 from qgis.core import (
     QgsCoordinateReferenceSystem,
     QgsCoordinateTransform,
@@ -13,10 +10,13 @@ from qgis.core import (
     QgsSettings,
 )
 from qgis.gui import QgsMapToolEmitPoint
+from qgis.PyQt import QtWidgets
+from qgis.PyQt.QtNetwork import QNetworkReply
+from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 
 from ...compat import NoError, Ui_SearchDockWidget
-from ...qgis_utils import push_warning, create_crs84_point_layer
-from ...utils import HEADER, make_request, get_point_style
+from ...qgis_utils import create_crs84_point_layer, log_message, push_warning
+from ...utils import HEADER, get_point_style, make_request
 
 
 class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
@@ -240,7 +240,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         else:
             root = QTreeWidgetItem(self.treeWidget)
             root.setText(0, "未知类型")
-            print(response_data)
+            log_message(response_data)
         reply.deleteLater()
 
     def search(self):

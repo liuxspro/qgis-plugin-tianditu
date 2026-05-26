@@ -3,7 +3,7 @@ from pathlib import Path
 from random import choice
 
 import yaml
-from qgis.core import Qgis, QgsSettings
+from qgis.core import QgsSettings
 from qgis.PyQt.QtCore import QUrl, QUrlQuery
 from qgis.PyQt.QtNetwork import QNetworkRequest
 
@@ -23,9 +23,9 @@ APP_FONT = QgsSettings().value("app/fontFamily")
 
 
 def get_point_style():
-    current_qgis_version = Qgis.QGIS_VERSION_INT
-    if current_qgis_version <= 31616:
-        return str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
+    # current_qgis_version = Qgis.QGIS_VERSION_INT
+    # if current_qgis_version <= 31616:
+    #     return str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
     return str(PluginDir.joinpath("./Styles/PointStyle.qml"))
 
 
