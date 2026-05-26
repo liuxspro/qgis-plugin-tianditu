@@ -1,14 +1,14 @@
-name: 'Commit CI'
+name: "Commit CI"
 
 on:
   push:
     branches:
-      - 'dev'
+      - "dev"
 
 jobs:
   build:
-    name: 'build'
-    runs-on: 'ubuntu-latest'
+    name: "build"
+    runs-on: "ubuntu-latest"
     steps:
       - uses: actions/checkout@v4
 
@@ -17,13 +17,14 @@ jobs:
         with:
           version: "0.6.0"
 
+      - name: Install just
+        uses: extractions/setup-just@v2
+
       - name: Set up Python
         run: uv python install
 
-      - name: 'Build and Pack'
-        run: |
-          chmod +x ./build.sh
-          ./build.sh
+      - name: "Build and Pack"
+        run: just pack
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4

@@ -1,15 +1,17 @@
 name: Pylint
 
-on: [ push ]
+on: [push]
 
 jobs:
   Pylint:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.9', '3.12' ]
+        python-version: ["3.9", "3.12"]
     steps:
       - uses: actions/checkout@v4
+      - name: Install just
+        uses: extractions/setup-just@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
@@ -19,5 +21,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install pylint
       - name: Analysing the code with pylint
-        run: |
-          pylint $(git ls-files '*.py' ':(exclude)tianditu_tools/ui/')
+        run: just lint
