@@ -3,9 +3,11 @@ from pathlib import Path
 from random import choice
 
 import yaml
+from qgis.core import QgsSettings
 from qgis.PyQt.QtCore import QUrl, QUrlQuery
 from qgis.PyQt.QtNetwork import QNetworkRequest
-from qgis.core import QgsSettings, Qgis
+
+from .qgis_utils import log_message
 
 TIANDITU_HOME_URL = "https://www.tianditu.gov.cn/"
 PLUGIN_NAME = "tianditu-tools"
@@ -21,9 +23,9 @@ APP_FONT = QgsSettings().value("app/fontFamily")
 
 
 def get_point_style():
-    current_qgis_version = Qgis.QGIS_VERSION_INT
-    if current_qgis_version <= 31616:
-        return str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
+    # current_qgis_version = Qgis.QGIS_VERSION_INT
+    # if current_qgis_version <= 31616:
+    #     return str(PluginDir.joinpath("./Styles/PointStyle_316.qml"))
     return str(PluginDir.joinpath("./Styles/PointStyle.qml"))
 
 
@@ -45,7 +47,7 @@ class PluginConfig:
     def init_config(self):
         # 初始化配置文件
         if not self.conf.contains("tianditu-tools/Tianditu/key"):
-            print("初始化配置文件")
+            log_message("初始化配置文件")
             # 初始化
             self.conf.setValue(f"{self.section_tianditu}/key", "")
             self.conf.setValue(f"{self.section_tianditu}/keyList", "")
@@ -53,7 +55,7 @@ class PluginConfig:
             self.conf.setValue(f"{self.section_tianditu}/random_key", False)
             self.conf.setValue(f"{self.section_tianditu}/subdomain", "t0")
         if not self.conf.contains("tianditu-tools/Other/extramap_status"):
-            print("初始化 extra map 文件")
+            log_message("初始化 extra map 文件")
             self.conf.setValue(
                 f"{self.conf_name}/Other/extramap_status", str(get_extramap_status())
             )
