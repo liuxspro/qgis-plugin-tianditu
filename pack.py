@@ -43,7 +43,7 @@ config = configparser.ConfigParser()
 config.read(source_dir.joinpath("metadata.txt"), encoding="utf-8")
 # Get the version under the [general] section
 version = config.get("general", "version")
-filename = f"tianditu_tools-{version}.zip"
+filename = f"tianditu_tools-v{version}.zip"
 # Zip the destination directory
 with zipfile.ZipFile(dist_dir.joinpath(filename), "w", zipfile.ZIP_DEFLATED) as zipf:
     for file in dist_source_dir.glob("**/*"):
