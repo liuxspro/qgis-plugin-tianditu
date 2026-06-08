@@ -4,7 +4,10 @@ version = "0.5.6"
 description = "QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实现了部分天地图 Web 服务 API（地名搜索、地理编码查询、逆地理编码查询） "
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = ["pyqt5>=5.15.11", "pyqt6>=6.8.1"]
+dependencies = [
+    "pyqt5>=5.15.11",
+    "pyqt6>=6.8.1",
+]
 
 
 [tool.uv]
@@ -14,5 +17,6 @@ constraint-dependencies = ["pyqt5-qt5 <=5.15.2; sys_platform == 'win32'"]
 [dependency-groups]
 dev = [
     "pylint>=4.0.5",
+    "owslib>=0.36.0",
 ]
 # PyQt5-Qt5 这个包只有 5.15.2 还支持 Windows

@@ -1,10 +1,13 @@
+import json
+from heapq import merge
+
 from qgis.PyQt.QtWidgets import QMenu
 
+from ...qgis_utils import add_raster_layer
+from ...utils import PluginConfig, PluginDir, load_yaml
+from ..icons import get_extra_map_icon, icons
 from .sd import SdAction
 from .utils import get_xyz_uri
-from ..icons import icons, get_extra_map_icon
-from ...qgis_utils import add_raster_layer
-from ...utils import PluginDir, load_yaml, PluginConfig
 
 conf = PluginConfig()
 
@@ -47,6 +50,22 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
                     lambda m_=m: add_map(m_),
                 )
             add_map_action.setMenu(sub_menu)
+    # load tianditu_province.json
+    tianditu_province_json_path = PluginDir.joinpath("maps/tianditu_province.json")
+    tianditu_province_json = json.load(
+        open(tianditu_province_json_path, "r", encoding="utf-8")
+    )
+    for map_name, map_data in tianditu_province_json.items():
+        add_map_action = parent_menu.addAction(icons["map"], map_name)
+        # map_data = tianditu_province_json[map_name]
+        sub_menu = QMenu(parent_menu)
+        for m in map_data:
+            sub_menu.addAction(
+                icons["map"],
+                m["name"],
+                lambda m_=m: add_map(m_),
+            )
+        add_map_action.setMenu(sub_menu)
     parent_menu.addSeparator()
 
 

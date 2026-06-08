@@ -1,0 +1,88 @@
+{
+  "天地图-江苏": [
+    {
+      "name": "江苏 1966 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image1966-2&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 1976 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image1976&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2002-2004 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2002-2004&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2010 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2010&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2012 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2012&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2014 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2014&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2016 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2016&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2017 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2018 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2019 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2020 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2021 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2022 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2023 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2024年1-4月 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2024年4季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2024q4&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2025年1季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2025q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2025年2季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2025q2&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2025年3季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2025q3&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2025年4季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2025q4&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    },
+    {
+      "name": "江苏 2026年1季度 影像地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2026q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
+    }
+  ]
+}
