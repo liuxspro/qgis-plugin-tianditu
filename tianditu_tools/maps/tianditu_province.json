@@ -84,5 +84,63 @@
       "name": "江苏 2026年1季度 影像地图",
       "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=image2026q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fjiangsu"
     }
+  ],
+  "天地图-广东": [
+    {
+      "name": "广东省永久基本农田保护图斑（墨卡托）",
+      "uri": "crs=EPSG%3A3857&format=image%2Fpng&tilePixelRatio=0&layers=gdsyjjbntbhtb_mercator&styles=default&tileMatrixSet=WebMercatorQuadF7T15&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省永久基本农田保护图斑",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=GDJBNTBHTB&styles=default&tileMatrixSet=CGCS2000QuadF7T15&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省三区三线专题图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=SQSXWPSJ&styles=default&tileMatrixSet=CGCS2000QuadF7T15&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省50万基础地质图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=JCDTZ_50W&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省50万水文地质图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=SWDTZ_50W&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广州市90年代影像电子地图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_GZ_90ND_GK&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2015年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2000_2015_GK&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2016年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=dom_2016&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2017年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2017&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2018年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2018&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2019年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2019&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2020年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2020&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2021年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2021&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    },
+    {
+      "name": "广东省2022年影像图",
+      "uri": "crs=EPSG%3A4490&format=image%2Fpng&tilePixelRatio=0&layers=DOM_2022&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fguangdong"
+    }
   ]
 }

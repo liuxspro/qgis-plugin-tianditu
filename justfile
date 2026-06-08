@@ -32,3 +32,8 @@ clean:
     @echo 'Clean dist and __pycache__...'
     @rm -rf dist
     @find . -type d -name '__pycache__' -exec rm -rf {} +
+
+# 获取地图数据
+getmap:
+    @echo 'Get map data...'
+    @uv run ./scripts/get_maps.py
