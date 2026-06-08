@@ -1,5 +1,4 @@
 import json
-from heapq import merge
 
 from qgis.PyQt.QtWidgets import QMenu
 
@@ -52,12 +51,10 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
             add_map_action.setMenu(sub_menu)
     # load tianditu_province.json
     tianditu_province_json_path = PluginDir.joinpath("maps/tianditu_province.json")
-    tianditu_province_json = json.load(
-        open(tianditu_province_json_path, "r", encoding="utf-8")
-    )
+    with open(tianditu_province_json_path, "r", encoding="utf-8") as f:
+        tianditu_province_json = json.load(f)
     for map_name, map_data in tianditu_province_json.items():
         add_map_action = parent_menu.addAction(icons["map"], map_name)
-        # map_data = tianditu_province_json[map_name]
         sub_menu = QMenu(parent_menu)
         for m in map_data:
             sub_menu.addAction(
