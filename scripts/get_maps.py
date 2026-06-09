@@ -77,6 +77,7 @@ def build_qgis_wmts_uri(  # pylint: disable=too-many-arguments,too-many-position
 tianditu_province = {
     "天地图-江苏": "https://wmts.liuxs.pro/tianditu/jiangsu",
     "天地图-广东": "https://wmts.liuxs.pro/tianditu/guangdong",
+    "天地图-北京": "https://wmts.liuxs.pro/tianditu/beijing",
 }
 
 if __name__ == "__main__":
