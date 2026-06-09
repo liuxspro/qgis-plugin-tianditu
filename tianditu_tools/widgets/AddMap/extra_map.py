@@ -49,6 +49,7 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
                     lambda m_=m: add_map(m_),
                 )
             add_map_action.setMenu(sub_menu)
+    parent_menu.addSeparator()
     # load tianditu_province.json
     tianditu_province_json_path = PluginDir.joinpath("maps/tianditu_province.json")
     with open(tianditu_province_json_path, "r", encoding="utf-8") as f:
