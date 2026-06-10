@@ -188,5 +188,59 @@
       "name": "北京 2025年1月影像",
       "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=beijing_88&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fbeijing"
     }
+  ],
+  "天地图-上海": [
+    {
+      "name": "上海 2025年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2025&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2024年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2023年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2022年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2021年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2020年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2019年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2018年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2017年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 2015年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx2015&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 1999年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx1999&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 1979年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx1979&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    },
+    {
+      "name": "上海 1948年影像",
+      "uri": "crs=EPSG%3A4490&format=image%2Fjpeg&tilePixelRatio=0&layers=shyx1948&styles=default&tileMatrixSet=CGCS2000Quad&url=https%3A%2F%2Fwmts.liuxs.pro%2Ftianditu%2Fshanghai"
+    }
   ]
 }

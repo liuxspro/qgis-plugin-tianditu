@@ -78,6 +78,7 @@ tianditu_province = {
     "天地图-江苏": "https://wmts.liuxs.pro/tianditu/jiangsu",
     "天地图-广东": "https://wmts.liuxs.pro/tianditu/guangdong",
     "天地图-北京": "https://wmts.liuxs.pro/tianditu/beijing",
+    "天地图-上海": "https://wmts.liuxs.pro/tianditu/shanghai",
 }
 
 if __name__ == "__main__":
