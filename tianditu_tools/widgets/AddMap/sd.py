@@ -1,24 +1,28 @@
 import json
 import math
 
+from qgis.core import (
+    Qgis,
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
+    QgsDateTimeRange,
+    QgsNetworkAccessManager,
+    QgsProject,
+)
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QDateTime
-from qgis.PyQt.QtWidgets import QAction, QTreeWidgetItem, QListWidgetItem
-from qgis.core import Qgis
-from qgis.core import QgsCoordinateReferenceSystem, QgsCoordinateTransform, QgsProject
-from qgis.core import QgsDateTimeRange
-from qgis.core import QgsNetworkAccessManager
+from qgis.PyQt.QtWidgets import QAction, QListWidgetItem, QTreeWidgetItem
 
-from ..icons import icons
 from ...compat import (
-    Ui_SdDockWidget,
-    RightDockWidgetArea,
-    NoError,
     AlignCenter,
     DescendingOrder,
+    NoError,
+    RightDockWidgetArea,
+    Ui_SdDockWidget,
 )
 from ...qgis_utils import add_raster_layer, push_message
 from ...utils import PluginConfig, make_request
+from ..icons import icons
 
 
 class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
@@ -217,7 +221,7 @@ class SdAction(QAction):
         self.iface = iface
         self.dock = SdDock(iface)
         self.setIcon(icons["map"])
-        self.setText("天地图·山东")
+        self.setText("天地图·山东 ↗︎")
         self.triggered.connect(self.open_dock)
 
     def open_dock(self):
