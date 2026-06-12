@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ui version="4.0">
+ <class>SettingDialog</class>
+ <widget class="QWidget" name="SettingDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>582</width>
+    <height>312</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>设置</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="tab_keyset">
+      <attribute name="title">
+       <string>天地图设置</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_4">
+       <item>
+        <widget class="QGroupBox" name="groupBox">
+         <property name="title">
+          <string>Key 设置</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_2">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,10,2">
+            <item>
+             <widget class="QLabel" name="label">
+              <property name="text">
+               <string>添加 Key:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QgsPasswordLineEdit" name="mLineEdit_key">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+               </font>
+              </property>
+              <property name="placeholderText">
+               <string>输入天地图key</string>
+              </property>
+              <property name="clearButtonEnabled">
+               <bool>false</bool>
+              </property>
+              <property name="showLockIcon">
+               <bool>false</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="saveButton">
+              <property name="text">
+               <string>保存</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout
+                                                class="QHBoxLayout"
+                                                name="horizontalLayout_2"
+                                                stretch="1,10,0,0,2"
+                                            >
+            <item>
+             <widget class="QLabel" name="label_2">
+              <property name="text">
+               <string>选择 Key:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="keyComboBox">
+              <property name="font">
+               <font>
+                <family>Consolas</family>
+               </font>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_key_rand">
+              <property name="text">
+               <string>随机</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_copy">
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>复制</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_delete">
+              <property name="maximumSize">
+               <size>
+                <width>50</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>删除</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="label_3">
+              <property name="text">
+               <string>子域 Subdomain:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
+             <widget class="QComboBox" name="subdomainComboBox">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="baseSize">
+               <size>
+                <width>200</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="currentText">
+               <string />
+              </property>
+              <property name="insertPolicy">
+               <enum>QComboBox::InsertAtTop</enum>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="checkBox_domain_rand">
+              <property name="toolTip">
+               <string
+                                                            >&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:10pt;&quot;&gt;添加底图时随机选择子域名，可减轻服务器压力，&lt;/span&gt;提高可用性。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>随机</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_4" />
+          </item>
+          <item>
+           <widget class="QLabel" name="label_4">
+            <property name="text">
+             <string
+                                                    >&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;style&gt;p { margin: 0.5px;font-size:10px} &lt;/style&gt;&lt;a href=&quot;https://cloudcenter.tianditu.gov.cn/center/development/myApp&quot;&gt;&lt;span style=&quot; font-weight:600; text-decoration: underline; color:#808080;&quot;&gt;点击此处前往天地图申请 Key&lt;/span&gt;&lt;/a&gt;
+&lt;p&gt;&lt;span style=&quot; color:#808080;margin: 0; padding: 5px 0;&quot;&gt;Key 类型建议选择为“&lt;/span&gt;&lt;span style=&quot; text-decoration: underline; color:#808080;&quot;&gt;浏览器端&lt;/span&gt;&lt;span style=&quot; color:#808080;&quot;&gt;” 或者 “&lt;/span&gt;&lt;span style=&quot; text-decoration: underline; color:#808080;&quot;&gt;Android 平台&lt;/span&gt;&lt;span style=&quot; color:#808080;&quot;&gt;”&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;margin: 0; padding: 5px 0;&quot;&gt;&lt;span style=&quot; color:#808080;&quot;&gt;如果工程同步到 QField 中使用，选择“&lt;/span&gt;&lt;span style=&quot; text-decoration: underline; color:#808080;&quot;&gt;Android 平台&lt;/span&gt;&lt;span style=&quot; color:#808080;&quot;&gt;”&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::RichText</enum>
+            </property>
+            <property name="openExternalLinks">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="info_status">
+            <property name="styleSheet">
+             <string notr="true">color: rgb(128, 128, 128);</string>
+            </property>
+            <property name="text">
+             <string />
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab_map">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <attribute name="title">
+       <string>地图管理</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_5" stretch="5">
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_6" />
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QgsPasswordLineEdit</class>
+   <extends>QLineEdit</extends>
+   <header>qgspasswordlineedit.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources />
+ <connections />
+</ui>

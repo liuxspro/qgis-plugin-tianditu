@@ -104,7 +104,9 @@ class MapManager(QTreeWidget):
                 f"已导入以下地图文件：\n{names}",
             )
             self.setupUI()
-        except Exception as e:
+        except zipfile.BadZipFile:
+            QMessageBox.critical(self, "错误", "所选文件不是有效的 ZIP 文件")
+        except OSError as e:
             QMessageBox.critical(self, "错误", f"加载地图包失败：{e}")
 
     def update_map_enable_state(self):

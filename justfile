@@ -14,13 +14,15 @@ test:
 # 构建 UI：将 .ui 文件编译为 .py，并做 QGIS 兼容替换
 build:
     @echo 'Build UI...'
-    @uv run pyuic5 ./tianditu_tools/ui/setting.ui -o ./tianditu_tools/ui/setting.py
-    @uv run pyuic5 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search.py
-    @uv run pyuic5 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd.py
-    @uv run pyuic6 ./tianditu_tools/ui/setting.ui -o ./tianditu_tools/ui/setting_6.py
-    @uv run pyuic6 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search_6.py
-    @uv run pyuic6 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd_6.py
+    @uv run pyuic5 ./tianditu_tools/ui/setting5.ui -o ./tianditu_tools/ui/setting_5.py
+    @uv run pyuic5 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search_5.py
+    @uv run pyuic5 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd_5.py
+    @# QT6
+    @uv run pyuic6 ./tianditu_tools/ui/setting.ui -o ./tianditu_tools/ui/setting.py
+    @uv run pyuic6 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search.py
+    @uv run pyuic6 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd.py
     @uv run ./scripts/update_ui.py
+    # Done
 
 # 打包插件（依赖 build）
 pack: build

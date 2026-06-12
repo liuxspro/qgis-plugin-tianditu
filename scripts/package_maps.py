@@ -1,3 +1,4 @@
+import sys
 import zipfile
 from datetime import date
 from pathlib import Path
@@ -12,7 +13,7 @@ filename = f"map{date_str}.zip"
 json_files = list(maps_dir.glob("*.json"))
 if not json_files:
     print("maps 目录下没有 JSON 文件")
-    exit(1)
+    sys.exit(1)
 
 dist_dir.mkdir(parents=True, exist_ok=True)
 
