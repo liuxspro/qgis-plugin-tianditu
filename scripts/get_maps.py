@@ -70,7 +70,8 @@ def build_qgis_wmts_uri(  # pylint: disable=too-many-arguments,too-many-position
         "tileMatrixSet": tilematrixset,
         "url": wmts_url,
     }
-    query_string = urlencode(params)
+    # 编码参数，保留特殊字符(3.44版本不能正常解析urlencode后的uri)
+    query_string = urlencode(params, safe=":/")
     return query_string
 
 
