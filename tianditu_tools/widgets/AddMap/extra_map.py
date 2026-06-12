@@ -3,7 +3,7 @@ import json
 from qgis.PyQt.QtWidgets import QMenu
 
 from ...qgis_utils import add_raster_layer
-from ...utils import PluginConfig, PluginDir, load_yaml
+from ...utils import PluginConfig, PluginDir
 from ..icons import get_extra_map_icon, icons
 from .sd import SdAction
 from .utils import get_xyz_uri
@@ -32,15 +32,14 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
     parent_menu.addAction(sd)
     parent_menu.addSeparator()
     # 其他省份
-    tianditu_province_path = PluginDir.joinpath("maps/tianditu_province.yml")
-    tianditu_province = load_yaml(tianditu_province_path)["maps"]
-    maps = tianditu_province.keys()
     extra_maps_status = conf.get_extra_maps_status()
-    for map_name in maps:
-        # 一级菜单 省份名称
+    # load tianditu_province.json
+    tianditu_province_json_path = PluginDir.joinpath("maps/tianditu_province.json")
+    with open(tianditu_province_json_path, "r", encoding="utf-8") as f:
+        tianditu_province_json = json.load(f)
+    for map_name, map_data in tianditu_province_json.items():
         if map_name in extra_maps_status["tianditu_province"]:
             add_map_action = parent_menu.addAction(icons["map"], map_name)
-            map_data = tianditu_province[map_name]
             sub_menu = QMenu(parent_menu)
             for m in map_data:
                 sub_menu.addAction(
@@ -50,36 +49,19 @@ def add_tianditu_province_menu(parent_menu: QMenu, iface):
                 )
             add_map_action.setMenu(sub_menu)
     parent_menu.addSeparator()
-    # load tianditu_province.json
-    tianditu_province_json_path = PluginDir.joinpath("maps/tianditu_province.json")
-    with open(tianditu_province_json_path, "r", encoding="utf-8") as f:
-        tianditu_province_json = json.load(f)
-    for map_name, map_data in tianditu_province_json.items():
-        add_map_action = parent_menu.addAction(icons["map"], map_name)
-        sub_menu = QMenu(parent_menu)
-        for m in map_data:
-            sub_menu.addAction(
-                icons["map"],
-                m["name"],
-                lambda m_=m: add_map(m_),
-            )
-        add_map_action.setMenu(sub_menu)
-    parent_menu.addSeparator()
 
 
 def add_extra_map_menu(parent_menu: QMenu):
-    extra = load_yaml(PluginDir.joinpath("maps/extra.yml"))
-    extra_maps = extra["maps"]
+    extra_json_path = PluginDir.joinpath("maps/extra.json")
+    with open(extra_json_path, "r", encoding="utf-8") as f:
+        extra = json.load(f)
     extra_root = parent_menu.addAction(icons["other"], "其他地图")
     extra_root_menu = QMenu(parent_menu)
-    maps = extra_maps.keys()
+    maps = extra.keys()
     extra_maps_status = conf.get_extra_maps_status()
     for map_name in maps:
-        if (
-            map_name in extra_maps_status["tianditu_province"]
-            or map_name in extra_maps_status["extra"]
-        ):
-            map_data = extra_maps[map_name]
+        if map_name in extra_maps_status["extra"]:
+            map_data = extra[map_name]
             sub_menu = extra_root_menu.addAction(icons["other"], map_name)
             sub_sub_menu = QMenu(parent_menu)
             for sub_map in map_data:

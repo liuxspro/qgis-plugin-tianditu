@@ -1,19 +1,19 @@
 import json
 
+from qgis.core import QgsNetworkAccessManager
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QTimer
-from qgis.PyQt.QtWidgets import QApplication
-from qgis.core import QgsNetworkAccessManager
+from qgis.PyQt.QtWidgets import QApplication, QPushButton
 
-from .mapmanager import MapManager
-from ...compat import Ui_SettingDialog, NoError, HttpStatusCodeAttribute, ModeClipboard
+from ...compat import HttpStatusCodeAttribute, ModeClipboard, NoError, Ui_SettingDialog
 from ...utils import (
-    tianditu_map_url,
+    HEADER,
     PluginConfig,
     PluginDir,
     make_request,
-    HEADER,
+    tianditu_map_url,
 )
+from .mapmanager import MapManager
 
 
 def check_key_format(key: str) -> object:
@@ -89,11 +89,14 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
         self.mapm = MapManager(
             map_folder=map_folder,
             parent=self.tab_map,
-            update_btn=self.btn_checkupdate,
-            status_label=self.label_checkstatus,
         )
+        self.btn_load_package = QPushButton("加载地图包")
         self.verticalLayout_6.addWidget(self.mapm)
-        self.btn_checkupdate.clicked.connect(self.mapm.check_update)
+        btn_layout = QtWidgets.QHBoxLayout()
+        btn_layout.addWidget(self.btn_load_package)
+        btn_layout.addStretch()
+        self.verticalLayout_6.addLayout(btn_layout)
+        self.btn_load_package.clicked.connect(self.mapm.load_map_package_clicked)
         #
         self.tabWidget.currentChanged.connect(self.adjust_tab_height)
 
@@ -152,7 +155,7 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
         status_code = reply.attribute(HttpStatusCodeAttribute)
         if reply.error() == NoError:
             response_data = reply.readAll()
-            png_signature = b"\x89\x50\x4E\x47\x0D\x0A\x1A\x0A"
+            png_signature = b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a"
             if response_data[:8] == png_signature:
                 if self.keyComboBox.itemText(0) == "请添加 key":
                     self.keyComboBox.removeItem(0)

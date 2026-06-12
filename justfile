@@ -37,3 +37,8 @@ clean:
 getmap:
     @echo 'Get map data...'
     @uv run ./scripts/get_maps.py
+
+# 打包图源：将 maps/*.json 打包为 zip
+packmap:
+    @echo 'Pack map sources...'
+    @uv run ./scripts/package_maps.py

@@ -30,11 +30,13 @@ def get_point_style():
 
 
 def get_extramap_status():
-    summary = load_yaml(PluginDir.joinpath("maps/summary.yml"))
     default_status = {}
-    for section in summary:
-        section_data = load_yaml(PluginDir.joinpath(f"maps/{section}.yml"))
-        default_status[section] = list(section_data["maps"].keys())
+    sections = ["tianditu_province", "extra"]
+    for section in sections:
+        json_path = PluginDir.joinpath(f"maps/{section}.json")
+        with open(json_path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        default_status[section] = list(data.keys())
     return default_status
 
 
