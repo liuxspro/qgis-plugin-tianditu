@@ -3,7 +3,7 @@ import json
 from qgis.core import QgsNetworkAccessManager
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QTimer
-from qgis.PyQt.QtWidgets import QApplication, QPushButton
+from qgis.PyQt.QtWidgets import QApplication, QLabel, QPushButton
 
 from ...compat import HttpStatusCodeAttribute, ModeClipboard, NoError, Ui_SettingDialog
 from ...utils import (
@@ -91,12 +91,19 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
             parent=self.tab_map,
         )
         self.btn_load_package = QPushButton("加载地图包")
+        self.label_download_package = QLabel(
+            '<a href="https://github.com/liuxspro/qgis-plugin-tianditu/releases"'
+            ' style="color: #0078d7; text-decoration: none;">下载地图包</a>'
+        )
+        self.label_download_package.setOpenExternalLinks(True)
         self.verticalLayout_6.addWidget(self.mapm)
         btn_layout = QtWidgets.QHBoxLayout()
         btn_layout.addWidget(self.btn_load_package)
+        btn_layout.addWidget(self.label_download_package)
         btn_layout.addStretch()
         self.verticalLayout_6.addLayout(btn_layout)
         self.btn_load_package.clicked.connect(self.mapm.load_map_package_clicked)
+
         #
         self.tabWidget.currentChanged.connect(self.adjust_tab_height)
 
