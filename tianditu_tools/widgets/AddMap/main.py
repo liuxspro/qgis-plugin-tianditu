@@ -41,21 +41,21 @@ class AddMapBtn(QToolButton):
         menu = QMenu(self)
         menu.setObjectName("TianDiTuAddMap")
 
-        # 图层组（含注记）
-        for group_key, group_info in tianditu_map_groups.items():
-            menu.addAction(
-                self.icons["map"],
-                group_info["name"],
-                lambda key=group_key: self.add_tianditu_basemap_group(key),
-            )
-        menu.addSeparator()
-
         # 单个图层
         for map_type, map_name in tianditu_map_info.items():
             menu.addAction(
                 self.icons["map"],
                 map_name,
                 lambda maptype_=map_type: self.add_tianditu_basemap(maptype_),
+            )
+        menu.addSeparator()
+
+        # 图层组（含注记）
+        for group_key, group_info in tianditu_map_groups.items():
+            menu.addAction(
+                self.icons["map"],
+                group_info["name"],
+                lambda key=group_key: self.add_tianditu_basemap_group(key),
             )
         menu.addSeparator()
 

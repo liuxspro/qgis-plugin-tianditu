@@ -1,0 +1,246 @@
+{
+  "天地图-江苏": [
+    {
+      "name": "江苏 1966 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image1966-2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 1976 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image1976&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2002-2004 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2002-2004&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2010 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2010&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2012 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2012&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2014 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2014&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2016 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2016&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2017 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2018 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2019 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2020 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2021 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2022 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2023 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2024年1-4月 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2024年4季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2024q4&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2025年1季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2025q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2025年1-4月 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2025&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2025年2季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2025q2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2025年3季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2025q3&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2025年4季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2025q4&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2026年1季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2026q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    }
+  ],
+  "天地图-广东": [
+    {
+      "name": "广东省永久基本农田保护图斑",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=GDJBNTBHTB&styles=default&tileMatrixSet=CGCS2000QuadF7T15&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省三区三线专题图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=SQSXWPSJ&styles=default&tileMatrixSet=CGCS2000QuadF7T15&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省50万基础地质图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=JCDTZ_50W&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省50万水文地质图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=SWDTZ_50W&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广州市90年代影像电子地图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_GZ_90ND_GK&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2015年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2000_2015_GK&styles=default&tileMatrixSet=CGCS2000QuadF7T17&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2016年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=dom_2016&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2017年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2017&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2018年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2018&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2019年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2019&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2020年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2020&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2021年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2021&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    },
+    {
+      "name": "广东省2022年影像图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=DOM_2022&styles=default&tileMatrixSet=CGCS2000QuadF7T18&url=https://wmts.liuxs.pro/tianditu/guangdong"
+    }
+  ],
+  "天地图-北京": [
+    {
+      "name": "北京 1951年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_62&styles=default&tileMatrixSet=CustomGCS2000QuadF6T16&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 1966年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_63&styles=default&tileMatrixSet=CustomGCS2000QuadF6T16&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 1996年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_65&styles=default&tileMatrixSet=CustomGCS2000QuadF6T16&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2018年6月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_92&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2019年5月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_87&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2020年7月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_90&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2021年5月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_91&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2022年4月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_89&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2023年6月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_93&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2024年10月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_84&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    },
+    {
+      "name": "北京 2025年1月影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=beijing_88&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/beijing"
+    }
+  ],
+  "天地图-上海": [
+    {
+      "name": "上海 2025年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2025&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2024年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2023年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2022年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2021年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2020年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2019年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2018年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2017年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 2015年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx2015&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 1999年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx1999&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 1979年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx1979&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    },
+    {
+      "name": "上海 1948年影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx1948&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    }
+  ]
+}
