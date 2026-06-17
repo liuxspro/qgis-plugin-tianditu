@@ -242,5 +242,119 @@
       "name": "上海 1948年影像",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx1948&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
     }
+  ],
+  "天地图-湖南": [
+    {
+      "name": "湖南 1967年2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=8&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2017年1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161283&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2017年2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=7&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2018年全年1米",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161278&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2019年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161272&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2020年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161279&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2020年第四季度2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161266&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=9&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161239&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=10&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161240&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161241&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=11&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=12&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=13&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=14&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第三季度0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161242&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=15&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161243&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161244&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第三季度0.5米",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161268&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=16&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161245&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161267&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161271&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161277&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161280&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第四季度0.5米",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161284&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    }
   ]
 }
