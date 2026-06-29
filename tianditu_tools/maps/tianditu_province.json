@@ -356,5 +356,99 @@
       "name": "湖南 2025年第四季度0.5米",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161284&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
     }
+  ],
+  "天地图-浙江": [
+    {
+      "name": "浙江 60年代影像服务",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292046b2b5a99016b2b6d85570000&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 70年代影像服务",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292046b2b5a99016b2b9ee0d60006&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省1998_2003年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920473332eeb0173362c29030000&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省1999_2000年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4c75f80051&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2003_2005年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4a99c60050&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2006_2007年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb486d03004f&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2008年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb459922004d&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2009年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb424b4f004c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2010年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4084b8004b&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2011年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c0479c40075&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2012年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c036c2c0074&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2013年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c020d870073&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2014年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f01717315c0c40009&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2015年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f0171731439580008&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2016年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f017173137db90007&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2017年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f017172ae9f080001&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2018年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047129487301715d83506f000d&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2019年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471ab6df00171b400c7ae0008&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2020年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047c5e74ba017d8d36d3e00922&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2021年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292048069f63f01806a02675100b9&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2022年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292048a6dbd90018aca3efa77725c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2023年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c929204935357fb0193b8d044024ae0&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2024年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292049536c43d01957e9fe057348e&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    }
   ]
 }
