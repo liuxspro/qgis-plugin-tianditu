@@ -89,9 +89,9 @@ if __name__ == "__main__":
 
     for name, info in wmts_list.items():
         url = info["url"]
-        referer = info.get("referer")
+        ref = info.get("referer")
         print(f"Fetching {name}...")
-        infos = get_info(url, referer=referer)
+        infos = get_info(url, referer=ref)
         map_data[name] = infos
 
     with open(map_dir / "tianditu_province.json", "w", encoding="utf-8") as f:
