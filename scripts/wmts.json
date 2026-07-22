@@ -4,6 +4,7 @@
   "天地图-北京": { "url": "https://wmts.liuxs.pro/tianditu/beijing" },
   "天地图-上海": { "url": "https://wmts.liuxs.pro/tianditu/shanghai" },
   "天地图-湖南": { "url": "https://wmts.liuxs.pro/tianditu/hunan" },
+  "天地图-河南": { "url": "https://wmts.liuxs.pro/tianditu/henan" },
   "天地图-浙江": {
     "url": "https://wmts.liuxs.pro/tianditu/zhejiang",
     "referer": "https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"

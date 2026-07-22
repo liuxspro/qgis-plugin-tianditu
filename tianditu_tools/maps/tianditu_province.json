@@ -325,7 +325,7 @@
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161244&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
     },
     {
-      "name": "湖南 2024年第三季度0.5米",
+      "name": "湖南 2024年第三季度0.5米影像",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161268&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
     },
     {
@@ -353,8 +353,66 @@
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161280&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
     },
     {
-      "name": "湖南 2025年第四季度0.5米",
+      "name": "湖南 2025年第四季度0.5米影像",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161284&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2026年1-2月1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161285&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    }
+  ],
+  "天地图-河南": [
+    {
+      "name": "河南 202211 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20221112_c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202209 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220910&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202207 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220708&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202205 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220506_c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 199012 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan1990&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201904 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202012 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202111 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202301 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202207 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202407 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201801 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201701 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
     }
   ],
   "天地图-浙江": [
