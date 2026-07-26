@@ -359,6 +359,10 @@
     {
       "name": "湖南 2026年1-2月1米影像",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161285&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 1：25万地质图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=huana_1_25_dizhi&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
     }
   ],
   "天地图-河南": [
