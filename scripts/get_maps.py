@@ -5,7 +5,7 @@ from urllib.parse import urlencode
 from owslib.wmts import WebMapTileService
 
 
-def get_info(wmts_url):
+def get_info(wmts_url, referer=None):
     result = []
     wmts = WebMapTileService(wmts_url)
     # layer_ids = list(wmts.contents)
@@ -29,6 +29,7 @@ def get_info(wmts_url):
             tilematrixset_name,
             img_format=img_format,
             crs=crs,
+            referer=referer,
         )
 
         result.append(
@@ -47,6 +48,7 @@ def build_qgis_wmts_uri(  # pylint: disable=too-many-arguments,too-many-position
     tilematrixset=None,
     img_format="image/png",
     crs="EPSG:3857",
+    referer=None,
 ):
     """
     构建QGIS WMTS图层URI
@@ -56,7 +58,7 @@ def build_qgis_wmts_uri(  # pylint: disable=too-many-arguments,too-many-position
     :param tilematrixset: 瓦片矩阵集名称（如WebMercatorQuad）
     :param img_format: 图片格式
     :param crs: 坐标参考系
-    :param extra_params: 其他QGIS参数，如dpiMode=7&featureCount=10
+    :param referer: 可选的Referer HTTP头值
     :return: URI字符串
     """
     params = {
@@ -70,26 +72,28 @@ def build_qgis_wmts_uri(  # pylint: disable=too-many-arguments,too-many-position
         "tileMatrixSet": tilematrixset,
         "url": wmts_url,
     }
+    if referer:
+        params["http-header:referer"] = referer
     # 编码参数，保留特殊字符(3.44版本不能正常解析urlencode后的uri)
     query_string = urlencode(params, safe=":/")
     return query_string
 
 
-tianditu_province = {
-    "天地图-江苏": "https://wmts.liuxs.pro/tianditu/jiangsu",
-    "天地图-广东": "https://wmts.liuxs.pro/tianditu/guangdong",
-    "天地图-北京": "https://wmts.liuxs.pro/tianditu/beijing",
-    "天地图-上海": "https://wmts.liuxs.pro/tianditu/shanghai",
-}
-
 if __name__ == "__main__":
-    cwd = Path.cwd()
-    map_dir = cwd / "tianditu_tools/maps"
+    script_dir = Path(__file__).parent
+    map_dir = script_dir.parent / "tianditu_tools/maps"
     map_data = {}
-    for name, url in tianditu_province.items():
+
+    with open(script_dir / "wmts.json", encoding="utf-8") as f:
+        wmts_list = json.load(f)
+
+    for name, info in wmts_list.items():
+        url = info["url"]
+        ref = info.get("referer")
         print(f"Fetching {name}...")
-        infos = get_info(url)
+        infos = get_info(url, referer=ref)
         map_data[name] = infos
+
     with open(map_dir / "tianditu_province.json", "w", encoding="utf-8") as f:
         json.dump(map_data, f, indent=2, ensure_ascii=False)
     print(f"Saved to {map_dir / 'tianditu_province.json'}")

@@ -99,6 +99,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             uri += (
                 f"&styles=default&tileMatrixSet=raster&tilePixelRatio=0&url={cap_url}"
             )
+        add_raster_layer(uri, item_name)
 
     def get_center_point(self):
         canvas = self.iface.mapCanvas()

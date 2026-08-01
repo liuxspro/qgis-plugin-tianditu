@@ -87,6 +87,10 @@
     {
       "name": "江苏 2026年1季度 影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=image2026q1&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2026年2季度 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2026q2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
     }
   ],
   "天地图-广东": [
@@ -241,6 +245,342 @@
     {
       "name": "上海 1948年影像",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shyx1948&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanghai"
+    }
+  ],
+  "天地图-湖南": [
+    {
+      "name": "湖南 1967年2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=8&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2017年1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161283&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2017年2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=7&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2018年全年1米",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161278&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2019年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161272&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2020年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161279&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2020年第四季度2米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161266&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=9&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161239&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=10&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2021年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161240&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161241&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=11&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=12&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=13&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2022年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=14&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第三季度0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161242&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=15&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161243&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2023年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161244&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第三季度0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161268&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=16&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161245&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2024年第四季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161267&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第一季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161271&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第二季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161277&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第三季度1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161280&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2025年第四季度0.5米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161284&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2026年1-2月1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161285&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 2026年3-4月1米影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=161288&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    },
+    {
+      "name": "湖南 1：25万地质图",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=huana_1_25_dizhi&styles=default&tileMatrixSet=CustomGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hunan"
+    }
+  ],
+  "天地图-河南": [
+    {
+      "name": "河南 202211 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20221112_c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202209 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220910&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202207 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220708&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202205 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan20220506_c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 199012 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan1990&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201904 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202012 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202111 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202301 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202207 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=henan2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 202407 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201801 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    },
+    {
+      "name": "河南 201701 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=dom2017&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/henan"
+    }
+  ],
+  "天地图-浙江": [
+    {
+      "name": "浙江 60年代影像服务",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292046b2b5a99016b2b6d85570000&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 70年代影像服务",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292046b2b5a99016b2b9ee0d60006&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省1998_2003年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920473332eeb0173362c29030000&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省1999_2000年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4c75f80051&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2003_2005年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4a99c60050&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2006_2007年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb486d03004f&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2008年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb459922004d&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2009年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb424b4f004c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2010年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471b56e640171bb4084b8004b&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2011年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c0479c40075&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2012年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c036c2c0074&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2013年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047186efcd01719c020d870073&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2014年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f01717315c0c40009&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2015年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f0171731439580008&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2016年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f017173137db90007&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2017年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471632e8f017172ae9f080001&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2018年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047129487301715d83506f000d&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2019年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c92920471ab6df00171b400c7ae0008&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2020年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292047c5e74ba017d8d36d3e00922&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2021年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292048069f63f01806a02675100b9&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2022年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292048a6dbd90018aca3efa77725c&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2023年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c929204935357fb0193b8d044024ae0&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    },
+    {
+      "name": "浙江 浙江省2024年遥感影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=2c9292049536c43d01957e9fe057348e&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/zhejiang&http-header:referer=https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
+    }
+  ],
+  "天地图-河北": [
+    {
+      "name": "河北 2025 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2025&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2024 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2023 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2022 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2021 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2020 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2020&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2019 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2019&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2018 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2018&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2017 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2017&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2016 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2016&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2015 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2015&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2014 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2014&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2013 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2013&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2012 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2012&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
+    },
+    {
+      "name": "河北 2011 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2011&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
     }
   ]
 }
