@@ -9,5 +9,6 @@
     "url": "https://wmts.liuxs.pro/tianditu/zhejiang",
     "referer": "https://ditu.zjzwfw.gov.cn/resources-server/rescenter/index.html"
   },
-  "天地图-河北": { "url": "https://wmts.liuxs.pro/tianditu/hebei" }
+  "天地图-河北": { "url": "https://wmts.liuxs.pro/tianditu/hebei" },
+  "天地图-山西": { "url": "https://wmts.liuxs.pro/tianditu/shanxi" }
 }

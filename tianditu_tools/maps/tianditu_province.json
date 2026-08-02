@@ -582,5 +582,55 @@
       "name": "河北 2011 年影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2011&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
     }
+  ],
+  "天地图-山西": [
+    {
+      "name": "山西 2024 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2024&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2023 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2023&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2022 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2022&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2021 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2021&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2020 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2019 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2018 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2018&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2017 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2017&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2016 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2016&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2015 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2015&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2014 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2014&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    },
+    {
+      "name": "山西 2013 年影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2013&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    }
   ]
 }
