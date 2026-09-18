@@ -91,6 +91,10 @@
     {
       "name": "江苏 2026年2季度 影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2026q2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2026年1-4月 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2026&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
     }
   ],
   "天地图-广东": [
@@ -631,6 +635,48 @@
     {
       "name": "山西 2013 年影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=shanxi_2013&styles=default&tileMatrixSet=CGCS2000QuadF1T15&url=https://wmts.liuxs.pro/tianditu/shanxi"
+    }
+  ],
+  "天地图-江西": [
+    {
+      "name": "1996年南昌市影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_img1996&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2010年南昌市影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_NCS_DOM_2010_001&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2015年南昌市影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_NCS_DOM_2015&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2019年南昌市影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_NCS_DOM_2019&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2020年南昌市影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_NCS_DOM_2020&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2022年江西省影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_2022YX100&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2023年江西省影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_2023tif2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2024年江西省影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_2024YX100&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2025年第一季度江西省影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_2025-1hk&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
+    },
+    {
+      "name": "2025年第二季度江西省影像",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=jiangxi_2025Q2100&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangxi"
     }
   ]
 }
