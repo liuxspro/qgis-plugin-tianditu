@@ -15,7 +15,6 @@ class TiandituToolbar(QToolBar):
         self.conf = PluginConfig()
         self.setToolTip("天地图 Tools 工具栏")
         self.add_button = None
-        self.actions = []
 
         self.init_config()
         self.setup_action()
@@ -28,13 +27,13 @@ class TiandituToolbar(QToolBar):
         action_search = SearchAction(iface=self.iface, parent=self)
         # action_fitzoom = FitZoomAction(iface=self.iface, parent=self)
 
-        self.actions.extend([action_setting, action_search])
-        self.addActions(self.actions)
+        self.addAction(action_setting)
+        self.addAction(action_search)
 
     def init_config(self):
         self.conf.init_config()
 
     def remove_dock(self):
-        for action in self.actions:
+        for action in self.actions():
             if hasattr(action, "unload"):
                 action.unload()
