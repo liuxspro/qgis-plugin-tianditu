@@ -11,6 +11,10 @@ on:
 permissions:
   contents: read
 
+env:
+  # lxml (via owslib) has no cp315 wheels yet; pin a version QGIS supports.
+  UV_PYTHON: "3.12"
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -29,7 +33,7 @@ jobs:
         uses: extractions/setup-just@v4
 
       - name: Set up Python
-        run: uv python install
+        run: uv python install 3.12
 
       - name: Analysing the code with pylint
         run: just lint
@@ -47,7 +51,7 @@ jobs:
         uses: extractions/setup-just@v4
 
       - name: Set up Python
-        run: uv python install
+        run: uv python install 3.12
 
       - name: "Build and Pack"
         run: just pack
