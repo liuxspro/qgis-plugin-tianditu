@@ -35,6 +35,9 @@ jobs:
       - name: Set up Python
         run: uv python install 3.12
 
+      - name: Check version consistency
+        run: just version-check
+
       - name: Analysing the code with pylint
         run: just lint
 
@@ -54,14 +57,7 @@ jobs:
         run: uv python install 3.12
 
       - name: "Build and Pack"
-        run: just pack
-
-      - name: "Rename artifact for PR"
-        if: github.event_name == 'pull_request'
-        run: |
-          for f in dist/*.zip; do
-            mv "$f" "${f%.zip}-pr${{ github.event.pull_request.number }}.zip"
-          done
+        run: just ${{ github.event_name == 'pull_request' && 'pack-dev' || 'pack' }}
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v7
@@ -78,6 +74,6 @@ jobs:
           {
             echo "### 测试插件已打包"
             echo
-            echo '在 Artifacts 中下载 `tianditu_tools-pr${{ github.event.pull_request.number }}`，'
+            echo '在 Artifacts 中下载 `tianditu_tools-pr${{ github.event.pull_request.number }}`，包内版本号带 `-dev-<短 SHA>`，'
             echo "然后在 QGIS 的「插件 → 管理并安装插件 → 从 ZIP 安装」中选择该文件即可覆盖安装。"
           } >> "$GITHUB_STEP_SUMMARY"
