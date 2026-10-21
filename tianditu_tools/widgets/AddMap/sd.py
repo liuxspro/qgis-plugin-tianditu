@@ -218,7 +218,6 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
 class SdAction(QAction):
     def __init__(self, iface, parent=None):
         super().__init__(parent)
-        self.parent = parent
         self.iface = iface
         self.dock = SdDock(iface)
         self.setIcon(icons["map"])

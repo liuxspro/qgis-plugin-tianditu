@@ -16,7 +16,6 @@ class SearchAction(QAction):
         parent=None,
     ):
         super().__init__(parent)
-        self.parent = parent
         self.iface = iface
         self.setIcon(icons["search"])
         self.setText("搜索")
