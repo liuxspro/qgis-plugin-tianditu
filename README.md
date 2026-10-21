@@ -90,6 +90,25 @@ QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实
 
 ---
 
+## 开发与发版
+
+版本号以 `pyproject.toml` 为准，`metadata.txt` 与 `uv.lock` 由脚本同步：
+
+```sh
+just bump 0.6.1     # 同时更新 pyproject.toml、metadata.txt、uv.lock
+```
+
+打包：
+
+```sh
+just pack       # 正式包 tianditu_tools-v0.6.1.zip
+just pack-dev   # 开发包 tianditu_tools-v0.6.1-dev-<短 SHA>.zip
+```
+
+PR 由 CI 自动生成带 `-dev-<短 SHA>` 的测试包；发版前先 bump 版本并补充 changelog，再打 `v<version>` tag。tag 与版本不一致时 Release 工作流会直接失败。
+
+---
+
 ## 免责声明
 
 本插件为开源项目，仅提供技术集成功能。插件内置的第三方地图源（包括但不限于 Google Maps、ESRI、高德地图等）均来源于其官方公开的瓦片服务地址，仅供学习与研究参考。请遵守各地图服务商的使用条款及相关法律法规。

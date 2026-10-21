@@ -29,6 +29,19 @@ pack: build
     @echo 'Pack plugin...'
     @uv run ./scripts/pack.py
 
+# 打包开发版（版本号追加 -dev-<短 SHA>，依赖 build）
+pack-dev: build
+    @echo 'Pack dev plugin...'
+    @uv run ./scripts/pack.py --dev
+
+# 校验 metadata / pyproject / uv.lock 版本一致
+version-check:
+    @uv run ./scripts/version.py check
+
+# 更新版本号（同时更新 pyproject、metadata、uv.lock）
+bump version:
+    @uv run ./scripts/version.py bump {{version}}
+
 # 清理构建产物和缓存
 clean:
     @echo 'Clean dist and __pycache__...'
