@@ -1,0 +1,79 @@
+name: "CI"
+
+on:
+  push:
+    branches:
+      - "main"
+  pull_request:
+    branches:
+      - "main"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: "lint"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Install just
+        uses: extractions/setup-just@v4
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: Analysing the code with pylint
+        run: just lint
+
+  build:
+    name: "build"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b # v8.1.0
+
+      - name: Install just
+        uses: extractions/setup-just@v4
+
+      - name: Set up Python
+        run: uv python install
+
+      - name: "Build and Pack"
+        run: just pack
+
+      - name: "Rename artifact for PR"
+        if: github.event_name == 'pull_request'
+        run: |
+          for f in dist/*.zip; do
+            mv "$f" "${f%.zip}-pr${{ github.event.pull_request.number }}.zip"
+          done
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: ${{ github.event_name == 'pull_request' && format('tianditu_tools-pr{0}', github.event.pull_request.number) || 'tianditu_tools' }}
+          # name: "tianditu_tools"
+          path: ./dist/*.zip
+          archive: false
+          retention-days: ${{ github.event_name == 'pull_request' && 14 || 90 }}
+
+      - name: "PR Summary"
+        if: github.event_name == 'pull_request'
+        run: |
+          {
+            echo "### 测试插件已打包"
+            echo
+            echo '在 Artifacts 中下载 `tianditu_tools-pr${{ github.event.pull_request.number }}`，'
+            echo "然后在 QGIS 的「插件 → 管理并安装插件 → 从 ZIP 安装」中选择该文件即可覆盖安装。"
+          } >> "$GITHUB_STEP_SUMMARY"
