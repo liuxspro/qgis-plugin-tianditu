@@ -11,7 +11,7 @@ class SettingAction(QAction):
         toolbar,
         parent=None,
     ):
-        super().__init__(parent)
+        super().__init__(parent if parent is not None else toolbar)
         self.setIcon(icons["setting"])
         self.setText("设置")
         self.triggered.connect(self.show_setting_dialog)
