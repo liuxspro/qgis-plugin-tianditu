@@ -23,7 +23,7 @@ class TiandituToolbar(QToolBar):
         self.add_button = AddMapBtn(iface=self.iface, parent=self)
         self.addWidget(self.add_button)
         # 添加 Action
-        action_setting = SettingAction(self)
+        action_setting = SettingAction(toolbar=self, parent=self)
         action_search = SearchAction(iface=self.iface, parent=self)
         # action_fitzoom = FitZoomAction(iface=self.iface, parent=self)
 
