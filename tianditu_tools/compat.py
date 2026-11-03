@@ -1,7 +1,12 @@
 from qgis.PyQt.QtCore import QT_VERSION_STR, Qt
-from qgis.PyQt.QtGui import QClipboard
+from qgis.PyQt.QtGui import QClipboard, QFont
 from qgis.PyQt.QtNetwork import QNetworkReply, QNetworkRequest
-from qgis.PyQt.QtWidgets import QMessageBox, QToolButton
+from qgis.PyQt.QtWidgets import (
+    QAbstractItemView,
+    QHeaderView,
+    QMessageBox,
+    QToolButton,
+)
 
 QT_MAJOR_VERSION = int(QT_VERSION_STR.split(".")[0])
 IS_QT5 = QT_MAJOR_VERSION == 5
@@ -12,6 +17,9 @@ if IS_QT5:
     from .ui.sd_5 import Ui_SdDockWidget  # noqa  # pylint: disable=unused-import
     from .ui.search_5 import Ui_SearchDockWidget  # noqa  # pylint: disable=unused-import
     from .ui.setting_5 import Ui_SettingDialog  # noqa  # pylint: disable=unused-import
+    from .ui.mapmanager_5 import (  # noqa  # pylint: disable=unused-import
+        Ui_MapManagerDialog,  # noqa  # pylint: disable=unused-import
+    )  # noqa  # pylint: disable=unused-import
 
     # 枚举值改变
     LeftDockWidgetArea = Qt.LeftDockWidgetArea
@@ -20,12 +28,19 @@ if IS_QT5:
     DescendingOrder = Qt.DescendingOrder
     Checked = Qt.Checked
     Unchecked = Qt.Unchecked
+    PartiallyChecked = Qt.PartiallyChecked
     MatchExactly = Qt.MatchExactly
     MenuButtonPopup = QToolButton.MenuButtonPopup
     NoError = QNetworkReply.NoError
     HttpStatusCodeAttribute = QNetworkRequest.HttpStatusCodeAttribute
     ModeClipboard = QClipboard.Clipboard
     ButtonYes = QMessageBox.Yes
+    UserRole = Qt.UserRole
+    PlainText = Qt.PlainText
+    MonospaceStyleHint = QFont.Monospace
+    NoSelection = QAbstractItemView.NoSelection
+    NoEditTriggers = QAbstractItemView.NoEditTriggers
+    HeaderStretch = QHeaderView.Stretch
 
 if IS_QT6:
     # QT6 版本
@@ -35,6 +50,9 @@ if IS_QT6:
     from .ui.search import (  # noqa # pylint: disable=unused-import
         Ui_SearchDockWidget,  # noqa # pylint: disable=unused-import
     )  # noqa  # pylint: disable=unused-import
+    from .ui.mapmanager import (  # noqa  # pylint: disable=unused-import
+        Ui_MapManagerDialog,  # noqa  # pylint: disable=unused-import
+    )  # noqa  # pylint: disable=unused-import
 
     # 枚举值改变
     LeftDockWidgetArea = Qt.DockWidgetArea.LeftDockWidgetArea
@@ -43,9 +61,23 @@ if IS_QT6:
     DescendingOrder = Qt.SortOrder.DescendingOrder
     Checked = Qt.CheckState.Checked
     Unchecked = Qt.CheckState.Unchecked
+    PartiallyChecked = Qt.CheckState.PartiallyChecked
     MatchExactly = Qt.MatchFlag.MatchExactly
     MenuButtonPopup = QToolButton.ToolButtonPopupMode.MenuButtonPopup
     NoError = QNetworkReply.NetworkError.NoError
     HttpStatusCodeAttribute = QNetworkRequest.Attribute.HttpStatusCodeAttribute
     ModeClipboard = QClipboard.Mode.Clipboard
     ButtonYes = QMessageBox.StandardButton.Yes
+    UserRole = Qt.ItemDataRole.UserRole
+    PlainText = Qt.TextFormat.PlainText
+    MonospaceStyleHint = QFont.StyleHint.Monospace
+    NoSelection = QAbstractItemView.SelectionMode.NoSelection
+    NoEditTriggers = QAbstractItemView.EditTrigger.NoEditTriggers
+    HeaderStretch = QHeaderView.ResizeMode.Stretch
+
+
+def exec_dialog(dialog) -> int:
+    """兼容 Qt5 / Qt6 的 modal 对话框执行"""
+    if IS_QT5:
+        return dialog.exec_()
+    return dialog.exec()

@@ -1,3 +1,4 @@
+import ast
 import json
 from pathlib import Path
 from random import choice
@@ -20,6 +21,8 @@ HEADER = {
 }
 
 APP_FONT = QgsSettings().value("app/fontFamily")
+
+SUBDOMAINS = tuple(f"t{i}" for i in range(8))
 
 
 def get_point_style():
@@ -58,9 +61,7 @@ class PluginConfig:
             self.conf.setValue(f"{self.section_tianditu}/subdomain", "t0")
         if not self.conf.contains("tianditu-tools/Other/extramap_status"):
             log_message("初始化 extra map 文件")
-            self.conf.setValue(
-                f"{self.conf_name}/Other/extramap_status", str(get_extramap_status())
-            )
+            self.set_extra_maps_status(get_extramap_status())
         # 升级到保存多个key的版本
         if not self.conf.contains(f"{self.section_tianditu}/keyList"):
             self.conf.setValue(f"{self.section_tianditu}/random_key", False)
@@ -70,21 +71,79 @@ class PluginConfig:
             else:
                 self.conf.setValue(f"{self.section_tianditu}/keyList", "")
 
+    @property
+    def key_list(self):
+        """已保存的天地图 key 列表"""
+        data_str = self.get_value("Tianditu/keyList") or ""
+        return [key.strip() for key in data_str.split(",") if key.strip()]
+
+    @key_list.setter
+    def key_list(self, keys):
+        self.conf.setValue(f"{self.section_tianditu}/keyList", ",".join(keys))
+
+    @property
+    def active_key(self):
+        """当前使用的 key，未设置时返回空字符串"""
+        return self.get_key() or ""
+
+    @active_key.setter
+    def active_key(self, key):
+        self.set_key(key or "")
+
+    @property
+    def random_key(self):
+        return self.get_bool_value("Tianditu/random_key")
+
+    @random_key.setter
+    def random_key(self, enabled):
+        self.set_value("Tianditu/random_key", bool(enabled))
+
+    @property
+    def random_subdomain(self):
+        return self.get_bool_value("Tianditu/random")
+
+    @random_subdomain.setter
+    def random_subdomain(self, enabled):
+        self.set_value("Tianditu/random", bool(enabled))
+
+    @property
+    def subdomain(self):
+        value = self.get_value("Tianditu/subdomain")
+        return value if value in SUBDOMAINS else SUBDOMAINS[0]
+
+    @subdomain.setter
+    def subdomain(self, value):
+        if value in SUBDOMAINS:
+            self.set_value("Tianditu/subdomain", value)
+
     def get_key_list(self):
-        data_str = self.get_value("/Tianditu/keyList")
-        if data_str == "":
-            return []
-        return data_str.split(",")
+        return self.key_list
 
     def save_key_list(self, data_list):
-        self.conf.setValue(f"{self.section_tianditu}/keyList", ",".join(data_list))
+        self.key_list = data_list
 
     def get_extra_maps_status(self):
-        data = self.get_value("Other/extramap_status")
-        return json.loads(data.replace("'", '"'))
+        """返回各分组启用的地图名列表，缺失的分组用默认值补齐"""
+        data_str = self.get_value("Other/extramap_status") or ""
+        data = {}
+        if data_str:
+            try:
+                data = json.loads(data_str)
+            except json.JSONDecodeError:
+                # 兼容旧版本用 str(dict) 保存的格式
+                try:
+                    data = ast.literal_eval(data_str)
+                except (ValueError, SyntaxError):
+                    data = {}
+        if not isinstance(data, dict):
+            data = {}
+        defaults = get_extramap_status()
+        return {
+            section: data.get(section, default) for section, default in defaults.items()
+        }
 
     def set_extra_maps_status(self, data):
-        self.conf.setValue(f"{self.conf_name}/Other/extramap_status", str(data))
+        self.set_value("Other/extramap_status", json.dumps(data, ensure_ascii=False))
 
     def get_value(self, name):
         return self.conf.value(f"{self.conf_name}/{name}")
@@ -96,11 +155,11 @@ class PluginConfig:
         self.conf.setValue(f"{self.conf_name}/{name}", value)
 
     def get_key(self):
-        return self.get_value("Tianditu/key")
+        return self.get_value("Tianditu/key") or ""
 
     def get_random_key(self):
-        key_list = self.get_key_list()
-        return choice(key_list)
+        key_list = self.key_list
+        return choice(key_list) if key_list else ""
 
     def set_key(self, key):
         key_to_set = ""

@@ -8,6 +8,7 @@ icon_dict = {
     "map": "./images/map_tianditu.svg",
     "other": "./images/earth.svg",
     "search": "./images/search.svg",
+    "check": "./images/FluentCheckmark12Filled.svg",
     "fitzoom": "./images/fitzoom.svg",
     "point": "./images/mIconPointLayer.svg",
     "polygon": "./images/mIconPolygonLayer.svg",

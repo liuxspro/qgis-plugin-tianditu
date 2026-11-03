@@ -37,3 +37,8 @@ class TiandituToolbar(QToolBar):
         for action in self.actions():
             if hasattr(action, "unload"):
                 action.unload()
+
+    def refresh_add_map_menu(self):
+        """地图源开关变化后刷新「添加地图」菜单"""
+        if self.add_button is not None:
+            self.add_button.refresh_menu()
