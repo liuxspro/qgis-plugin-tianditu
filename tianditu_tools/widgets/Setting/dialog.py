@@ -64,7 +64,14 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
     def _setup_key_table(self):
         table = self.keyTableWidget
         table.setColumnCount(4)
-        table.setSelectionMode(NoSelection)
+        # table.setSelectionMode(NoSelection)
+        # 同时设置背景色和文字颜色
+        table.setStyleSheet("""
+            QTableWidget::item:selected {
+                background-color: #f0f8ff;    /* 选中背景色 */
+                color: #65a30d;               /* 选中文字颜色 */
+            }
+        """)
         table.setEditTriggers(NoEditTriggers)
         table.verticalHeader().setVisible(False)
         table.horizontalHeader().setVisible(False)
