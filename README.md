@@ -42,7 +42,7 @@ QGIS 天地图工具，方便进行天地图瓦片底图的添加以及简单实
 2. 输入你的天地图 Key，点击**「验证并添加」**；验证通过后会自动保存并设为当前 Key
 3. 可以保存多个 Key，后续在设置列表中点击即可切换当前 Key，也可勾选「随机使用列表中的 Key」
 
-> 天地图 Key 需要到 [天地图控制台](https://console.tianditu.gov.cn/api/key) 申请，申请类型请选择 **"浏览器端"** 或 **"Android 平台"**。
+> 天地图 Key 需要到 [天地图控制台](https://cloudcenter.tianditu.gov.cn/center/development/myApp) 申请，申请类型请选择 **"浏览器端"** 或 **"Android 平台"**。
 
 ### 2. 添加天地图底图
 
