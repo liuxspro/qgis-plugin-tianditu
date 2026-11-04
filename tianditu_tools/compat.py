@@ -39,6 +39,7 @@ if IS_QT5:
     PlainText = Qt.PlainText
     MonospaceStyleHint = QFont.Monospace
     NoSelection = QAbstractItemView.NoSelection
+    SingleSelection = QAbstractItemView.SingleSelection
     NoEditTriggers = QAbstractItemView.NoEditTriggers
     HeaderStretch = QHeaderView.Stretch
 
@@ -72,6 +73,7 @@ if IS_QT6:
     PlainText = Qt.TextFormat.PlainText
     MonospaceStyleHint = QFont.StyleHint.Monospace
     NoSelection = QAbstractItemView.SelectionMode.NoSelection
+    SingleSelection = QAbstractItemView.SelectionMode.SingleSelection
     NoEditTriggers = QAbstractItemView.EditTrigger.NoEditTriggers
     HeaderStretch = QHeaderView.ResizeMode.Stretch
 

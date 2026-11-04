@@ -11,7 +11,9 @@ from ...compat import (
     ModeClipboard,
     MonospaceStyleHint,
     NoEditTriggers,
+    NoSelection,
     PlainText,
+    SingleSelection,
     Ui_SettingDialog,
     UserRole,
     exec_dialog,
@@ -63,7 +65,6 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
     def _setup_key_table(self):
         table = self.keyTableWidget
         table.setColumnCount(4)
-        # table.setSelectionMode(NoSelection)
         # 同时设置背景色和文字颜色
         table.setStyleSheet("""
             QTableWidget::item:selected {
@@ -97,6 +98,7 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
     def _init_toggles(self):
         self.checkBox_key_rand.setChecked(self.conf.random_key)
         self.checkBox_domain_rand.setChecked(self.conf.random_subdomain)
+        self._apply_key_random_state()
         self._apply_subdomain_random_state()
 
     def _connect_signals(self):
@@ -302,9 +304,26 @@ class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
             self.conf.active_key = keys[0] if keys else ""
         self._refresh_key_list()
 
+    def _apply_key_random_state(self):
+        """随机模式下禁止选中表格行（不区分当前 Key），并清除残留的选中高亮"""
+        table = self.keyTableWidget
+        if self.conf.random_key:
+            table.setSelectionMode(NoSelection)
+            self._loading = True
+            try:
+                # 注意：NoSelection 模式下 setCurrentCell(-1,-1) 是 NoUpdate，
+                # 不会清除已有选中状态，必须显式清空 selection model
+                table.selectionModel().clear()
+            finally:
+                self._loading = False
+            table.viewport().update()
+        else:
+            table.setSelectionMode(SingleSelection)
+
     def _on_key_random_toggled(self, *_args):
         enabled = self.checkBox_key_rand.isChecked()
         self.conf.random_key = enabled
+        self._apply_key_random_state()
         self._update_current_marker()
 
     def _on_subdomain_changed(self, value: str):
