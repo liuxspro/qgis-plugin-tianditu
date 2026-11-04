@@ -11,7 +11,6 @@ from ...compat import (
     ModeClipboard,
     MonospaceStyleHint,
     NoEditTriggers,
-    NoSelection,
     PlainText,
     Ui_SettingDialog,
     UserRole,
