@@ -1,8 +1,8 @@
 from qgis.PyQt.QtWidgets import QAction
 
-from .dialog import SettingDialog
+from ...compat import exec_dialog
 from ..icons import icons
-from ...compat import IS_QT5, IS_QT6
+from .dialog import SettingDialog
 
 
 class SettingAction(QAction):
@@ -18,8 +18,9 @@ class SettingAction(QAction):
         self.toolbar = toolbar
 
     def show_setting_dialog(self):
-        dlg = SettingDialog(toolbar=self.toolbar)
-        if IS_QT5:
-            dlg.exec_()
-        if IS_QT6:
-            dlg.exec()
+        dialog = SettingDialog(parent=self.toolbar.window())
+        dialog.maps_changed.connect(self.toolbar.refresh_add_map_menu)
+        try:
+            exec_dialog(dialog)
+        finally:
+            dialog.deleteLater()

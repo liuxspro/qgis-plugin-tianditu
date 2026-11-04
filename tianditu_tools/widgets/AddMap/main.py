@@ -1,10 +1,16 @@
-import random
+from random import choice
 
 from qgis.PyQt.QtWidgets import QMenu, QToolButton
 
 from ...compat import MenuButtonPopup
 from ...qgis_utils import add_raster_layer, add_raster_layer_group, push_error
-from ...utils import TIANDITU_HOME_URL, PluginConfig, PluginDir, tianditu_map_url
+from ...utils import (
+    SUBDOMAINS,
+    TIANDITU_HOME_URL,
+    PluginConfig,
+    PluginDir,
+    tianditu_map_url,
+)
 from ..icons import icons
 from .extra_map import add_extra_map_menu, add_tianditu_province_menu
 from .utils import get_xyz_uri
@@ -40,6 +46,15 @@ class AddMapBtn(QToolButton):
     def setup_action(self):
         menu = QMenu(self)
         menu.setObjectName("TianDiTuAddMap")
+        self.setMenu(menu)
+        self.refresh_menu()
+        self.setPopupMode(MenuButtonPopup)
+        self.setIcon(self.icons["add"])
+
+    def refresh_menu(self):
+        """重建菜单内容（地图源开关变化时调用）"""
+        menu = self.menu()
+        menu.clear()
 
         # 单个图层
         for map_type, map_name in tianditu_map_info.items():
@@ -63,25 +78,23 @@ class AddMapBtn(QToolButton):
         add_tianditu_province_menu(menu, self.iface)
         # 其他图源
         add_extra_map_menu(menu)
-        self.setMenu(menu)
-        self.setPopupMode(MenuButtonPopup)
-        self.setIcon(self.icons["add"])
 
     def _get_tianditu_credentials(self):
         """获取天地图 key 和 subdomain，key 无效时返回 None"""
-        key = conf.get_key()
-        if key == "":
+        key = conf.active_key
+        if not key:
+            keys = conf.key_list
+            key = keys[0] if keys else ""
+        if not key:
             push_error(self.iface, "错误", "天地图 Key 未设置或 Key 无效")
             return None
 
-        random_enabled = conf.get_bool_value("Tianditu/random")
-        key_random_enabled = conf.get_bool_value("Tianditu/random_key")
-        if random_enabled:
-            subdomain = f"t{random.randint(0, 7)}"
+        if conf.random_subdomain:
+            subdomain = choice(SUBDOMAINS)
         else:
-            subdomain = conf.get_value("Tianditu/subdomain")
-        if key_random_enabled:
-            key = conf.get_random_key()
+            subdomain = conf.subdomain
+        if conf.random_key:
+            key = conf.get_random_key() or key
         return key, subdomain
 
     def add_tianditu_basemap(self, maptype):

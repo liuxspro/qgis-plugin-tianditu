@@ -1,283 +1,348 @@
-import json
-
-from qgis.core import QgsNetworkAccessManager
+from qgis.core import QgsApplication
 from qgis.PyQt import QtWidgets
-from qgis.PyQt.QtCore import QTimer
-from qgis.PyQt.QtWidgets import QApplication, QLabel, QPushButton
+from qgis.PyQt.QtCore import QSize, QTimer, pyqtSignal
+from qgis.PyQt.QtGui import QFont, QIcon
+from qgis.PyQt.QtWidgets import QApplication, QMessageBox, QTableWidgetItem, QToolButton
 
-from ...compat import HttpStatusCodeAttribute, ModeClipboard, NoError, Ui_SettingDialog
-from ...utils import (
-    HEADER,
-    PluginConfig,
-    PluginDir,
-    make_request,
-    tianditu_map_url,
+from ...compat import (
+    AlignCenter,
+    ButtonYes,
+    HeaderStretch,
+    ModeClipboard,
+    MonospaceStyleHint,
+    NoEditTriggers,
+    PlainText,
+    Ui_SettingDialog,
+    UserRole,
+    exec_dialog,
 )
-from .mapmanager import MapManager
+from ...utils import SUBDOMAINS, PluginConfig
+from ..icons import icons
+from ..MapManager import MapManagerDialog
+from .keyutils import KEY_LENGTH, check_key_format, mask_key
+from .verifier import KeyVerifier
 
-
-def check_key_format(key: str) -> object:
-    """检查key格式
-
-    Args:
-        key (str): 天地图key
-
-    Returns:
-        object:
-            "key_length_error": key的长度有误,
-            "has_special_character": 含有除字母数字外的其他字符
-    """
-    correct_length = 32
-    key_length = len(key)
-    key_length_error = False
-    if key_length != correct_length:
-        key_length_error = True
-    return {
-        "key_length_error": key_length_error,
-        "has_special_character": not key.isalnum(),
-    }
+STATUS_COLORS = {
+    "info": "#808080",
+    "success": "#1a7f37",
+    "error": "#cf222e",
+}
+STATUS_TIMEOUT_MS = 3000
 
 
 class SettingDialog(QtWidgets.QDialog, Ui_SettingDialog):
-    def __init__(self, toolbar):
-        super().__init__()
-        self.check_thread = None
-        self.mapm = None
-        self.toolbar = toolbar
-        # 读取配置
+    """天地图设置：Key 与 服务节点"""
+
+    maps_changed = pyqtSignal()
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.conf = PluginConfig()
-        self.subdomain_list = [f"t{i}" for i in range(8)]
-        # 设置 status label 的定时器
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.clear_status_label)
-        # 设置界面
+        self.verifier = KeyVerifier(self)
+        self._loading = False
+        self._status_timer = QTimer(self)
+        self._status_timer.setSingleShot(True)
+        self._status_timer.timeout.connect(self._clear_status)
+
         self.setupUi(self)
-        self.initUI()
+        self.info_status.setTextFormat(PlainText)
+        self._setup_status_area()
+        self._setup_key_table()
+        self._init_subdomain()
+        self._init_toggles()
+        self._refresh_key_list()
+        self._connect_signals()
+        self._update_add_state()
 
-    def initUI(self):
-        self.init_keyCombo()
-        # 如果key输入框是空白的，则禁用保存按钮
-        if len(self.mLineEdit_key.text()) == 0:
-            self.saveButton.setEnabled(False)
-        # 给控件添加事件
-        self.mLineEdit_key.textChanged.connect(self.on_key_LineEdit_changed)
-        self.saveButton.clicked.connect(self.save_key)
-        self.pushButton_copy.clicked.connect(self.copy_key)
-        self.pushButton_delete.clicked.connect(self.del_key)
-        self.keyComboBox.currentIndexChanged.connect(self.select_key)
-        # 是否启用key随机
-        if self.conf.get_bool_value("Tianditu/random_key"):
-            self.checkBox_key_rand.setChecked(True)
-            self.keyComboBox.setEnabled(False)
-            self.pushButton_copy.setEnabled(False)
-            self.pushButton_delete.setEnabled(False)
-        self.checkBox_key_rand.stateChanged.connect(self.enable_key_random)
-        # subdomain 选择
-        self.checkBox_domain_rand.setChecked(
-            self.conf.get_bool_value("Tianditu/random")
+    def _setup_status_area(self):
+        """状态栏固定高度，避免文字出现时把窗口撑大"""
+        line_height = self.info_status.fontMetrics().lineSpacing()
+        self.info_status.setWordWrap(True)
+        self.info_status.setFixedHeight(line_height * 2 + 8)
+
+    def _setup_key_table(self):
+        table = self.keyTableWidget
+        table.setColumnCount(4)
+        # table.setSelectionMode(NoSelection)
+        # 同时设置背景色和文字颜色
+        table.setStyleSheet("""
+            QTableWidget::item:selected {
+                background-color: #f0f8ff;    /* 选中背景色 */
+                color: #65a30d;               /* 选中文字颜色 */
+            }
+        """)
+        table.setEditTriggers(NoEditTriggers)
+        table.verticalHeader().setVisible(False)
+        table.horizontalHeader().setVisible(False)
+        table.horizontalHeader().setSectionResizeMode(1, HeaderStretch)
+        table.setColumnWidth(0, 26)
+        table.setColumnWidth(2, 30)
+        table.setColumnWidth(3, 30)
+        table.verticalHeader().setDefaultSectionSize(28)
+        # Key 是等宽字符，用 Consolas 等宽字体显示更整齐
+        key_font = QFont("Consolas")
+        key_font.setStyleHint(MonospaceStyleHint)
+        key_font.setFixedPitch(True)
+        point_size = self.font().pointSize()
+        if point_size > 0:
+            key_font.setPointSize(point_size)
+        table.setFont(key_font)
+        self.mLineEdit_key.setFont(key_font)
+
+    def _init_subdomain(self):
+        self.subdomainComboBox.addItems(list(SUBDOMAINS))
+        index = self.subdomainComboBox.findText(self.conf.subdomain)
+        self.subdomainComboBox.setCurrentIndex(max(index, 0))
+
+    def _init_toggles(self):
+        self.checkBox_key_rand.setChecked(self.conf.random_key)
+        self.checkBox_domain_rand.setChecked(self.conf.random_subdomain)
+        self._apply_subdomain_random_state()
+
+    def _connect_signals(self):
+        self.mLineEdit_key.textChanged.connect(self._on_key_text_changed)
+        self.mLineEdit_key.returnPressed.connect(self._on_add_key)
+        self.saveButton.clicked.connect(self._on_add_key)
+        self.keyTableWidget.currentCellChanged.connect(self._on_current_cell_changed)
+        self.checkBox_key_rand.stateChanged.connect(self._on_key_random_toggled)
+        self.subdomainComboBox.currentTextChanged.connect(self._on_subdomain_changed)
+        self.checkBox_domain_rand.stateChanged.connect(
+            self._on_subdomain_random_toggled
         )
-        self.checkBox_domain_rand.stateChanged.connect(self.enable_random)
-        # subdomian 设置
-        self.subdomainComboBox.addItems(self.subdomain_list)
-        self.subdomainComboBox.setCurrentIndex(
-            self.subdomain_list.index(self.conf.get_value("Tianditu/subdomain"))
-        )
-        self.subdomainComboBox.setEnabled(not self.conf.get_value("Tianditu/random"))
-        self.subdomainComboBox.currentIndexChanged.connect(self.select_subdomain)
-        # init map manager
-        map_folder = PluginDir.joinpath("maps")
-        self.mapm = MapManager(
-            map_folder=map_folder,
-            parent=self.tab_map,
-        )
-        self.btn_load_package = QPushButton("加载地图包")
-        label_download_package = QLabel(
-            '<a href="https://github.com/liuxspro/qgis-plugin-tianditu/releases"'
-            ' style="color: #0078d7; text-decoration: none;">下载地图包</a>'
-        )
-        label_download_package.setOpenExternalLinks(True)
-        self.verticalLayout_6.addWidget(self.mapm)
-        btn_layout = QtWidgets.QHBoxLayout()
-        btn_layout.addWidget(self.btn_load_package)
-        btn_layout.addWidget(label_download_package)
-        btn_layout.addStretch()
-        self.verticalLayout_6.addLayout(btn_layout)
-        self.btn_load_package.clicked.connect(self.mapm.load_map_package_clicked)
+        self.pushButton_map_manager.clicked.connect(self._open_map_manager)
+        self.pushButton_close.clicked.connect(self.reject)
+        self.verifier.started.connect(self._on_verify_started)
+        self.verifier.verified.connect(self._on_key_verified)
+        self.verifier.failed.connect(self._on_key_failed)
+        self.verifier.finished.connect(self._update_add_state)
 
-        #
-        self.tabWidget.currentChanged.connect(self.adjust_tab_height)
+    def _refresh_key_list(self):
+        """根据配置重建 Key 列表，选中项即当前使用的 Key"""
+        keys = self.conf.key_list
+        active = self.conf.active_key
+        if active not in keys:
+            active = keys[0] if keys else ""
+            self.conf.active_key = active
 
-    def adjust_tab_height(self):
-        current_index = self.tabWidget.currentIndex()
-        if current_index == 0:
-            self.setFixedHeight(312)
-        else:
-            self.setFixedHeight(500)  # 根据内容计算高度
-
-    def set_status_label(self, text: str):
-        """
-        创建提示
-        """
-        self.info_status.setText(text)
-        self.timer.start(2000)
-
-    def clear_status_label(self):
-        self.info_status.clear()
-        self.timer.stop()
-
-    def get_key_by_masked(self, masked):
-        key_list = self.conf.get_key_list()
-        filtered_items = [key for key in key_list if key.startswith(masked[:8])]
-        if len(filtered_items) > 0:
-            return filtered_items[0]
-        return ""
-
-    def init_keyCombo(self):
-        self.keyComboBox.clear()  # 先清除
-        # 如果 key 列表中没有值, keyComboBox 添加提示
-        key_list = self.conf.get_key_list()
-        if len(key_list) == 0:
-            self.keyComboBox.addItem("请添加 key")
-            self.pushButton_delete.setEnabled(False)
-            self.pushButton_copy.setEnabled(False)
-        else:
-            self.keyComboBox.addItems([f"{key[:8]}****" for key in key_list])
-            # 将 keyComboBox 的当前值改为当前选用的 key
-            current_key = self.conf.get_key()
-            index = key_list.index(current_key)
-            self.keyComboBox.setCurrentIndex(index)
-            self.pushButton_delete.setEnabled(True)
-            self.pushButton_copy.setEnabled(True)
-
-    def copy_key(self):
-        current_key = self.keyComboBox.currentText()
-        full_key = self.get_key_by_masked(current_key)
-        clipboard = QApplication.clipboard()
-        clipboard.setText(full_key, ModeClipboard)
-        self.set_status_label(f"已复制{current_key}到剪贴板")
-
-    def handle_key_check(self, reply, key):
-        key_list = self.conf.get_key_list()
-        # 获取状态码
-        status_code = reply.attribute(HttpStatusCodeAttribute)
-        if reply.error() == NoError:
-            response_data = reply.readAll()
-            png_signature = b"\x89\x50\x4e\x47\x0d\x0a\x1a\x0a"
-            if response_data[:8] == png_signature:
-                if self.keyComboBox.itemText(0) == "请添加 key":
-                    self.keyComboBox.removeItem(0)
-                self.mLineEdit_key.setText("")
-                key_list.append(key)
-                self.conf.save_key_list(key_list)
-                self.saveButton.setEnabled(False)
-                self.set_status_label("保存成功")
-                self.init_keyCombo()
-        else:
-            if status_code == 403:
-                # 当期 2024-06-09 似乎不需要设置 Referer 也能正常访问
-                # {'msg': '非法Key', 'resolve': '请到API控制台重新申请Key', 'code': 1}
-                # {'msg': '域名不匹配', 'resolve': '请到API控制台查看域名配置并修改', 'code': 7}
-                # {'msg': '权限类型错误', 'resolve': 'Key权限类型为:服务端，请使用服务端访问！', 'code': 12}
-                # {'msg': '权限类型错误', 'resolve': '不支持的key类型！', 'code': 18}
-                response_data = str(reply.readAll(), "utf-8", "ignore")
-                json_data = json.loads(response_data)
-                self.set_status_label(
-                    f"错误: {json_data.get('msg')} {json_data.get('resolve')}"
+        self._loading = True
+        try:
+            table = self.keyTableWidget
+            table.clearContents()
+            table.setRowCount(0)
+            if not keys:
+                self.label_key_list_hint.setText(
+                    "尚未添加 Key，请在下方输入后点击「验证并添加」"
                 )
-            elif status_code == 418:
-                self.set_status_label("错误: 疑似攻击")
-            else:
-                self.set_status_label("未知错误")
+            table.setRowCount(len(keys))
+            for row, key in enumerate(keys):
+                check_item = QTableWidgetItem()
+                check_item.setTextAlignment(AlignCenter)
+                table.setItem(row, 0, check_item)
+                item = QTableWidgetItem(mask_key(key))
+                item.setData(UserRole, key)
+                table.setItem(row, 1, item)
+                table.setCellWidget(
+                    row,
+                    2,
+                    self._make_row_button(
+                        "mActionEditCopy.svg",
+                        "复制",
+                        lambda _=False, k=key: self._on_copy_key(k),
+                    ),
+                )
+                table.setCellWidget(
+                    row,
+                    3,
+                    self._make_row_button(
+                        "mActionDeleteSelected.svg",
+                        "删除",
+                        lambda _=False, k=key: self._on_delete_key(k),
+                    ),
+                )
+            self._update_current_marker()
+        finally:
+            self._loading = False
 
-    def save_key(self):
-        key = self.mLineEdit_key.text()
-        key_list = self.conf.get_key_list()
-        if key in key_list:
-            self.set_status_label("key 已存在")
+    def _make_row_button(self, icon_name: str, tooltip: str, slot) -> QtWidgets.QWidget:
+        """生成居中的行内图标按钮容器"""
+        container = QtWidgets.QWidget(self.keyTableWidget)
+        layout = QtWidgets.QHBoxLayout(container)
+        layout.setContentsMargins(0, 0, 0, 0)
+        button = QToolButton(container)
+        button.setAutoRaise(True)
+        button.setIcon(QgsApplication.getThemeIcon(icon_name))
+        button.setIconSize(QSize(16, 16))
+        button.setFixedSize(24, 24)
+        button.setToolTip(tooltip)
+        button.clicked.connect(slot)
+        layout.addWidget(button, 0, AlignCenter)
+        return container
+
+    def _update_current_marker(self):
+        """用对钩标记当前 Key；随机模式下不显示当前 Key"""
+        active = self.conf.active_key
+        random_on = self.conf.random_key
+        check_icon = icons["check"]
+        if self.keyTableWidget.rowCount() > 0:
+            self.label_key_list_hint.setText(
+                "已保存的 Key（随机模式，不区分当前 Key）"
+                if random_on
+                else "已保存的 Key（对钩标记当前使用的 Key）"
+            )
+        for row in range(self.keyTableWidget.rowCount()):
+            check_item = self.keyTableWidget.item(row, 0)
+            key_item = self.keyTableWidget.item(row, 1)
+            if check_item is None or key_item is None:
+                continue
+            key = key_item.data(UserRole) or ""
+            is_current = bool(active) and key == active and not random_on
+            check_item.setIcon(check_icon if is_current else QIcon())
+            if is_current:
+                key_item.setToolTip("当前使用的 Key")
+            elif random_on:
+                key_item.setToolTip("随机模式下不区分当前 Key")
+            else:
+                key_item.setToolTip("点击设为当前 Key")
+
+    def _update_add_state(self):
+        text = self.mLineEdit_key.text()
+        result = check_key_format(text)
+        self.label_key_length.setText(f"{len(text)}/{KEY_LENGTH}")
+        if not text:
+            self.label_key_length.setStyleSheet(f"color: {STATUS_COLORS['info']};")
+        elif result.is_valid:
+            self.label_key_length.setStyleSheet("")
+        else:
+            self.label_key_length.setStyleSheet(f"color: {STATUS_COLORS['error']};")
+
+        busy = self.verifier.is_busy
+        self.mLineEdit_key.setEnabled(not busy)
+        self.saveButton.setEnabled(result.is_valid and not busy)
+        self.saveButton.setText("验证中…" if busy else "验证并添加")
+
+    def _on_key_text_changed(self):
+        text = self.mLineEdit_key.text()
+        filtered = "".join(c for c in text if c.isprintable() and not c.isspace())
+        if filtered != text:
+            self.mLineEdit_key.setText(filtered)
             return
-        url = tianditu_map_url("vec", key, "t0")
-        tile_url = url.format(x=0, y=0, z=0)
-        network_manager = QgsNetworkAccessManager.instance()
-        request = make_request(tile_url, HEADER.get("Referer"))
-        reply = network_manager.get(request)
-        # reply.finished.connect(partial(self.handle_key_check, reply, key))
-        reply.finished.connect(lambda: self.handle_key_check(reply, key))
+        self._update_add_state()
 
-    def select_key(self):
-        if self.keyComboBox.count() > 0:
-            masked_key = self.keyComboBox.currentText()
-            key = self.get_key_by_masked(masked_key)
-            self.conf.set_key(key)
-            self.set_status_label(f"设置当前 key 为{masked_key}")
+    def _on_add_key(self):
+        if self.verifier.is_busy:
+            return
+        key = self.mLineEdit_key.text()
+        result = check_key_format(key)
+        if not result.is_valid:
+            self.show_status(result.message, "error")
+            return
+        if key in self.conf.key_list:
+            self.mLineEdit_key.clear()
+            self.conf.active_key = key
+            self._refresh_key_list()
+            self.show_status("该 Key 已存在，已设为当前 Key", "info")
+            return
+        self.verifier.verify(key)
 
-    def del_key(self):
-        current_index = self.keyComboBox.currentIndex()
-        key_list = self.conf.get_key_list()
-        del key_list[current_index]
-        self.conf.save_key_list(key_list)
-        self.set_status_label("已删除")
-        self.init_keyCombo()
+    def _on_verify_started(self):
+        self.show_status("正在验证 Key…", "info")
+        self._update_add_state()
 
-    def handle_ping_finished(self, status):
-        min_time = min(status)
-        min_index = status.index(min_time)
-        for i in range(8):
-            self.comboBox.setItemText(i, f"t{i} {status[i]}")
-        self.comboBox.setItemText(min_index, f"t{min_index} {status[min_index]}*")
+    def _on_key_verified(self, key: str):
+        keys = self.conf.key_list
+        if key not in keys:
+            keys.append(key)
+            self.conf.key_list = keys
+        self.conf.active_key = key
+        self.mLineEdit_key.clear()
+        self._refresh_key_list()
+        self._clear_status()
 
-    def on_key_LineEdit_changed(self):
-        current_text = self.mLineEdit_key.text()
-        # 删除key中的空格以及非打印字符
-        filtered_text = "".join(
-            [c for c in current_text if c.isprintable() and not c.isspace()]
+    def _on_key_failed(self, message: str):
+        self.show_status(message, "error")
+
+    def _on_current_cell_changed(
+        self, current_row, _current_column, _previous_row, _previous_column
+    ):
+        if self._loading or current_row < 0:
+            return
+        if not self.conf.random_key:
+            item = self.keyTableWidget.item(current_row, 1)
+            key = (item.data(UserRole) or "") if item else ""
+            if key and key != self.conf.active_key:
+                self.conf.active_key = key
+                self._update_current_marker()
+        self._clear_current_cell()
+
+    def _clear_current_cell(self):
+        """清除 current index，避免选中行的背景色残留"""
+        self._loading = True
+        try:
+            self.keyTableWidget.setCurrentCell(-1, -1)
+        finally:
+            self._loading = False
+
+    def _on_copy_key(self, key: str):
+        if not key:
+            return
+        QApplication.clipboard().setText(key, ModeClipboard)
+        self.show_status(f"已复制 {mask_key(key)} 到剪贴板", "success")
+
+    def _on_delete_key(self, key: str):
+        if not key:
+            return
+        answer = QMessageBox.question(
+            self, "删除 Key", f"确定要删除 {mask_key(key)} 吗？"
         )
-        if filtered_text != current_text:
-            self.mLineEdit_key.setText(filtered_text)
-        # 检查key格式
-        if len(self.mLineEdit_key.text()) > 0:
-            key_format = check_key_format(self.mLineEdit_key.text())
-            if key_format["key_length_error"]:
-                self.info_status.setText("无效key: 格式错误(长度不对)")
-                self.saveButton.setEnabled(False)
-            elif key_format["has_special_character"]:
-                self.info_status.setText("无效key: 含非常规字符")
-                self.saveButton.setEnabled(False)
-            else:
-                self.info_status.setText("点击保存")
-                self.saveButton.setEnabled(True)
-        else:
-            self.info_status.clear()
+        if answer != ButtonYes:
+            return
+        keys = [item for item in self.conf.key_list if item != key]
+        self.conf.key_list = keys
+        if self.conf.active_key == key:
+            self.conf.active_key = keys[0] if keys else ""
+        self._refresh_key_list()
 
-    def select_subdomain(self):
-        selected_index = self.subdomainComboBox.currentIndex()
-        selected_domain = self.subdomain_list[selected_index]
-        self.conf.set_value("Tianditu/subdomain", selected_domain)
-        self.set_status_label(f"设置 subdomain 为 {selected_domain}")
+    def _on_key_random_toggled(self, *_args):
+        enabled = self.checkBox_key_rand.isChecked()
+        self.conf.random_key = enabled
+        self._update_current_marker()
 
-    def enable_random(self):
-        if self.checkBox_domain_rand.isChecked():
-            self.conf.set_value("Tianditu/random", True)
-            self.subdomainComboBox.setEnabled(False)
-            self.set_status_label("设置 subdomain 为 随机")
-        else:
-            self.conf.set_value("Tianditu/random", False)
-            self.subdomainComboBox.setEnabled(True)
+    def _on_subdomain_changed(self, value: str):
+        if self._loading:
+            return
+        self.conf.subdomain = value
 
-    def enable_key_random(self):
-        if self.checkBox_key_rand.isChecked():
-            self.conf.set_value("Tianditu/random_key", True)
-            self.keyComboBox.setEnabled(False)
-            self.pushButton_copy.setEnabled(False)
-            self.pushButton_delete.setEnabled(False)
-            self.set_status_label("设置 key 为 随机")
-        else:
-            self.conf.set_value("Tianditu/random_key", False)
-            self.keyComboBox.setEnabled(True)
-            self.pushButton_copy.setEnabled(True)
-            self.pushButton_delete.setEnabled(True)
+    def _apply_subdomain_random_state(self):
+        self.subdomainComboBox.setEnabled(not self.checkBox_domain_rand.isChecked())
 
-    def closeEvent(self, event):
-        # 在对话框关闭时触发的事件
-        self.mapm.update_map_enable_state()
-        self.toolbar.add_button.setup_action()
-        event.accept()  # 接受关闭事件，关闭对话框
+    def _on_subdomain_random_toggled(self, *_args):
+        enabled = self.checkBox_domain_rand.isChecked()
+        self.conf.random_subdomain = enabled
+        self._apply_subdomain_random_state()
+
+    def _open_map_manager(self):
+        dialog = MapManagerDialog(self)
+        try:
+            accepted = exec_dialog(dialog)
+        finally:
+            dialog.deleteLater()
+        if accepted:
+            self.maps_changed.emit()
+
+    def show_status(self, message: str, level: str = "info"):
+        """显示状态信息，错误信息保留到下次操作"""
+        self._status_timer.stop()
+        self.info_status.setStyleSheet(f"color: {STATUS_COLORS[level]};")
+        self.info_status.setText(message)
+        self.info_status.setToolTip(message if level == "error" else "")
+        if level != "error":
+            self._status_timer.start(STATUS_TIMEOUT_MS)
+
+    def _clear_status(self):
+        self._status_timer.stop()
+        self.info_status.clear()
+        self.info_status.setToolTip("")
+
+    def reject(self):
+        self.verifier.abort()
+        super().reject()
