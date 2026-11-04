@@ -6,6 +6,7 @@ from random import choice
 import yaml
 from qgis.core import QgsSettings
 from qgis.PyQt.QtCore import QUrl, QUrlQuery
+from qgis.PyQt.QtGui import QFont
 from qgis.PyQt.QtNetwork import QNetworkRequest
 
 from .qgis_utils import log_message
@@ -20,7 +21,9 @@ HEADER = {
     "Referer": "https://www.tianditu.gov.cn/",
 }
 
-APP_FONT = QgsSettings().value("app/fontFamily")
+# QGIS 仅在用户自定义过界面字体时才写入 app/fontFamily，
+# 读取不到时回退到当前应用字体，避免构造出无字族的 QFont
+APP_FONT = QgsSettings().value("app/fontFamily") or QFont().family()
 
 SUBDOMAINS = tuple(f"t{i}" for i in range(8))
 

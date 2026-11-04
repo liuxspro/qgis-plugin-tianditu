@@ -1,7 +1,7 @@
-from qgis.PyQt import QtWidgets
+from qgis.PyQt import QtGui, QtWidgets
 
 from ...compat import Ui_MapManagerDialog
-from ...utils import PluginDir
+from ...utils import APP_FONT, PluginDir
 from .tree import MapManager
 
 
@@ -10,6 +10,7 @@ class MapManagerDialog(QtWidgets.QDialog, Ui_MapManagerDialog):
 
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setFont(QtGui.QFont(APP_FONT, 8))
         self.setupUi(self)
         self.mapm = MapManager(PluginDir.joinpath("maps"), parent=self)
         self.horizontalLayout_tree.addWidget(self.mapm)
