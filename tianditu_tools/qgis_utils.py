@@ -1,13 +1,17 @@
 from qgis.core import (
     Qgis,
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
     QgsFeature,
     QgsGeometry,
     QgsMessageLog,
     QgsPointXY,
     QgsProject,
     QgsRasterLayer,
+    QgsRectangle,
     QgsVectorLayer,
 )
+from qgis.PyQt.QtCore import QTimer
 
 
 def push_message(iface, title: str, message: str):
@@ -39,14 +43,107 @@ def push_error(iface, title: str, message: str):
     )
 
 
-def create_crs84_point_layer(name: str, point: QgsPointXY):
-    layer = QgsVectorLayer("Point?crs=EPSG:4326&field=Name:string", name, "memory")
+def create_crs84_point_layer(name: str, point: QgsPointXY, crs=None):
+    """创建一个只包含单个点的内存图层
+
+    Args:
+        name: 图层名称
+        point: 点的 WGS84 坐标
+        crs: 图层坐标系，默认 EPSG:4326；传入其他坐标系时会先把点转换过去
+    """
+    wgs84 = QgsCoordinateReferenceSystem("EPSG:4326")
+    target_crs = crs if crs is not None and crs.isValid() else wgs84
+    if target_crs != wgs84:
+        transform = QgsCoordinateTransform(wgs84, target_crs, QgsProject.instance())
+        point = transform.transform(point)
+    layer = QgsVectorLayer(
+        f"Point?crs={target_crs.authid()}&field=Name:string", name, "memory"
+    )
     pr = layer.dataProvider()
     feature = QgsFeature()
     feature.setGeometry(QgsGeometry.fromPointXY(point))
     feature.setAttributes([name])
     pr.addFeature(feature)
     return layer, feature
+
+
+def search_result_crs(iface, project_is_empty: bool):
+    """确定地名搜索结果点图层使用的坐标系，并同步工程/画布 CRS。
+
+    空工程时 QGIS 会在事件循环下一轮把工程 CRS 改成“第一个图层的 CRS”
+    （QgsLayerTreeMapCanvasBridge::setCanvasLayers，对应选项
+    “工程坐标系使用第一个加入图层的坐标系”），并把画布范围重新投影。
+    所以空工程时直接让点图层用 EPSG:3857：1:18056 对应约 5km 的视野，
+    而且 QGIS 随后的 CRS 同步不会再把工程 CRS 改回 4326、把画布范围
+    重投影成错误的比例尺。
+
+    Args:
+        iface: QgisInterface
+        project_is_empty (bool): 添加图层前工程是否没有任何图层
+
+    Returns:
+        QgsCoordinateReferenceSystem: 点图层使用的坐标系（非空工程为 EPSG:4326）
+    """
+    wgs84 = QgsCoordinateReferenceSystem("EPSG:4326")
+    if not project_is_empty:
+        return wgs84
+    mercator = QgsCoordinateReferenceSystem("EPSG:3857")
+    if QgsProject.instance().crs() != mercator:
+        QgsProject.instance().setCrs(mercator)
+    canvas = iface.mapCanvas()
+    if canvas.mapSettings().destinationCrs() != mercator:
+        canvas.setDestinationCrs(mercator)
+    return mercator
+
+
+def zoom_to_point(iface, point: QgsPointXY, scale: float = 18056.0):
+    """延后一轮事件循环，把画布中心移到 point 并设置绝对比例尺 scale。
+
+    不能用 zoomToFeatureIds + zoomScale 组合：对单个点要素，
+    QgsMapCanvas::zoomToFeatureExtent 只是保持当前范围大小、把中心移到该点，
+    而 zoomScale 是相对当前比例尺缩放。
+
+    也不能同步缩放：空工程添加第一个图层后，QGIS 会在事件循环下一轮
+    （QgsLayerTreeMapCanvasBridge::setCanvasLayers，QueuedConnection）把工程 CRS
+    改成第一个图层的 CRS，并调用 zoomToProjectExtent()。单点图层的范围是零面积，
+    会被 QgsMapLayerUtils::combinedExtent 按“坐标 * 1e-8”膨胀成类米级小矩形，
+    于是自动缩放到 1:1 这种无意义比例，并覆盖掉我们的缩放。延后一轮才能覆盖它。
+
+    Args:
+        iface: QgisInterface
+        point (QgsPointXY): WGS84 坐标点
+        scale (float): 目标比例尺分母
+    """
+    QTimer.singleShot(0, lambda: _zoom_to_point(iface, point, scale))
+
+
+def _zoom_to_point(iface, point: QgsPointXY, scale: float):
+    canvas = iface.mapCanvas()
+    canvas_crs = canvas.mapSettings().destinationCrs()
+    if not canvas_crs.isValid():
+        canvas_crs = QgsProject.instance().crs()
+        if not canvas_crs.isValid():
+            canvas_crs = QgsCoordinateReferenceSystem("EPSG:3857")
+        canvas.setDestinationCrs(canvas_crs)
+
+    transform = QgsCoordinateTransform(
+        QgsCoordinateReferenceSystem("EPSG:4326"), canvas_crs, QgsProject.instance()
+    )
+    center = transform.transform(point)
+
+    # 先设置一个以点为中心的有效范围，让 extent/scale 有确定值；
+    # 空工程时 mapUnitsPerPixel() 为 0 或 NaN，用临时值占位即可，
+    # 范围大小随后会被 zoomScale 覆盖。
+    mupp = canvas.mapUnitsPerPixel()
+    if not mupp > 0:
+        mupp = 1.0
+    size = canvas.mapSettings().outputSize()
+    canvas.setExtent(
+        QgsRectangle.fromCenterAndSize(
+            center, mupp * size.width(), mupp * size.height()
+        )
+    )
+    canvas.zoomScale(scale)
 
 
 def create_raster_layer(uri: str, name: str, provider_type: str = "wms"):

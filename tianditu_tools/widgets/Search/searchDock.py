@@ -15,7 +15,13 @@ from qgis.PyQt.QtNetwork import QNetworkReply
 from qgis.PyQt.QtWidgets import QTreeWidget, QTreeWidgetItem
 
 from ...compat import NoError, Ui_SearchDockWidget
-from ...qgis_utils import create_crs84_point_layer, log_message, push_warning
+from ...qgis_utils import (
+    create_crs84_point_layer,
+    log_message,
+    push_warning,
+    search_result_crs,
+    zoom_to_point,
+)
 from ...utils import HEADER, get_point_style, make_request
 
 
@@ -164,16 +170,16 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         group = root.findGroup(group_name)  # 重新拿到 group
         # 定义图层
         point = QgsPointXY(x, y)
-        layer, feature = create_crs84_point_layer(name, point)
+        project_is_empty = QgsProject.instance().count() == 0
+        point_crs = search_result_crs(self.iface, project_is_empty)
+        layer, _ = create_crs84_point_layer(name, point, point_crs)
         group.addLayer(layer)
         # 加载图层样式
         layer.loadNamedStyle(get_point_style())
         layer.updateExtents()
         QgsProject.instance().addMapLayer(layer, False)
         # 画布缩放到点
-        # self.iface.mapCanvas().zoomToSelected()
-        self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
-        self.iface.mapCanvas().zoomScale(18056)  # 设置缩放等级, setExtent的缩放等级太大
+        zoom_to_point(self.iface, point)
         self.iface.mapCanvas().refresh()
 
     def onSearchRequestFinished(self, reply: QNetworkReply):

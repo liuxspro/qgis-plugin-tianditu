@@ -8,7 +8,12 @@ from qgis.core import (
 )
 from qgis.PyQt.QtCore import QCoreApplication
 
-from ..qgis_utils import create_crs84_point_layer, log_message
+from ..qgis_utils import (
+    create_crs84_point_layer,
+    log_message,
+    search_result_crs,
+    zoom_to_point,
+)
 from ..utils import PluginConfig, get_point_style
 from ..widgets.icons import icons
 from ._utils import get_api_key, tianditu_request
@@ -113,12 +118,13 @@ class TDTGeocoderFilter(QgsLocatorFilter):
         if not isinstance(point, QgsPointXY):
             return
         name = result.displayString
-        layer, feature = create_crs84_point_layer(name, point)
+        project_is_empty = QgsProject.instance().count() == 0
+        point_crs = search_result_crs(self.iface, project_is_empty)
+        layer, _ = create_crs84_point_layer(name, point, point_crs)
         layer.loadNamedStyle(get_point_style())
         QgsProject.instance().addMapLayer(layer)
-        # zoom to feature
-        self.iface.mapCanvas().zoomToFeatureIds(layer, [feature.id()])
-        self.iface.mapCanvas().zoomScale(18056)  # ���÷Ŵȼ�, setExtent�ķŴȼ�̫��
+        # 缩放到点
+        zoom_to_point(self.iface, point)
         self.iface.mapCanvas().refresh()
 
     def triggerResultFromAction(self, result, _action):
