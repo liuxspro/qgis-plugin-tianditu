@@ -138,7 +138,7 @@ class AddMapBtn(QToolButton):
         for group_key, group_info in tianditu_map_groups.items():
             menu.addAction(
                 self.icons["epsg4490"],
-                f"{group_info['name']}(4490)",
+                f"{group_info['name']}(EPSG:4490)",
                 lambda key=group_key: self.add_tianditu_c_basemap_group(key),
             )
 
@@ -214,7 +214,7 @@ class AddMapBtn(QToolButton):
             return
         map_info = tianditu_c_map_info[maptype]
         uri = get_local_wmts_uri(caps_file, map_info["layer"], map_info["format"])
-        add_raster_layer(uri, f"{map_info['name']}(4490)")
+        add_raster_layer(uri, f"{map_info['name']}(EPSG:4490)")
 
     def add_tianditu_c_basemap_group(self, group_key):
         """添加天地图 EPSG:4490 图层组（含注记）"""
@@ -227,6 +227,6 @@ class AddMapBtn(QToolButton):
         for maptype in group_info["layers"]:
             map_info = tianditu_c_map_info[maptype]
             uri = get_local_wmts_uri(caps_file, map_info["layer"], map_info["format"])
-            layers.append((uri, f"{map_info['name']}(4490)"))
+            layers.append((uri, f"{map_info['name']}(EPSG:4490)"))
 
-        add_raster_layer_group(layers, f"{group_info['name']}(4490)")
+        add_raster_layer_group(layers, f"{group_info['name']}(EPSG:4490)")
