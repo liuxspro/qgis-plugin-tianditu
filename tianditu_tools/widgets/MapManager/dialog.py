@@ -1,7 +1,7 @@
-from qgis.PyQt import QtGui, QtWidgets
+from qgis.PyQt import QtWidgets
 
 from ...compat import Ui_MapManagerDialog
-from ...utils import APP_FONT, PluginDir
+from ...utils import PluginDir
 from .tree import MapManager
 
 
