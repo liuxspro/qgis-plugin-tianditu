@@ -1,6 +1,10 @@
-from urllib.parse import quote, urlencode
+from urllib.parse import quote
 
 from qgis.core import Qgis
+
+# 天地图 EPSG:4490 瓦片使用的坐标系与瓦片矩阵集
+WMTS_C_CRS = "EPSG:4490"
+WMTS_C_MATRIX_SET = "CGCS2000Quad"
 
 
 def parse_referer(referer):
@@ -36,15 +40,36 @@ def get_wmts_uri(uri, referer=""):
     return uri + parsed_referer
 
 
-def _gen_wmts_uri(crs, img_format, layers, matrix, url):
-    params = {
-        "crs": crs,
-        "format": img_format,
-        "layers": layers,
-        "styles": "default",
-        "tileMatrixSet": matrix,
-        "tilePixelRatio": 0,
-        "url": url,
-    }
-    query_string = urlencode(params, safe=":/")
-    return query_string
+def get_local_wmts_uri(
+    caps_file,
+    layers: str,
+    img_format: str = "image/png",
+    crs: str = WMTS_C_CRS,
+    matrix_set: str = WMTS_C_MATRIX_SET,
+) -> str:
+    """返回基于本地 WMTS capabilities 文件的图层 uri
+
+    caps 文件名必须包含 WMTSCapabilities.xml，QGIS 靠它判断这是一个 WMTS
+    （isUrlForWMTS），否则会追加 SERVICE=WMS&REQUEST=GetCapabilities。
+
+    Args:
+        caps_file (Path): 本地 capabilities 文件
+        layers (str): capabilities 中的图层标识
+        img_format (str): 需与图层声明的 Format 一致，QGIS 用它匹配 ResourceURL 模板
+        crs (str): 坐标系
+        matrix_set (str): 瓦片矩阵集标识
+
+    Returns:
+        str: 栅格图层 uri
+    """
+    params = [
+        ("crs", crs),
+        ("format", img_format),
+        ("layers", layers),
+        ("styles", "default"),
+        ("tileMatrixSet", matrix_set),
+        ("tilePixelRatio", "0"),
+        # 只能局部编码："&" 必须编码为 %26，":" 与 "/" 保留以便 QGIS 识别 file:// 路径
+        ("url", caps_file.as_uri()),
+    ]
+    return "&".join(f"{name}={quote(value, safe=':/?=')}" for name, value in params)

@@ -7,6 +7,7 @@ icon_dict = {
     "add": "./images/add_map.svg",
     "map": "./images/map_tianditu.svg",
     "other": "./images/earth.svg",
+    "epsg4490": "./images/map_tianditu_c.svg",
     "search": "./images/search.svg",
     "check": "./images/FluentCheckmark12Filled.svg",
     "fitzoom": "./images/fitzoom.svg",

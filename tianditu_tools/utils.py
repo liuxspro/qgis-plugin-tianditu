@@ -4,7 +4,7 @@ from pathlib import Path
 from random import choice
 
 import yaml
-from qgis.core import QgsSettings
+from qgis.core import QgsApplication, QgsSettings
 from qgis.PyQt.QtCore import QUrl, QUrlQuery
 from qgis.PyQt.QtGui import QFont
 from qgis.PyQt.QtNetwork import QNetworkRequest
@@ -205,6 +205,47 @@ def tianditu_map_url(maptype: str, token: str, subdomain: str) -> str:
     url += "&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TileCol={x}&TileRow={y}&TileMatrix={z}"
     url += f"&tk={token}"
     return url
+
+
+# 天地图 EPSG:4490 瓦片的本地 capabilities 模板，其中的 {tk} 在生成时替换为实际 key
+WMTS_C_TEMPLATE = PluginDir.joinpath("maps/tianditu_c.xml")
+
+
+def tianditu_wmts_c_capabilities(key: str, subdomain: str = "t6") -> Path:
+    """生成（或复用）天地图 EPSG:4490 瓦片的本地 WMTS capabilities 文件
+
+    官方 capabilities 有两个坑：GetTile 端点不带 tk 会导致瓦片 403；
+    ScaleDenominator 按 96 DPI 计算会导致比例尺偏移 5.83%。
+    内置模板已修补这两点（ResourceURL 模板带 tk、比例尺按 0.28mm 重算），
+    这里只用实际的 key 和子域名替换模板，QGIS 便能按 REST 方式取瓦片。
+
+    Args:
+        key (str): 天地图 key
+        subdomain (str): 使用的子域名，默认 t6
+
+    Returns:
+        Path: 本地 capabilities 文件路径
+    """
+    caps_dir = Path(QgsApplication.qgisSettingsDirPath()).joinpath(
+        "tianditu_tools", "caps_c"
+    )
+    caps_file = caps_dir.joinpath("WMTSCapabilities.xml")
+    domain = f"https://{subdomain}.tianditu.gov.cn"
+
+    content = WMTS_C_TEMPLATE.read_text(encoding="utf-8")
+    content = content.replace("tk={tk}", f"tk={key}")
+    content = content.replace("https://t6.tianditu.gov.cn", domain)
+    # 内容完全一致才复用，模板改动、换 key、换子域名都会重新生成
+    if caps_file.exists():
+        try:
+            if caps_file.read_text(encoding="utf-8") == content:
+                return caps_file
+        except OSError:
+            pass
+
+    caps_dir.mkdir(parents=True, exist_ok=True)
+    caps_file.write_text(content, encoding="utf-8")
+    return caps_file
 
 
 def load_yaml(file_path: Path):
