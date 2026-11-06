@@ -91,6 +91,10 @@
     {
       "name": "江苏 2026年2季度 影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2026q2&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
+    },
+    {
+      "name": "江苏 2026年1-4月 影像地图",
+      "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=img2026&styles=default&tileMatrixSet=CGCS2000Quad&url=https://wmts.liuxs.pro/tianditu/jiangsu"
     }
   ],
   "天地图-广东": [
