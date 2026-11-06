@@ -10,7 +10,7 @@ class MapManagerDialog(QtWidgets.QDialog, Ui_MapManagerDialog):
 
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setFont(QtGui.QFont(APP_FONT, 8))
+        # self.setFont(QtGui.QFont(APP_FONT, 8))
         self.setupUi(self)
         self.mapm = MapManager(PluginDir.joinpath("maps"), parent=self)
         self.horizontalLayout_tree.addWidget(self.mapm)

@@ -17,7 +17,7 @@ from ...utils import APP_FONT, PluginConfig
 
 ui_font = QFont()
 ui_font.setFamily(APP_FONT)
-ui_font.setPointSize(8)
+# ui_font.setPointSize(8)
 
 
 class MapManager(QTreeWidget):
