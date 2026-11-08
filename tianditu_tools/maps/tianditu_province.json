@@ -586,5 +586,67 @@
       "name": "河北 2011 年影像地图",
       "uri": "crs=EPSG:4490&format=image/jpeg&tilePixelRatio=0&layers=hehei_2011&styles=default&tileMatrixSet=CGCS2000QuadF1T17&url=https://wmts.liuxs.pro/tianditu/hebei"
     }
+  ],
+  "天地图-新疆": [
+    {
+      "name": "新疆 2026影像7月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img07_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2026影像6月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img06_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2026影像5月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img05_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2026影像4月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img04_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2026影像3月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img03_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2026影像2月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_2026img02_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像11月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202511_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像10月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202510_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像9月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202509_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像8月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202508_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像7月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202507_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像6月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202506_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像5月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202505_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像4月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202504_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    },
+    {
+      "name": "新疆 2025影像3月2米 影像",
+      "uri": "crs=EPSG:4490&format=image/png&tilePixelRatio=0&layers=xinjiang_img_202503_2m&styles=default&tileMatrixSet=CGCS2000QuadF1T16&url=https://wmts.liuxs.pro/tianditu/xinjiang"
+    }
   ]
 }
