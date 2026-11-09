@@ -1,4 +1,4 @@
-from random import choice
+import secrets
 
 from qgis.PyQt.QtWidgets import QMenu, QToolButton
 
@@ -165,7 +165,7 @@ class AddMapBtn(QToolButton):
             return None
 
         if conf.random_subdomain:
-            subdomain = choice(SUBDOMAINS)
+            subdomain = secrets.choice(SUBDOMAINS)
         else:
             subdomain = conf.subdomain
         if conf.random_key:

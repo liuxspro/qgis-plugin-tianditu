@@ -1,7 +1,7 @@
 import ast
 import json
+import secrets
 from pathlib import Path
-from random import choice
 
 import yaml
 from qgis.core import QgsApplication, QgsSettings
@@ -161,8 +161,10 @@ class PluginConfig:
         return self.get_value("Tianditu/key") or ""
 
     def get_random_key(self):
+        # 仅用于在多个 key 之间做负载均衡，不涉及安全用途；
+        # 用 secrets 是为了通过 QGIS 插件仓库的 Bandit B311 扫描
         key_list = self.key_list
-        return choice(key_list) if key_list else ""
+        return secrets.choice(key_list) if key_list else ""
 
     def set_key(self, key):
         key_to_set = ""
