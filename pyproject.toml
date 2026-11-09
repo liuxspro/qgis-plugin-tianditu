@@ -18,5 +18,6 @@ constraint-dependencies = ["pyqt5-qt5 <=5.15.2; sys_platform == 'win32'"]
 dev = [
     "pylint>=4.0.5",
     "owslib>=0.36.0",
+    "bandit>=1.9.4",
 ]
 # PyQt5-Qt5 这个包只有 5.15.2 还支持 Windows

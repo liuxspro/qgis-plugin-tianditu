@@ -5,6 +5,9 @@ default:
 lint:
     @echo 'Run Pylint...'
     @uv run pylint $(git ls-files '*.py' ':(exclude)tianditu_tools/ui/')
+# 本地复现 plugins.qgis.org 的安全扫描（默认扫源码，可传入 dist 下的 zip）
+scan target="tianditu_tools":
+    @uv run ./scripts/scan.py {{ target }}
 # 运行测试（待添加测试用例）
 test:
     @echo 'No tests yet.'
