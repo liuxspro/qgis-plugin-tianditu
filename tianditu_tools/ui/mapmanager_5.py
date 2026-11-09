@@ -79,6 +79,6 @@ class Ui_MapManagerDialog(object):
         self.pushButton_check_all.setText(_translate("MapManagerDialog", "全选"))
         self.pushButton_uncheck_all.setText(_translate("MapManagerDialog", "全不选"))
         self.pushButton_load.setText(_translate("MapManagerDialog", "加载地图包…"))
-        self.label_download.setText(_translate("MapManagerDialog", "<html><head/><body><p><a href=\"https://github.com/liuxspro/qgis-plugin-tianditu/releases\" style=\"color: #0078d7;\">下载地图包</a></p></body></html>"))
+        self.label_download.setText(_translate("MapManagerDialog", "<html><head/><body><p><a href=\"https://cnb.cool/liuxspro/tianditu-maps/-/releases\" style=\"color: #0078d7;\">下载地图包</a></p></body></html>"))
         self.pushButton_cancel.setText(_translate("MapManagerDialog", "取消"))
         self.pushButton_ok.setText(_translate("MapManagerDialog", "确定"))

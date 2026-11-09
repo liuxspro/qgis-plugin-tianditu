@@ -67,7 +67,7 @@
      <item>
       <widget class="QLabel" name="label_download">
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/liuxspro/qgis-plugin-tianditu/releases&quot; style=&quot;color: #0078d7;&quot;&gt;下载地图包&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://cnb.cool/liuxspro/tianditu-maps/-/releases&quot; style=&quot;color: #0078d7;&quot;&gt;下载地图包&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>
