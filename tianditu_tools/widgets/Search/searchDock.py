@@ -28,8 +28,7 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         self.nwm = QgsNetworkAccessManager.instance()
         self.qset = QgsSettings()
         # 读取 token
-        self.token = ""
-        self.get_token()
+        self.token = self._read_token()
         # 初始化 treeWidget
         self.treeWidget = QTreeWidget(self.tab)
         self.treeWidget.setObjectName("treeWidget")
@@ -50,9 +49,12 @@ class SearchDockWidget(QtWidgets.QDockWidget, Ui_SearchDockWidget):
         self.tool = QgsMapToolEmitPoint(self.iface.mapCanvas())
         self.tool.canvasClicked.connect(self.handle_capture)
 
+    def _read_token(self):
+        return self.qset.value("tianditu-tools/Tianditu/key") or ""
+
     def get_token(self):
-        if self.token == "":
-            self.token = self.qset.value("tianditu-tools/Tianditu/key")
+        if not self.token:
+            self.token = self._read_token()
 
     def on_treeWidget_item_double_clicked(self, item, _):
         # 没有子节点的根节点,根据根节点的行政区划进行搜索,行政区划代码在第4列(index=3)
