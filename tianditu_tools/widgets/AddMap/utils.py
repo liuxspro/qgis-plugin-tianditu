@@ -1,10 +1,19 @@
+import math
 from urllib.parse import quote
 
-from qgis.core import Qgis
+from qgis.core import (
+    Qgis,
+    QgsCoordinateReferenceSystem,
+    QgsCoordinateTransform,
+    QgsProject,
+)
 
 # 天地图 EPSG:4490 瓦片使用的坐标系与瓦片矩阵集
 WMTS_C_CRS = "EPSG:4490"
 WMTS_C_MATRIX_SET = "CGCS2000Quad"
+
+# 山东天地图历史影像的 WMTS capabilities 服务
+SD_HIS_WMTS_SERVER = "https://wmts.liuxs.pro/"
 
 
 def parse_referer(referer):
@@ -38,6 +47,44 @@ def get_xyz_uri(url: str, zmin: int = 0, zmax: int = 18, referer: str = "") -> s
 def get_wmts_uri(uri, referer=""):
     parsed_referer = parse_referer(referer)
     return uri + parsed_referer
+
+
+def canvas_center_lonlat(iface):
+    """返回画布中心的经纬度（EPSG:4326）"""
+    canvas = iface.mapCanvas()
+    transform = QgsCoordinateTransform(
+        canvas.mapSettings().destinationCrs(),
+        QgsCoordinateReferenceSystem("EPSG:4326"),
+        QgsProject.instance(),
+    )
+    center = transform.transform(canvas.center())
+    return center.x(), center.y()
+
+
+def canvas_zoom_level(iface):
+    """按 Web 墨卡托比例尺换算画布对应的瓦片层级"""
+    scale = iface.mapCanvas().scale()
+    scales = [
+        2 * math.pi * 6378137 / (256 * pow(2, level) * 0.00028) for level in range(22)
+    ]
+    return min(range(len(scales)), key=lambda i: abs(scales[i] - scale))
+
+
+def get_sd_his_uri(tk: str, mapid: str, el: str) -> str:
+    """山东天地图历史影像的 WMTS 图层 uri
+
+    Args:
+        tk (str): 山东天地图 Token
+        mapid (str): imgmeta 返回的 url 末段
+        el (str): imgmeta 返回的层级字段，用于拼瓦片矩阵集
+
+    Returns:
+        str: 栅格图层 uri
+    """
+    cap_url = f"{SD_HIS_WMTS_SERVER}tianditu/sdhis/{mapid}/{el}?tk%3D{tk}"
+    uri = f"crs=EPSG:4490&format=image/jpeg&layers={mapid}"
+    uri += f"&styles=default&tileMatrixSet=CGCS2000QuadF3T{el}&url={cap_url}"
+    return uri
 
 
 def get_local_wmts_uri(

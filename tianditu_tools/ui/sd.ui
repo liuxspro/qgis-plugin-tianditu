@@ -111,7 +111,7 @@
         <number>4</number>
        </property>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,0">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,0,0">
          <item>
           <widget class="QCheckBox" name="checkBox">
            <property name="toolTip">
@@ -134,6 +134,16 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="pushButton_timeline">
+           <property name="toolTip">
+            <string>在画布底部打开历史影像时间轴</string>
+           </property>
+           <property name="text">
+            <string>时间轴</string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_search">

@@ -1,13 +1,9 @@
 import json
-import math
 
 from qgis.core import (
     Qgis,
-    QgsCoordinateReferenceSystem,
-    QgsCoordinateTransform,
     QgsDateTimeRange,
     QgsNetworkAccessManager,
-    QgsProject,
 )
 from qgis.PyQt import QtWidgets
 from qgis.PyQt.QtCore import QDateTime
@@ -15,6 +11,7 @@ from qgis.PyQt.QtWidgets import QAction, QListWidgetItem, QTreeWidgetItem
 
 from ...compat import (
     AlignCenter,
+    BottomDockWidgetArea,
     DescendingOrder,
     HeaderStretch,
     NoError,
@@ -26,7 +23,9 @@ from ...compat import (
 from ...qgis_utils import add_raster_layer, push_message
 from ...utils import PluginConfig, make_request
 from ..icons import icons
+from .sd_timeline import SdTimelineDock
 from .token_dialog import SdTokenDialog
+from .utils import canvas_center_lonlat, canvas_zoom_level, get_sd_his_uri
 
 
 class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
@@ -38,7 +37,9 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         self.init_tree_widget()
         self.conf = PluginConfig()
         self.tk = None
+        self.timeline_dock = None
         self.pushButton_token.clicked.connect(self.show_token_dialog)
+        self.pushButton_timeline.clicked.connect(self.show_timeline_dock)
         self.sd_tile_data = {
             "山东省影像注记": "sdrasterpubmapdj",
             "山东省电子地图": "sdpubmap",
@@ -61,6 +62,8 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
             self.set_token_status("Token 已配置")
         else:
             self.set_token_status("未配置 Token", is_warning=True)
+        if self.timeline_dock is not None and self.timeline_dock.isVisible():
+            self.timeline_dock.refresh(force=True)
 
     def set_token_status(self, text: str, is_warning: bool = False):
         color = "#cf222e" if is_warning else "#808080"
@@ -111,26 +114,19 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         add_raster_layer(uri, item_name)
 
     def get_center_point(self):
-        canvas = self.iface.mapCanvas()
-        center_point = canvas.center()
-        source_crs = canvas.mapSettings().destinationCrs()
-        target_crs = QgsCoordinateReferenceSystem("EPSG:4326")
-        transform = QgsCoordinateTransform(
-            source_crs, target_crs, QgsProject.instance()
-        )
-        center_point_4326 = transform.transform(center_point)
-        return center_point_4326.x(), center_point_4326.y()
+        return canvas_center_lonlat(self.iface)
 
     def get_zoom_level(self):
-        canvas = self.iface.mapCanvas()
-        current_scale = canvas.scale()
-        scale_list = [
-            2 * math.pi * 6378137 / (256 * pow(2, x) * 0.00028) for x in range(22)
-        ]
-        level = min(
-            range(len(scale_list)), key=lambda i: abs(scale_list[i] - current_scale)
-        )
-        return level
+        return canvas_zoom_level(self.iface)
+
+    def show_timeline_dock(self):
+        if self.timeline_dock is None:
+            self.timeline_dock = self.iface.mainWindow().findChild(SdTimelineDock)
+        if self.timeline_dock is None:
+            self.timeline_dock = SdTimelineDock(self.iface)
+            self.iface.addDockWidget(BottomDockWidgetArea, self.timeline_dock)
+        self.timeline_dock.show()
+        self.timeline_dock.raise_()
 
     def set_his_status(self, text: str):
         self.label_his_status.setText(text)
@@ -233,10 +229,7 @@ class SdDock(QtWidgets.QDockWidget, Ui_SdDockWidget):
         mapid = url.split("/")[-1]
         # 为山东天地图历史影像写了一个简单的 WMTS Capabilities 生成服务
         # 源代码见 https://github.com/liuxspro/wmts/blob/main/src/server.ts
-        his_wmts_server = "https://wmts.liuxs.pro/"
-        cap_url = f"{his_wmts_server}tianditu/sdhis/{mapid}/{el}?tk%3D{self.tk}"
-        uri = f"crs=EPSG:4490&format=image/jpeg&layers={mapid}"
-        uri += f"&styles=default&tileMatrixSet=CGCS2000QuadF3T{el}&url={cap_url}"
+        uri = get_sd_his_uri(self.tk, mapid, el)
 
         layer = add_raster_layer(uri, name)
         if layer is None:
