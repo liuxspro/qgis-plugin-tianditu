@@ -15,6 +15,7 @@ IS_QT6 = QT_MAJOR_VERSION == 6
 if IS_QT5:
     # Qt 5 版本
     from .ui.sd_5 import Ui_SdDockWidget  # noqa  # pylint: disable=unused-import
+    from .ui.sd_token_5 import Ui_SdTokenDialog  # noqa  # pylint: disable=unused-import
     from .ui.search_5 import Ui_SearchDockWidget  # noqa  # pylint: disable=unused-import
     from .ui.setting_5 import Ui_SettingDialog  # noqa  # pylint: disable=unused-import
     from .ui.mapmanager_5 import (  # noqa  # pylint: disable=unused-import
@@ -47,6 +48,7 @@ if IS_QT6:
     # QT6 版本
 
     from .ui.sd import Ui_SdDockWidget  # noqa  # pylint: disable=unused-import
+    from .ui.sd_token import Ui_SdTokenDialog  # noqa  # pylint: disable=unused-import
     from .ui.setting import Ui_SettingDialog  # noqa  # pylint: disable=unused-import
     from .ui.search import (  # noqa # pylint: disable=unused-import
         Ui_SearchDockWidget,  # noqa # pylint: disable=unused-import

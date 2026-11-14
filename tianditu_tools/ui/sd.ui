@@ -6,69 +6,34 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>376</width>
-    <height>442</height>
+    <width>380</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>天地图·山东</string>
   </property>
   <widget class="QWidget" name="dockWidgetContents">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <item>
-     <widget class="QGroupBox" name="groupBox">
-      <property name="title">
-       <string>Token 设置</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout">
-         <item>
-          <widget class="QgsPasswordLineEdit" name="mLineEdit_sdtk">
-           <property name="font">
-            <font>
-             <family>Consolas</family>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_save">
-           <property name="font">
-            <font>
-             <pointsize>8</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>保存</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="font">
-          <font>
-           <pointsize>8</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://mp.weixin.qq.com/s/CcdjjjsBk7rNlxalBjUXIg&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Token 申请方法及使用说明&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-         </property>
-         <property name="openExternalLinks">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0,1,0">
+    <property name="spacing">
+     <number>6</number>
+    </property>
+    <property name="leftMargin">
+     <number>6</number>
+    </property>
+    <property name="topMargin">
+     <number>6</number>
+    </property>
+    <property name="rightMargin">
+     <number>6</number>
+    </property>
+    <property name="bottomMargin">
+     <number>6</number>
+    </property>
     <item>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -77,33 +42,50 @@
        <string>服务资源</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_4">
+       <property name="spacing">
+        <number>4</number>
+       </property>
+       <item>
+        <widget class="QLabel" name="label_resource_hint">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(128, 128, 128);</string>
+         </property>
+         <property name="text">
+          <string>双击列表项即可添加到底图</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
        <item>
         <widget class="QListWidget" name="listWidget">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
          </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>0</height>
+          </size>
+         </property>
          <property name="maximumSize">
           <size>
            <width>16777215</width>
-           <height>58</height>
+           <height>64</height>
           </size>
          </property>
-         <property name="font">
-          <font>
-           <pointsize>9</pointsize>
-          </font>
-         </property>
-         <property name="autoScroll">
-          <bool>true</bool>
+         <property name="toolTip">
+          <string>双击列表项添加到底图</string>
          </property>
          <property name="autoScrollMargin">
           <number>80</number>
          </property>
          <property name="resizeMode">
-          <enum>QListView::Adjust</enum>
+          <enum>QListView::ResizeMode::Adjust</enum>
          </property>
          <property name="spacing">
           <number>2</number>
@@ -115,21 +97,49 @@
     </item>
     <item>
      <widget class="QGroupBox" name="groupBox_3">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>1</verstretch>
+       </sizepolicy>
+      </property>
       <property name="title">
        <string>历史影像</string>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <property name="spacing">
+        <number>4</number>
+       </property>
        <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,4">
+        <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,1,0">
          <item>
           <widget class="QCheckBox" name="checkBox">
+           <property name="toolTip">
+            <string>按当前画布中心与缩放级别查询；未勾选时使用默认位置（117.7, 36）与 7 级</string>
+           </property>
            <property name="text">
             <string>根据当前画布范围</string>
            </property>
           </widget>
          </item>
          <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
           <widget class="QPushButton" name="pushButton_search">
+           <property name="toolTip">
+            <string>以画布中心为查询点，返回覆盖该位置的历史影像</string>
+           </property>
            <property name="text">
             <string>查询历史影像</string>
            </property>
@@ -138,13 +148,41 @@
         </layout>
        </item>
        <item>
+        <widget class="QLabel" name="label_his_status">
+         <property name="styleSheet">
+          <string notr="true">color: rgb(128, 128, 128);</string>
+         </property>
+         <property name="text">
+          <string>双击影像条目即可添加到底图</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QTreeWidget" name="treeWidget">
+         <property name="toolTip">
+          <string>双击影像条目添加到地图，并自动设置图层时态</string>
+         </property>
+         <property name="alternatingRowColors">
+          <bool>true</bool>
+         </property>
+         <property name="selectionBehavior">
+          <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+         </property>
+         <property name="rootIsDecorated">
+          <bool>false</bool>
+         </property>
+         <property name="uniformRowHeights">
+          <bool>true</bool>
+         </property>
+         <property name="sortingEnabled">
+          <bool>true</bool>
+         </property>
          <column>
           <property name="text">
            <string>名称</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignCenter</set>
           </property>
          </column>
          <column>
@@ -163,37 +201,41 @@
            <set>AlignCenter</set>
           </property>
          </column>
-         <column>
-          <property name="text">
-           <string>URL</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignCenter</set>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>el</string>
-          </property>
-          <property name="textAlignment">
-           <set>AlignCenter</set>
-          </property>
-         </column>
         </widget>
        </item>
       </layout>
      </widget>
     </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_token" stretch="1,0">
+      <item>
+       <widget class="QLabel" name="label_token_status">
+        <property name="styleSheet">
+         <string notr="true">color: rgb(128, 128, 128);</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="wordWrap">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pushButton_token">
+        <property name="toolTip">
+         <string>设置天地图·山东 Token</string>
+        </property>
+        <property name="text">
+         <string>Token 设置…</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
    </layout>
   </widget>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>QgsPasswordLineEdit</class>
-   <extends>QLineEdit</extends>
-   <header>qgspasswordlineedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

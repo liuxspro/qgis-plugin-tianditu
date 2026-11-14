@@ -20,11 +20,13 @@ build:
     @uv run pyuic5 ./tianditu_tools/ui/mapmanager.ui -o ./tianditu_tools/ui/mapmanager_5.py
     @uv run pyuic5 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search_5.py
     @uv run pyuic5 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd_5.py
+    @uv run pyuic5 ./tianditu_tools/ui/sd_token.ui -o ./tianditu_tools/ui/sd_token_5.py
     @# QT6
     @uv run pyuic6 ./tianditu_tools/ui/setting.ui -o ./tianditu_tools/ui/setting.py
     @uv run pyuic6 ./tianditu_tools/ui/mapmanager.ui -o ./tianditu_tools/ui/mapmanager.py
     @uv run pyuic6 ./tianditu_tools/ui/search.ui -o ./tianditu_tools/ui/search.py
     @uv run pyuic6 ./tianditu_tools/ui/sd.ui -o ./tianditu_tools/ui/sd.py
+    @uv run pyuic6 ./tianditu_tools/ui/sd_token.ui -o ./tianditu_tools/ui/sd_token.py
     @uv run ./scripts/update_ui.py
     # Done
 # 打包插件（依赖 build）
